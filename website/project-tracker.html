@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Tracker - Apex Pool Enclosures</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0891b2;
+            --text: #1a1a1a;
+            --text-muted: #6b7280;
+            --bg: #ffffff;
+            --bg-alt: #f0fdfa;
+            --border: #e5e7eb;
+            --success: #059669;
+            --warning: #d97706;
+            --danger: #dc2626;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-alt); color: var(--text); line-height: 1.6; }
+
+        .doc-nav { background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%); padding: 1rem 2rem; }
+        .doc-nav h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.8); margin-bottom: 0.75rem; }
+        .doc-nav-grid { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+        .doc-card { background: white; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; color: var(--text); border: 1px solid var(--border); font-size: 0.85rem; font-weight: 500; }
+        .doc-card:hover { border-color: var(--primary); }
+        .doc-card.active { color: var(--primary); }
+
+        header { background: white; padding: 2rem; border-bottom: 1px solid var(--border); }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        header h1 { font-size: 1.75rem; }
+        .status-badge { background: var(--primary); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 500; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+        .stat-card { background: white; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .stat-number { font-size: 2rem; font-weight: 700; color: var(--primary); }
+        .stat-label { font-size: 0.85rem; color: var(--text-muted); }
+
+        .card { background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .card h2 { font-size: 1.25rem; margin-bottom: 1rem; color: var(--primary); }
+
+        .task-list { list-style: none; }
+        .task-item { padding: 1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 1rem; }
+        .task-item:last-child { border-bottom: none; }
+        .task-checkbox { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .task-checkbox.done { background: var(--success); border-color: var(--success); color: white; }
+        .task-checkbox.in-progress { background: var(--warning); border-color: var(--warning); color: white; }
+        .task-content { flex: 1; }
+        .task-title { font-weight: 500; }
+        .task-meta { font-size: 0.85rem; color: var(--text-muted); }
+
+        .timeline { position: relative; padding-left: 2rem; }
+        .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+        .timeline-item { position: relative; padding-bottom: 1.5rem; }
+        .timeline-dot { position: absolute; left: -2rem; top: 0.25rem; width: 18px; height: 18px; border-radius: 50%; background: var(--border); border: 3px solid white; }
+        .timeline-item.done .timeline-dot { background: var(--success); }
+        .timeline-item.current .timeline-dot { background: var(--primary); }
+        .timeline-date { font-size: 0.8rem; color: var(--text-muted); }
+        .timeline-title { font-weight: 600; }
+        .timeline-desc { font-size: 0.9rem; color: var(--text-muted); }
+
+        .product-status { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+        .product-card { background: white; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+        .product-card-header { padding: 1rem 1.5rem; color: white; }
+        .product-card-header.pump { background: var(--primary); }
+        .product-card-header.heater { background: var(--danger); }
+        .product-card-header h3 { font-size: 1.1rem; margin: 0; }
+        .product-card-body { padding: 1.5rem; }
+        .progress-bar { height: 8px; background: var(--bg-alt); border-radius: 4px; overflow: hidden; margin: 0.5rem 0; }
+        .progress-fill { height: 100%; background: var(--success); border-radius: 4px; }
+
+        @media print { .doc-nav { display: none; } }
+    </style>
+</head>
+<body>
+    <nav class="doc-nav">
+        <h3>Apex Pool Enclosures - Project Documents</h3>
+        <div class="doc-nav-grid">
+            <a href="index.html" class="doc-card">Website</a>
+            <a href="specification-pump.html" class="doc-card">Pump Enclosure Spec</a>
+            <a href="specification-heater.html" class="doc-card">Heater/Chiller Spec</a>
+            <a href="bom-detailed.html" class="doc-card">Bill of Materials</a>
+            <a href="acoustic-design.html" class="doc-card">Acoustic Design</a>
+            <a href="market-research.html" class="doc-card">Market Research</a>
+            <a href="project-tracker.html" class="doc-card active">Project Tracker</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <div>
+                <h1>Apex Pool Enclosures - Project Tracker</h1>
+                <p style="color: var(--text-muted);">Pump & Heater/Chiller Enclosures for Gulf Region</p>
+            </div>
+            <div class="status-badge">Phase: Design & Research</div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Product Models</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Documents Created</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Prototypes Built</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">$2K</div>
+                <div class="stat-label">Est. Combined Cost</div>
+            </div>
+        </div>
+
+        <!-- Product Status -->
+        <div class="card">
+            <h2>Product Development Status</h2>
+            <div class="product-status">
+                <div class="product-card">
+                    <div class="product-card-header pump">
+                        <h3>APE-P1 Pump Enclosure</h3>
+                    </div>
+                    <div class="product-card-body">
+                        <p style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-muted);">Semi-sunken weatherproof housing for pool pumps and filters.</p>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                                <span>Design Progress</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        <ul style="margin-top: 1rem; padding-left: 1.25rem; font-size: 0.9rem;">
+                            <li>Specification complete</li>
+                            <li>BOM estimated</li>
+                            <li>Drawings drafted</li>
+                            <li style="color: var(--text-muted);">Prototype pending</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-card-header heater">
+                        <h3>APE-HC1 Heater/Chiller Enclosure</h3>
+                    </div>
+                    <div class="product-card-body">
+                        <p style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-muted);">Acoustic enclosure with ventilation for pool heat pumps.</p>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                                <span>Design Progress</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        <ul style="margin-top: 1rem; padding-left: 1.25rem; font-size: 0.9rem;">
+                            <li>Specification complete</li>
+                            <li>Acoustic design documented</li>
+                            <li>BOM estimated</li>
+                            <li style="color: var(--text-muted);">Louvre sourcing needed</li>
+                            <li style="color: var(--text-muted);">Prototype pending</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tasks -->
+        <div class="card">
+            <h2>Current Tasks</h2>
+            <ul class="task-list">
+                <li class="task-item">
+                    <div class="task-checkbox done">&#10003;</div>
+                    <div class="task-content">
+                        <div class="task-title">Create product specifications</div>
+                        <div class="task-meta">Pump + Heater/Chiller specs complete</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox done">&#10003;</div>
+                    <div class="task-content">
+                        <div class="task-title">Document acoustic design principles</div>
+                        <div class="task-meta">Louvre design, panel construction, performance targets</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox done">&#10003;</div>
+                    <div class="task-content">
+                        <div class="task-title">Estimate bill of materials</div>
+                        <div class="task-meta">APE-P1: ~$530 | APE-HC1: ~$1,450</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox done">&#10003;</div>
+                    <div class="task-content">
+                        <div class="task-title">Market research - competitors</div>
+                        <div class="task-meta">European suppliers identified, UAE gap confirmed</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox in-progress">...</div>
+                    <div class="task-content">
+                        <div class="task-title">Source acoustic louvre supplier</div>
+                        <div class="task-meta">Need local or China supplier for Z-blade acoustic louvres</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox"></div>
+                    <div class="task-content">
+                        <div class="task-title">Get user's heater/chiller model details</div>
+                        <div class="task-meta">Required for prototype sizing</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox"></div>
+                    <div class="task-content">
+                        <div class="task-title">Contact Al Shurooq for pool enclosure quote</div>
+                        <div class="task-meta">Same manufacturer as TV enclosures</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox"></div>
+                    <div class="task-content">
+                        <div class="task-title">Build APE-P1 prototype</div>
+                        <div class="task-meta">Simpler product - start here</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-checkbox"></div>
+                    <div class="task-content">
+                        <div class="task-title">Build APE-HC1 prototype</div>
+                        <div class="task-meta">Test acoustic performance</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Timeline -->
+        <div class="card">
+            <h2>Project Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item done">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">26 Dec 2025</div>
+                    <div class="timeline-title">Project Initiated</div>
+                    <div class="timeline-desc">Research completed, specifications created, website built.</div>
+                </div>
+                <div class="timeline-item current">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Current</div>
+                    <div class="timeline-title">Design Refinement</div>
+                    <div class="timeline-desc">Finalizing details, sourcing acoustic components, preparing RFQ.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Next</div>
+                    <div class="timeline-title">Manufacturer Outreach</div>
+                    <div class="timeline-desc">Send RFQ to Al Shurooq and other fabricators.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Future</div>
+                    <div class="timeline-title">Prototype Build</div>
+                    <div class="timeline-desc">Manufacture and test first units.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Future</div>
+                    <div class="timeline-title">Validation & Launch</div>
+                    <div class="timeline-desc">Test performance, refine design, begin sales.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="card">
+            <h2>Project Notes</h2>
+            <ul style="padding-left: 1.5rem;">
+                <li><strong>Synergy with TV Enclosures:</strong> Same manufacturing partner (Al Shurooq), similar materials, shared brand (Apex Enclosures).</li>
+                <li><strong>User Context:</strong> User has semi-sunken pump enclosure already (quiet). Heater/chiller is the noise problem requiring acoustic solution.</li>
+                <li><strong>Priority:</strong> APE-HC1 (acoustic) is the primary product - solves a real pain point. APE-P1 (pump) is secondary.</li>
+                <li><strong>Acoustic Louvres:</strong> Key component - need to source or design custom. This is the main technical challenge.</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>

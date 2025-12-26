@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Research - Apex Pool Enclosures</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0891b2;
+            --text: #1a1a1a;
+            --text-muted: #6b7280;
+            --bg: #ffffff;
+            --bg-alt: #f0fdfa;
+            --border: #e5e7eb;
+            --success: #059669;
+            --warning: #d97706;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+        .doc-nav { background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%); padding: 1rem 2rem; }
+        .doc-nav h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.8); margin-bottom: 0.75rem; }
+        .doc-nav-grid { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+        .doc-card { background: white; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; color: var(--text); border: 1px solid var(--border); font-size: 0.85rem; font-weight: 500; }
+        .doc-card:hover { border-color: var(--primary); background: #f0fdfa; }
+        .doc-card.active { color: var(--primary); }
+
+        header { background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%); color: white; padding: 3rem 2rem; }
+        header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+
+        h2 { color: var(--primary); font-size: 1.5rem; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--primary); }
+        h3 { margin: 1.5rem 0 1rem; }
+
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+        th, td { padding: 0.75rem; text-align: left; border: 1px solid var(--border); }
+        th { background: var(--bg-alt); font-weight: 600; }
+
+        .competitor-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        .competitor-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .competitor-card .region {
+            display: inline-block;
+            background: var(--bg-alt);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .competitor-card .price {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--success);
+        }
+
+        .gap-box {
+            background: #dcfce7;
+            border: 2px solid var(--success);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .gap-box h3 { color: #166534; margin-top: 0; }
+
+        .note { background: #fef3c7; padding: 1rem; border-left: 4px solid var(--warning); margin: 1rem 0; font-size: 0.9rem; }
+
+        @media print { .doc-nav { display: none; } }
+    </style>
+</head>
+<body>
+    <nav class="doc-nav">
+        <h3>Apex Pool Enclosures - Project Documents</h3>
+        <div class="doc-nav-grid">
+            <a href="index.html" class="doc-card">Website</a>
+            <a href="specification-pump.html" class="doc-card">Pump Enclosure Spec</a>
+            <a href="specification-heater.html" class="doc-card">Heater/Chiller Spec</a>
+            <a href="bom-detailed.html" class="doc-card">Bill of Materials</a>
+            <a href="acoustic-design.html" class="doc-card">Acoustic Design</a>
+            <a href="market-research.html" class="doc-card active">Market Research</a>
+            <a href="project-tracker.html" class="doc-card">Project Tracker</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>Market Research</h1>
+            <div class="subtitle">Competitor analysis and market opportunity for pool equipment enclosures</div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <h2>1. Market Overview</h2>
+
+        <p>The pool equipment enclosure market is divided into two segments:</p>
+
+        <table>
+            <tr>
+                <th>Segment</th>
+                <th>Primary Need</th>
+                <th>Key Features</th>
+                <th>Price Range</th>
+            </tr>
+            <tr>
+                <td><strong>Pump/Filter Housing</strong></td>
+                <td>Weather protection, aesthetics</td>
+                <td>Weatherproof, access for service</td>
+                <td>$300 - $1,500</td>
+            </tr>
+            <tr>
+                <td><strong>Acoustic Enclosures</strong></td>
+                <td>Noise reduction</td>
+                <td>Soundproofing + ventilation</td>
+                <td>$1,500 - $5,000</td>
+            </tr>
+        </table>
+
+        <h2>2. Competitor Analysis - Acoustic Enclosures</h2>
+
+        <div class="competitor-card">
+            <h4>Silencions (Poland)</h4>
+            <span class="region">Europe</span>
+            <p>Leading manufacturer of heat pump acoustic enclosures. Powder-coated galvanized steel construction with proprietary ventilation design.</p>
+            <table>
+                <tr><td>Models</td><td>S, M, L sizes</td></tr>
+                <tr><td>Noise Reduction</td><td>Up to 14 dB</td></tr>
+                <tr><td>Price</td><td class="price">€1,350 - €1,900</td></tr>
+                <tr><td>Website</td><td><a href="https://silencions.com">silencions.com</a></td></tr>
+            </table>
+        </div>
+
+        <div class="competitor-card">
+            <h4>Acoustic Enclosures UK</h4>
+            <span class="region">United Kingdom</span>
+            <p>Custom-manufactured acoustic enclosures for HVAC equipment. Bespoke sizing with 50-100mm acoustic panels.</p>
+            <table>
+                <tr><td>Construction</td><td>Steel or aluminium</td></tr>
+                <tr><td>Noise Reduction</td><td>17-21 dB</td></tr>
+                <tr><td>Price</td><td class="price">From £3,000</td></tr>
+                <tr><td>Website</td><td><a href="https://www.acoustic-enclosures.uk">acoustic-enclosures.uk</a></td></tr>
+            </table>
+        </div>
+
+        <div class="competitor-card">
+            <h4>Silent Kontrol (Netherlands)</h4>
+            <span class="region">Europe</span>
+            <p>Modular aluminium acoustic enclosures with advanced air deflection technology. Focus on residential heat pumps.</p>
+            <table>
+                <tr><td>Construction</td><td>Aluminium, modular</td></tr>
+                <tr><td>Noise Reduction</td><td>Up to 20 dB(A)</td></tr>
+                <tr><td>Price</td><td class="price">Custom quote</td></tr>
+                <tr><td>Website</td><td><a href="https://silent-kontrol.com">silent-kontrol.com</a></td></tr>
+            </table>
+        </div>
+
+        <div class="competitor-card">
+            <h4>DEDE (Germany)</h4>
+            <span class="region">Europe</span>
+            <p>Industrial-grade acoustic enclosures with 50mm mineral board and acoustic wool. Multiple sizes available.</p>
+            <table>
+                <tr><td>Panel Thickness</td><td>50mm</td></tr>
+                <tr><td>Noise Reduction</td><td>Up to 18 dB</td></tr>
+                <tr><td>Price</td><td class="price">~€2,000+</td></tr>
+            </table>
+        </div>
+
+        <h2>3. UAE/Gulf Market Gap</h2>
+
+        <div class="gap-box">
+            <h3>Key Finding: No Dedicated Products in UAE</h3>
+            <p>Our research found <strong>no purpose-built pool heater/chiller acoustic enclosures</strong> available in the UAE market. Current solutions are:</p>
+            <ul style="margin: 1rem 0 0 1.5rem;">
+                <li>Custom HVAC soundproofing (expensive, long lead time)</li>
+                <li>Generic acoustic barriers (not designed for ventilation)</li>
+                <li>DIY solutions (inconsistent results)</li>
+                <li>Importing from Europe (high shipping costs, no local support)</li>
+            </ul>
+        </div>
+
+        <h3>UAE Market Characteristics</h3>
+        <table>
+            <tr>
+                <th>Factor</th>
+                <th>Implication</th>
+            </tr>
+            <tr>
+                <td>High villa density</td>
+                <td>Many pools with heat pumps in close proximity to neighbours</td>
+            </tr>
+            <tr>
+                <td>Outdoor living culture</td>
+                <td>Evening pool use when noise is more noticeable</td>
+            </tr>
+            <tr>
+                <td>Premium expectations</td>
+                <td>Willingness to pay for quality solutions</td>
+            </tr>
+            <tr>
+                <td>Harsh climate</td>
+                <td>Products must be UV stable, weatherproof, heat resistant</td>
+            </tr>
+            <tr>
+                <td>Local manufacturing</td>
+                <td>Fabrication capabilities exist (aluminium, powder coating)</td>
+            </tr>
+        </table>
+
+        <h2>4. Target Customer Profile</h2>
+
+        <h3>Primary: Villa Owners</h3>
+        <ul style="margin: 1rem 0 1rem 1.5rem;">
+            <li>Own pools with heat pump/chiller systems</li>
+            <li>Bothered by equipment noise during evening use</li>
+            <li>Value aesthetics (visible equipment area)</li>
+            <li>Budget: AED 5,000-10,000 for quality solution</li>
+        </ul>
+
+        <h3>Secondary: Pool Contractors</h3>
+        <ul style="margin: 1rem 0 1rem 1.5rem;">
+            <li>Install and service pool equipment</li>
+            <li>Receive noise complaints from clients</li>
+            <li>Need reliable product to recommend/install</li>
+            <li>Opportunity for trade pricing / partnerships</li>
+        </ul>
+
+        <h2>5. Competitive Positioning</h2>
+
+        <table>
+            <tr>
+                <th>Factor</th>
+                <th>European Imports</th>
+                <th>Apex Pool Enclosures</th>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td>€1,500-3,000 + shipping</td>
+                <td>AED 6,500 (~€1,600)</td>
+            </tr>
+            <tr>
+                <td>Lead Time</td>
+                <td>4-8 weeks (shipping)</td>
+                <td>2-3 weeks (local)</td>
+            </tr>
+            <tr>
+                <td>Climate Design</td>
+                <td>European climate</td>
+                <td>Gulf-specific (UV, heat)</td>
+            </tr>
+            <tr>
+                <td>Support</td>
+                <td>Remote only</td>
+                <td>Local installation/service</td>
+            </tr>
+            <tr>
+                <td>Customization</td>
+                <td>Limited sizes</td>
+                <td>Custom sizing available</td>
+            </tr>
+        </table>
+
+        <h2>6. Pricing Strategy</h2>
+
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Cost</th>
+                <th>Target Price</th>
+                <th>Margin</th>
+                <th>Market Position</th>
+            </tr>
+            <tr>
+                <td>APE-P1 (Pump)</td>
+                <td>~$530</td>
+                <td>AED 3,500</td>
+                <td>44%</td>
+                <td>Premium quality, fair price</td>
+            </tr>
+            <tr>
+                <td>APE-HC1 (Heater/Chiller)</td>
+                <td>~$1,450</td>
+                <td>AED 6,500</td>
+                <td>19%</td>
+                <td>Below European import cost</td>
+            </tr>
+        </table>
+
+        <div class="note">
+            <strong>Pricing Notes:</strong> APE-HC1 margin is tight at AED 6,500. Consider AED 7,500 for better margin while remaining competitive vs European imports (which would cost AED 8,000+ landed). Volume production will improve margins.
+        </div>
+
+        <h2>7. Go-to-Market Channels</h2>
+
+        <table>
+            <tr>
+                <th>Channel</th>
+                <th>Approach</th>
+                <th>Priority</th>
+            </tr>
+            <tr>
+                <td>Direct (website/WhatsApp)</td>
+                <td>SEO, social media, word of mouth</td>
+                <td>High</td>
+            </tr>
+            <tr>
+                <td>Pool contractors</td>
+                <td>Trade pricing, referral commissions</td>
+                <td>High</td>
+            </tr>
+            <tr>
+                <td>Pool equipment suppliers</td>
+                <td>Wholesale partnerships</td>
+                <td>Medium</td>
+            </tr>
+            <tr>
+                <td>Home improvement shows</td>
+                <td>Exhibition presence</td>
+                <td>Low (later phase)</td>
+            </tr>
+        </table>
+
+        <h2>8. Sources</h2>
+
+        <ul style="margin: 1rem 0 1rem 1.5rem;">
+            <li><a href="https://silencions.com/products/heat-pump-acoustic-enclosure/">Silencions Heat Pump Enclosure</a></li>
+            <li><a href="https://www.acoustic-enclosures.uk/product/air-conditioning-and-heat-pump-enclosures">UK Acoustic Enclosures</a></li>
+            <li><a href="https://silent-kontrol.com/">Silent Kontrol</a></li>
+            <li><a href="https://akinco.ae/hvac-soundproofing-acoustic-solution-in-dubai/">Akinco UAE HVAC Soundproofing</a></li>
+            <li><a href="https://www.soniflex.com/en/applications/sound-insulation-in-the-outside-area/heat-pump-hvac">Soniflex Heat Pump Solutions</a></li>
+        </ul>
+
+    </div>
+</body>
+</html>

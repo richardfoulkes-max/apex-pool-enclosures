@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APE-P Pump Enclosure - Technical Specification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0891b2;
+            --primary-dark: #0e7490;
+            --text: #1a1a1a;
+            --text-muted: #6b7280;
+            --bg: #ffffff;
+            --bg-alt: #f0fdfa;
+            --border: #e5e7eb;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+        /* Document Navigation */
+        .doc-nav {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            padding: 1rem 2rem;
+        }
+        .doc-nav h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.75rem;
+        }
+        .doc-nav-grid {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .doc-card {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--text);
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .doc-card:hover {
+            border-color: var(--primary);
+            background: #f0fdfa;
+        }
+        .doc-card.active {
+            background: white;
+            color: var(--primary);
+        }
+
+        header {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 3rem 2rem;
+        }
+        header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        header .subtitle { opacity: 0.9; }
+        header .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary);
+        }
+        h3 { margin: 1.5rem 0 1rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+        th { background: var(--bg-alt); font-weight: 600; }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .spec-box {
+            background: var(--bg-alt);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        .spec-box h4 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+        .spec-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        .spec-box li {
+            padding: 0.25rem 0;
+            font-size: 0.9rem;
+        }
+
+        .drawing-container {
+            background: var(--bg-alt);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        .drawing-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+        .drawing-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .note {
+            background: #fef3c7;
+            padding: 1rem;
+            border-left: 4px solid #d97706;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        @media print {
+            .doc-nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="doc-nav">
+        <h3>Apex Pool Enclosures - Project Documents</h3>
+        <div class="doc-nav-grid">
+            <a href="index.html" class="doc-card">Website</a>
+            <a href="specification-pump.html" class="doc-card active">Pump Enclosure Spec</a>
+            <a href="specification-heater.html" class="doc-card">Heater/Chiller Spec</a>
+            <a href="bom-detailed.html" class="doc-card">Bill of Materials</a>
+            <a href="acoustic-design.html" class="doc-card">Acoustic Design</a>
+            <a href="market-research.html" class="doc-card">Market Research</a>
+            <a href="project-tracker.html" class="doc-card">Project Tracker</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>APE-P Series - Pump Enclosure</h1>
+            <div class="subtitle">Semi-Sunken Weatherproof Housing for Pool Pumps & Filtration</div>
+            <div class="badge">Model: APE-P1 | Rev 1.0 | December 2025</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Overview -->
+        <h2>1. Product Overview</h2>
+        <p>The APE-P series is a semi-sunken enclosure designed to house pool pumps, filters, and related equipment. The design integrates with villa landscaping while providing weatherproof protection and easy maintenance access.</p>
+
+        <div class="spec-grid">
+            <div class="spec-box">
+                <h4>Key Features</h4>
+                <ul>
+                    <li>+ Semi-sunken installation (300mm above grade)</li>
+                    <li>+ IP65 weatherproof rating</li>
+                    <li>+ Hinged lid with gas strut assist</li>
+                    <li>+ Integrated floor drainage</li>
+                    <li>+ Cable/pipe entry glands</li>
+                    <li>+ Padlock-ready security</li>
+                </ul>
+            </div>
+            <div class="spec-box">
+                <h4>Target Equipment</h4>
+                <ul>
+                    <li>+ Variable speed pool pumps (up to 3HP)</li>
+                    <li>+ Sand/cartridge filters</li>
+                    <li>+ Salt chlorinators</li>
+                    <li>+ Automation controllers</li>
+                    <li>+ Valves and plumbing manifolds</li>
+                </ul>
+            </div>
+            <div class="spec-box">
+                <h4>Installation Context</h4>
+                <ul>
+                    <li>+ Villa pool equipment areas</li>
+                    <li>+ Landscaped garden settings</li>
+                    <li>+ Adjacent to pool plant room</li>
+                    <li>+ Gulf climate (high UV, dust, humidity)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Dimensions -->
+        <h2>2. Dimensions & Sizes</h2>
+        <p>Three standard sizes to accommodate different equipment configurations:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>External (L x W x H)</th>
+                    <th>Internal (L x W x H)</th>
+                    <th>Above Grade</th>
+                    <th>Typical Use</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>APE-P1</strong></td>
+                    <td>1200 x 800 x 900 mm</td>
+                    <td>1160 x 760 x 860 mm</td>
+                    <td>300 mm</td>
+                    <td>Single pump + filter</td>
+                </tr>
+                <tr>
+                    <td><strong>APE-P2</strong></td>
+                    <td>1500 x 1000 x 900 mm</td>
+                    <td>1460 x 960 x 860 mm</td>
+                    <td>300 mm</td>
+                    <td>Pump + filter + chlorinator</td>
+                </tr>
+                <tr>
+                    <td><strong>APE-P3</strong></td>
+                    <td>1800 x 1200 x 1000 mm</td>
+                    <td>1760 x 1160 x 960 mm</td>
+                    <td>350 mm</td>
+                    <td>Full equipment room</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="note">
+            <strong>Custom Sizes:</strong> Non-standard dimensions available on request. Provide equipment layout for sizing.
+        </div>
+
+        <!-- Construction -->
+        <h2>3. Construction Specification</h2>
+
+        <h3>3.1 Frame & Walls</h3>
+        <table>
+            <tr>
+                <th width="30%">Component</th>
+                <th>Specification</th>
+            </tr>
+            <tr>
+                <td>Frame Material</td>
+                <td>6063-T5 aluminium extrusion, 40x40mm box section, 2mm wall</td>
+            </tr>
+            <tr>
+                <td>Wall Panels</td>
+                <td>2mm 5052-H32 aluminium sheet, brake-formed</td>
+            </tr>
+            <tr>
+                <td>Floor</td>
+                <td>3mm aluminium chequer plate, drainage slope 1:50</td>
+            </tr>
+            <tr>
+                <td>Finish</td>
+                <td>Polyester powder coat, 60-80 microns, UV stable</td>
+            </tr>
+            <tr>
+                <td>Standard Colours</td>
+                <td>RAL 9003 (Signal White), RAL 1015 (Light Ivory), RAL 7035 (Light Grey)</td>
+            </tr>
+        </table>
+
+        <h3>3.2 Lid Assembly</h3>
+        <table>
+            <tr>
+                <th width="30%">Component</th>
+                <th>Specification</th>
+            </tr>
+            <tr>
+                <td>Lid Construction</td>
+                <td>2mm aluminium with 20mm lip overlap</td>
+            </tr>
+            <tr>
+                <td>Hinges</td>
+                <td>316 stainless steel piano hinge, full length</td>
+            </tr>
+            <tr>
+                <td>Gas Struts</td>
+                <td>2x 400N gas struts, hold-open at 90°</td>
+            </tr>
+            <tr>
+                <td>Seal</td>
+                <td>EPDM foam gasket, continuous, 15x10mm</td>
+            </tr>
+            <tr>
+                <td>Lock</td>
+                <td>Stainless steel hasp for padlock (padlock not included)</td>
+            </tr>
+        </table>
+
+        <h3>3.3 Weatherproofing</h3>
+        <table>
+            <tr>
+                <th width="30%">Requirement</th>
+                <th>Specification</th>
+            </tr>
+            <tr>
+                <td>IP Rating</td>
+                <td>IP65 (dust tight, water jet protected)</td>
+            </tr>
+            <tr>
+                <td>Gasket Material</td>
+                <td>EPDM closed-cell foam, UV resistant</td>
+            </tr>
+            <tr>
+                <td>Cable Entry</td>
+                <td>IP68 cable glands, M20/M25/M32 sizes</td>
+            </tr>
+            <tr>
+                <td>Pipe Entry</td>
+                <td>Rubber grommets with compression seal, 50mm/63mm/75mm</td>
+            </tr>
+            <tr>
+                <td>Drainage</td>
+                <td>25mm drain outlet with removable strainer</td>
+            </tr>
+        </table>
+
+        <!-- Drawing -->
+        <h2>4. Technical Drawing</h2>
+
+        <div class="drawing-container">
+            <div class="drawing-title">Figure 1: APE-P1 - Front Section View</div>
+            <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                <!-- Ground line -->
+                <pattern id="ground" patternUnits="userSpaceOnUse" width="20" height="20">
+                    <line x1="0" y1="20" x2="20" y2="0" stroke="#8B7355" stroke-width="1"/>
+                </pattern>
+                <rect x="0" y="250" width="600" height="150" fill="url(#ground)"/>
+                <line x1="0" y1="250" x2="600" y2="250" stroke="#5D4E37" stroke-width="2"/>
+
+                <!-- Enclosure body (sunken portion) -->
+                <rect x="100" y="150" width="400" height="200" fill="#e0e0e0" stroke="#333" stroke-width="2"/>
+
+                <!-- Above ground portion -->
+                <rect x="100" y="150" width="400" height="100" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+
+                <!-- Lid -->
+                <rect x="95" y="140" width="410" height="15" fill="#d0d0d0" stroke="#333" stroke-width="2"/>
+
+                <!-- Gasket line -->
+                <line x1="100" y1="150" x2="500" y2="150" stroke="#0891b2" stroke-width="3"/>
+
+                <!-- Equipment inside -->
+                <rect x="150" y="200" width="120" height="120" fill="#4a90a4" stroke="#333" stroke-width="1" rx="5"/>
+                <text x="210" y="265" text-anchor="middle" font-size="12" fill="white">PUMP</text>
+
+                <circle cx="370" cy="280" r="50" fill="#6a9955" stroke="#333" stroke-width="1"/>
+                <text x="370" y="285" text-anchor="middle" font-size="12" fill="white">FILTER</text>
+
+                <!-- Dimensions -->
+                <line x1="100" y1="380" x2="500" y2="380" stroke="#333" stroke-width="1"/>
+                <line x1="100" y1="375" x2="100" y2="385" stroke="#333" stroke-width="1"/>
+                <line x1="500" y1="375" x2="500" y2="385" stroke="#333" stroke-width="1"/>
+                <text x="300" y="395" text-anchor="middle" font-size="12">1200mm</text>
+
+                <!-- Height dimension -->
+                <line x1="530" y1="140" x2="530" y2="350" stroke="#333" stroke-width="1"/>
+                <line x1="525" y1="140" x2="535" y2="140" stroke="#333" stroke-width="1"/>
+                <line x1="525" y1="350" x2="535" y2="350" stroke="#333" stroke-width="1"/>
+                <text x="560" y="250" text-anchor="middle" font-size="12" transform="rotate(90, 560, 250)">900mm</text>
+
+                <!-- Above grade dimension -->
+                <line x1="70" y1="140" x2="70" y2="250" stroke="#0891b2" stroke-width="1"/>
+                <line x1="65" y1="140" x2="75" y2="140" stroke="#0891b2" stroke-width="1"/>
+                <line x1="65" y1="250" x2="75" y2="250" stroke="#0891b2" stroke-width="1"/>
+                <text x="50" y="200" text-anchor="middle" font-size="11" fill="#0891b2" transform="rotate(-90, 50, 200)">300mm</text>
+
+                <!-- Labels -->
+                <text x="300" y="130" text-anchor="middle" font-size="11" fill="#666">Hinged Lid with Gas Struts</text>
+                <text x="300" y="165" text-anchor="middle" font-size="10" fill="#0891b2">EPDM Gasket Seal</text>
+            </svg>
+        </div>
+
+        <div class="drawing-container">
+            <div class="drawing-title">Figure 2: APE-P1 - Plan View (Lid Open)</div>
+            <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                <!-- Enclosure outline -->
+                <rect x="50" y="50" width="400" height="300" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+
+                <!-- Equipment layout -->
+                <rect x="80" y="80" width="150" height="150" fill="#4a90a4" stroke="#333" stroke-width="1" rx="5"/>
+                <text x="155" y="160" text-anchor="middle" font-size="14" fill="white">PUMP</text>
+
+                <circle cx="330" cy="155" r="70" fill="#6a9955" stroke="#333" stroke-width="1"/>
+                <text x="330" y="160" text-anchor="middle" font-size="14" fill="white">FILTER</text>
+
+                <!-- Valve manifold -->
+                <rect x="80" y="260" width="200" height="60" fill="#888" stroke="#333" stroke-width="1" rx="3"/>
+                <text x="180" y="295" text-anchor="middle" font-size="12" fill="white">VALVE MANIFOLD</text>
+
+                <!-- Pipe entries -->
+                <circle cx="80" cy="290" r="15" fill="#333" stroke="#0891b2" stroke-width="2"/>
+                <circle cx="280" cy="290" r="15" fill="#333" stroke="#0891b2" stroke-width="2"/>
+                <text x="80" y="320" text-anchor="middle" font-size="9" fill="#666">INLET</text>
+                <text x="280" y="320" text-anchor="middle" font-size="9" fill="#666">OUTLET</text>
+
+                <!-- Cable entry -->
+                <circle cx="420" cy="100" r="10" fill="#333" stroke="#d97706" stroke-width="2"/>
+                <text x="420" y="125" text-anchor="middle" font-size="9" fill="#666">ELEC</text>
+
+                <!-- Drain -->
+                <circle cx="420" cy="320" r="12" fill="#0891b2" stroke="#333" stroke-width="1"/>
+                <text x="420" y="345" text-anchor="middle" font-size="9" fill="#666">DRAIN</text>
+
+                <!-- Dimensions -->
+                <line x1="50" y1="380" x2="450" y2="380" stroke="#333" stroke-width="1"/>
+                <line x1="50" y1="375" x2="50" y2="385" stroke="#333" stroke-width="1"/>
+                <line x1="450" y1="375" x2="450" y2="385" stroke="#333" stroke-width="1"/>
+                <text x="250" y="395" text-anchor="middle" font-size="12">1200mm</text>
+
+                <line x1="480" y1="50" x2="480" y2="350" stroke="#333" stroke-width="1"/>
+                <line x1="475" y1="50" x2="485" y2="50" stroke="#333" stroke-width="1"/>
+                <line x1="475" y1="350" x2="485" y2="350" stroke="#333" stroke-width="1"/>
+                <text x="495" y="205" text-anchor="middle" font-size="12" transform="rotate(90, 495, 205)">800mm</text>
+            </svg>
+        </div>
+
+        <!-- Ventilation -->
+        <h2>5. Ventilation</h2>
+        <p>Passive ventilation via protected louvres to prevent heat buildup from pump motors:</p>
+
+        <table>
+            <tr>
+                <th width="30%">Feature</th>
+                <th>Specification</th>
+            </tr>
+            <tr>
+                <td>Intake Vents</td>
+                <td>2x louvred vents, 150x100mm, lower side walls</td>
+            </tr>
+            <tr>
+                <td>Exhaust Vents</td>
+                <td>2x louvred vents, 150x100mm, upper side walls (opposite)</td>
+            </tr>
+            <tr>
+                <td>Louvre Design</td>
+                <td>Angled slats, rain-excluding, insect mesh backing</td>
+            </tr>
+            <tr>
+                <td>Airflow Path</td>
+                <td>Cross-ventilation, natural convection</td>
+            </tr>
+        </table>
+
+        <div class="note">
+            <strong>Note:</strong> Pump enclosure does not require acoustic treatment. For noise-sensitive applications, consider the APE-HC heater/chiller enclosure design principles.
+        </div>
+
+        <!-- Installation -->
+        <h2>6. Installation Requirements</h2>
+
+        <h3>6.1 Site Preparation</h3>
+        <ul>
+            <li>Excavate pit to depth: enclosure height minus 300mm above-grade allowance</li>
+            <li>Level compacted base with 50mm sand/gravel bed</li>
+            <li>Install 100mm PVC drainage pipe to soak-away or storm drain</li>
+            <li>Route electrical conduit and plumbing before enclosure placement</li>
+        </ul>
+
+        <h3>6.2 Enclosure Installation</h3>
+        <ul>
+            <li>Lower enclosure into prepared pit</li>
+            <li>Level using adjustable feet or shims</li>
+            <li>Backfill around enclosure with compacted material</li>
+            <li>Connect drainage outlet to site drainage</li>
+            <li>Install cable glands and pipe grommets</li>
+            <li>Apply silicone sealant to all penetrations</li>
+        </ul>
+
+        <!-- Accessories -->
+        <h2>7. Standard Accessories</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gas struts (400N)</td>
+                    <td>2</td>
+                    <td>Pre-installed</td>
+                </tr>
+                <tr>
+                    <td>EPDM gasket</td>
+                    <td>1 set</td>
+                    <td>Pre-installed</td>
+                </tr>
+                <tr>
+                    <td>Stainless hasp</td>
+                    <td>1</td>
+                    <td>Pre-installed</td>
+                </tr>
+                <tr>
+                    <td>M20 cable gland</td>
+                    <td>2</td>
+                    <td>Loose, install as needed</td>
+                </tr>
+                <tr>
+                    <td>M25 cable gland</td>
+                    <td>2</td>
+                    <td>Loose, install as needed</td>
+                </tr>
+                <tr>
+                    <td>50mm pipe grommet</td>
+                    <td>4</td>
+                    <td>Loose, install as needed</td>
+                </tr>
+                <tr>
+                    <td>Drain strainer</td>
+                    <td>1</td>
+                    <td>Pre-installed</td>
+                </tr>
+                <tr>
+                    <td>Touch-up paint</td>
+                    <td>1 can</td>
+                    <td>Matching colour</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

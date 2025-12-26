@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APE-HC Heater/Chiller Enclosure - Technical Specification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #dc2626;
+            --primary-dark: #b91c1c;
+            --secondary: #0891b2;
+            --text: #1a1a1a;
+            --text-muted: #6b7280;
+            --bg: #ffffff;
+            --bg-alt: #fef2f2;
+            --border: #e5e7eb;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+        /* Document Navigation */
+        .doc-nav {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            padding: 1rem 2rem;
+        }
+        .doc-nav h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.75rem;
+        }
+        .doc-nav-grid {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .doc-card {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--text);
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .doc-card:hover {
+            border-color: var(--secondary);
+            background: #f0fdfa;
+        }
+        .doc-card.active {
+            background: white;
+            color: var(--primary);
+        }
+
+        header {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 3rem 2rem;
+        }
+        header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        header .subtitle { opacity: 0.9; }
+        header .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary);
+        }
+        h3 { margin: 1.5rem 0 1rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+        th { background: var(--bg-alt); font-weight: 600; }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .spec-box {
+            background: var(--bg-alt);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+        .spec-box.acoustic {
+            background: #fef3c7;
+            border-left-color: #d97706;
+        }
+        .spec-box h4 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+        .spec-box.acoustic h4 {
+            color: #92400e;
+        }
+        .spec-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        .spec-box li {
+            padding: 0.25rem 0;
+            font-size: 0.9rem;
+        }
+
+        .drawing-container {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        .drawing-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+        .drawing-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .note {
+            background: #fef3c7;
+            padding: 1rem;
+            border-left: 4px solid #d97706;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        .note.critical {
+            background: #fee2e2;
+            border-left-color: #dc2626;
+        }
+
+        .acoustic-highlight {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        .acoustic-highlight h3 {
+            color: #92400e;
+            margin-top: 0;
+        }
+
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .perf-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid var(--border);
+        }
+        .perf-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .perf-card .label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        @media print {
+            .doc-nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="doc-nav">
+        <h3>Apex Pool Enclosures - Project Documents</h3>
+        <div class="doc-nav-grid">
+            <a href="index.html" class="doc-card">Website</a>
+            <a href="specification-pump.html" class="doc-card">Pump Enclosure Spec</a>
+            <a href="specification-heater.html" class="doc-card active">Heater/Chiller Spec</a>
+            <a href="bom-detailed.html" class="doc-card">Bill of Materials</a>
+            <a href="acoustic-design.html" class="doc-card">Acoustic Design</a>
+            <a href="market-research.html" class="doc-card">Market Research</a>
+            <a href="project-tracker.html" class="doc-card">Project Tracker</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>APE-HC Series - Heater/Chiller Enclosure</h1>
+            <div class="subtitle">Acoustic Enclosure with Ventilation for Pool Heat Pumps</div>
+            <div class="badge">Model: APE-HC1 | Rev 1.0 | December 2025</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Overview -->
+        <h2>1. Product Overview</h2>
+        <p>The APE-HC series is an acoustic enclosure designed to reduce noise from pool heat pumps and chillers while maintaining adequate ventilation for equipment operation. The enclosure uses a combination of acoustic panels and louvred ventilation to achieve up to 18dB noise reduction.</p>
+
+        <div class="performance-grid">
+            <div class="perf-card">
+                <div class="value">18dB</div>
+                <div class="label">Noise Reduction</div>
+            </div>
+            <div class="perf-card">
+                <div class="value">IP65</div>
+                <div class="label">Weather Rating</div>
+            </div>
+            <div class="perf-card">
+                <div class="value">50mm</div>
+                <div class="label">Acoustic Panels</div>
+            </div>
+            <div class="perf-card">
+                <div class="value">400+</div>
+                <div class="label">CFM Airflow</div>
+            </div>
+        </div>
+
+        <div class="spec-grid">
+            <div class="spec-box">
+                <h4>Key Features</h4>
+                <ul>
+                    <li>+ 50mm mineral wool acoustic panels</li>
+                    <li>+ Acoustic louvre ventilation system</li>
+                    <li>+ Labyrinth airflow path</li>
+                    <li>+ IP65 weatherproof rating</li>
+                    <li>+ Front access door</li>
+                    <li>+ Removable side panels for service</li>
+                </ul>
+            </div>
+            <div class="spec-box">
+                <h4>Target Equipment</h4>
+                <ul>
+                    <li>+ Pool heat pumps (10-25kW)</li>
+                    <li>+ Pool chillers</li>
+                    <li>+ Inverter heat pump units</li>
+                    <li>+ Split system outdoor units</li>
+                </ul>
+            </div>
+            <div class="spec-box acoustic">
+                <h4>Acoustic Challenge</h4>
+                <ul>
+                    <li>! Heat pumps produce 55-65 dB(A)</li>
+                    <li>! Low frequency compressor hum</li>
+                    <li>! Fan noise at air discharge</li>
+                    <li>! Must maintain airflow for cooling</li>
+                    <li>! Enclosed space amplifies noise</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Dimensions -->
+        <h2>2. Dimensions & Sizes</h2>
+        <p>Sized to accommodate common pool heat pump dimensions with clearance for airflow:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>External (L x W x H)</th>
+                    <th>Internal Clear</th>
+                    <th>Max Equipment Size</th>
+                    <th>Heat Pump Capacity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>APE-HC1</strong></td>
+                    <td>1200 x 700 x 900 mm</td>
+                    <td>1060 x 560 x 760 mm</td>
+                    <td>900 x 400 x 600 mm</td>
+                    <td>Up to 12kW</td>
+                </tr>
+                <tr>
+                    <td><strong>APE-HC2</strong></td>
+                    <td>1400 x 800 x 1000 mm</td>
+                    <td>1260 x 660 x 860 mm</td>
+                    <td>1100 x 500 x 700 mm</td>
+                    <td>Up to 18kW</td>
+                </tr>
+                <tr>
+                    <td><strong>APE-HC3</strong></td>
+                    <td>1600 x 900 x 1100 mm</td>
+                    <td>1460 x 760 x 960 mm</td>
+                    <td>1300 x 600 x 800 mm</td>
+                    <td>Up to 25kW</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="note">
+            <strong>Clearance Requirements:</strong> Minimum 150mm clearance on all sides of heat pump for airflow. Check manufacturer's installation requirements.
+        </div>
+
+        <!-- Acoustic Design -->
+        <h2>3. Acoustic Design</h2>
+
+        <div class="acoustic-highlight">
+            <h3>The Ventilation Paradox</h3>
+            <p>Heat pumps require continuous airflow but sound travels through air openings. The APE-HC solves this with:</p>
+            <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                <li><strong>Acoustic Louvres:</strong> Sound-attenuating air passages that block direct sound paths</li>
+                <li><strong>Labyrinth Path:</strong> Sound must travel around multiple bends, losing energy at each turn</li>
+                <li><strong>Absorptive Lining:</strong> Mineral wool panels absorb sound inside the enclosure</li>
+                <li><strong>Mass Barrier:</strong> 2mm aluminium walls block airborne sound transmission</li>
+            </ul>
+        </div>
+
+        <h3>3.1 Acoustic Panel Construction</h3>
+        <table>
+            <tr>
+                <th width="30%">Layer</th>
+                <th>Material</th>
+                <th>Function</th>
+            </tr>
+            <tr>
+                <td>Outer Skin</td>
+                <td>2mm powder-coated aluminium</td>
+                <td>Weather protection, mass barrier</td>
+            </tr>
+            <tr>
+                <td>Acoustic Core</td>
+                <td>50mm mineral wool, 48kg/m³ density</td>
+                <td>Sound absorption (NRC 0.85+)</td>
+            </tr>
+            <tr>
+                <td>Inner Face</td>
+                <td>1mm perforated aluminium (23% open)</td>
+                <td>Protects core, allows sound to enter absorber</td>
+            </tr>
+            <tr>
+                <td>Total Thickness</td>
+                <td>54mm</td>
+                <td>—</td>
+            </tr>
+        </table>
+
+        <h3>3.2 Acoustic Louvre Specification</h3>
+        <table>
+            <tr>
+                <th width="30%">Parameter</th>
+                <th>Specification</th>
+            </tr>
+            <tr>
+                <td>Louvre Type</td>
+                <td>Acoustic attenuating, Z-blade profile</td>
+            </tr>
+            <tr>
+                <td>Blade Pitch</td>
+                <td>75mm centre-to-centre</td>
+            </tr>
+            <tr>
+                <td>Blade Depth</td>
+                <td>100mm (sound path length)</td>
+            </tr>
+            <tr>
+                <td>Blade Fill</td>
+                <td>25mm mineral wool, perforated facing</td>
+            </tr>
+            <tr>
+                <td>Free Area</td>
+                <td>~40% (balance of airflow vs attenuation)</td>
+            </tr>
+            <tr>
+                <td>Attenuation</td>
+                <td>12-15 dB per louvre bank</td>
+            </tr>
+            <tr>
+                <td>Weather Protection</td>
+                <td>Angled blades exclude rain, debris screen</td>
+            </tr>
+        </table>
+
+        <h3>3.3 Expected Noise Reduction</h3>
+        <table>
+            <tr>
+                <th>Frequency Band</th>
+                <th>Typical Heat Pump</th>
+                <th>With APE-HC</th>
+                <th>Reduction</th>
+            </tr>
+            <tr>
+                <td>125 Hz (low hum)</td>
+                <td>58 dB</td>
+                <td>48 dB</td>
+                <td>10 dB</td>
+            </tr>
+            <tr>
+                <td>250 Hz</td>
+                <td>62 dB</td>
+                <td>48 dB</td>
+                <td>14 dB</td>
+            </tr>
+            <tr>
+                <td>500 Hz</td>
+                <td>60 dB</td>
+                <td>44 dB</td>
+                <td>16 dB</td>
+            </tr>
+            <tr>
+                <td>1000 Hz</td>
+                <td>55 dB</td>
+                <td>38 dB</td>
+                <td>17 dB</td>
+            </tr>
+            <tr>
+                <td>2000 Hz</td>
+                <td>50 dB</td>
+                <td>32 dB</td>
+                <td>18 dB</td>
+            </tr>
+            <tr style="background: #dcfce7;">
+                <td><strong>Overall dB(A)</strong></td>
+                <td><strong>62 dB(A)</strong></td>
+                <td><strong>44 dB(A)</strong></td>
+                <td><strong>18 dB(A)</strong></td>
+            </tr>
+        </table>
+
+        <div class="note">
+            <strong>Context:</strong> 10 dB reduction = perceived halving of loudness. 18 dB reduction makes a "loud" heat pump (62 dB) into "quiet background" noise (44 dB).
+        </div>
+
+        <!-- Ventilation -->
+        <h2>4. Ventilation System</h2>
+
+        <h3>4.1 Airflow Requirements</h3>
+        <p>Heat pumps require adequate airflow to operate efficiently. Restricting airflow causes:</p>
+        <ul style="margin: 1rem 0 1rem 1.5rem;">
+            <li>Reduced heating/cooling capacity</li>
+            <li>Increased energy consumption</li>
+            <li>Compressor overheating and shutdown</li>
+            <li>Premature equipment failure</li>
+        </ul>
+
+        <table>
+            <tr>
+                <th>Heat Pump Size</th>
+                <th>Typical Airflow Required</th>
+                <th>APE-HC Provision</th>
+            </tr>
+            <tr>
+                <td>10-12 kW</td>
+                <td>2000-3000 m³/hr</td>
+                <td>APE-HC1: 3500 m³/hr capacity</td>
+            </tr>
+            <tr>
+                <td>15-18 kW</td>
+                <td>3500-4500 m³/hr</td>
+                <td>APE-HC2: 5000 m³/hr capacity</td>
+            </tr>
+            <tr>
+                <td>20-25 kW</td>
+                <td>5000-6000 m³/hr</td>
+                <td>APE-HC3: 7000 m³/hr capacity</td>
+            </tr>
+        </table>
+
+        <h3>4.2 Ventilation Layout</h3>
+        <div class="drawing-container">
+            <div class="drawing-title">Figure 1: APE-HC Airflow Path (Plan View)</div>
+            <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                <!-- Enclosure outline -->
+                <rect x="50" y="50" width="500" height="300" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+
+                <!-- Acoustic panels (hatched) -->
+                <pattern id="hatch" patternUnits="userSpaceOnUse" width="8" height="8">
+                    <path d="M0,8 L8,0" stroke="#999" stroke-width="1"/>
+                </pattern>
+                <rect x="50" y="50" width="30" height="300" fill="url(#hatch)" stroke="#666"/>
+                <rect x="520" y="50" width="30" height="300" fill="url(#hatch)" stroke="#666"/>
+                <rect x="50" y="50" width="500" height="30" fill="url(#hatch)" stroke="#666"/>
+                <rect x="50" y="320" width="500" height="30" fill="url(#hatch)" stroke="#666"/>
+
+                <!-- Heat pump unit -->
+                <rect x="180" y="120" width="240" height="160" fill="#dc2626" stroke="#333" stroke-width="2" rx="5"/>
+                <text x="300" y="190" text-anchor="middle" font-size="14" fill="white" font-weight="bold">HEAT PUMP</text>
+                <text x="300" y="210" text-anchor="middle" font-size="11" fill="white">Fan discharge →</text>
+
+                <!-- Air intake (left louvres) -->
+                <rect x="50" y="130" width="60" height="140" fill="#0891b2" fill-opacity="0.3" stroke="#0891b2" stroke-width="2"/>
+                <text x="80" y="205" text-anchor="middle" font-size="10" fill="#0891b2" font-weight="bold" transform="rotate(-90, 80, 205)">INTAKE LOUVRE</text>
+
+                <!-- Air exhaust (right louvres) -->
+                <rect x="490" y="130" width="60" height="140" fill="#dc2626" fill-opacity="0.3" stroke="#dc2626" stroke-width="2"/>
+                <text x="520" y="205" text-anchor="middle" font-size="10" fill="#dc2626" font-weight="bold" transform="rotate(-90, 520, 205)">EXHAUST LOUVRE</text>
+
+                <!-- Airflow arrows -->
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#0891b2"/>
+                    </marker>
+                    <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#dc2626"/>
+                    </marker>
+                </defs>
+
+                <!-- Intake arrows -->
+                <path d="M 20,180 L 50,180" stroke="#0891b2" stroke-width="3" marker-end="url(#arrowhead)"/>
+                <path d="M 20,220" L 50,220" stroke="#0891b2" stroke-width="3" marker-end="url(#arrowhead)"/>
+                <path d="M 110,200 L 160,200" stroke="#0891b2" stroke-width="2" marker-end="url(#arrowhead)" stroke-dasharray="5,3"/>
+
+                <!-- Exhaust arrows -->
+                <path d="M 420,200 L 490,200" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowhead-red)" stroke-dasharray="5,3"/>
+                <path d="M 550,180 L 580,180" stroke="#dc2626" stroke-width="3" marker-end="url(#arrowhead-red)"/>
+                <path d="M 550,220 L 580,220" stroke="#dc2626" stroke-width="3" marker-end="url(#arrowhead-red)"/>
+
+                <!-- Labels -->
+                <text x="20" y="160" font-size="11" fill="#0891b2">Cool air in</text>
+                <text x="540" y="160" font-size="11" fill="#dc2626">Warm air out</text>
+
+                <!-- Legend -->
+                <rect x="200" y="310" width="20" height="15" fill="url(#hatch)" stroke="#666"/>
+                <text x="225" y="322" font-size="10">Acoustic panel (50mm)</text>
+
+                <rect x="350" y="310" width="20" height="15" fill="#0891b2" fill-opacity="0.3" stroke="#0891b2"/>
+                <text x="375" y="322" font-size="10">Acoustic louvre</text>
+            </svg>
+        </div>
+
+        <!-- Construction -->
+        <h2>5. Construction Specification</h2>
+
+        <h3>5.1 Frame & Structure</h3>
+        <table>
+            <tr>
+                <th width="30%">Component</th>
+                <th>Specification</th>
+            </tr>
+            <tr>
+                <td>Frame Material</td>
+                <td>6063-T5 aluminium extrusion, 50x50mm box section, 2mm wall</td>
+            </tr>
+            <tr>
+                <td>Panel Outer Skin</td>
+                <td>2mm 5052-H32 aluminium sheet</td>
+            </tr>
+            <tr>
+                <td>Panel Inner Skin</td>
+                <td>1mm perforated aluminium, 3mm holes, 23% open area</td>
+            </tr>
+            <tr>
+                <td>Acoustic Fill</td>
+                <td>50mm mineral wool, 48 kg/m³, hydrophobic treatment</td>
+            </tr>
+            <tr>
+                <td>Floor</td>
+                <td>3mm aluminium chequer plate on rubber isolators</td>
+            </tr>
+            <tr>
+                <td>Finish</td>
+                <td>Polyester powder coat, 60-80 microns, UV stable</td>
+            </tr>
+        </table>
+
+        <h3>5.2 Access & Panels</h3>
+        <table>
+            <tr>
+                <th width="30%">Component</th>
+                <th>Specification</th>
+            </tr>
+            <tr>
+                <td>Front Door</td>
+                <td>Full-height hinged door, 316 SS hinges, acoustic sealed</td>
+            </tr>
+            <tr>
+                <td>Door Locks</td>
+                <td>2x compression latches + padlock hasp</td>
+            </tr>
+            <tr>
+                <td>Side Panels</td>
+                <td>Removable for equipment service, quarter-turn fasteners</td>
+            </tr>
+            <tr>
+                <td>Roof</td>
+                <td>Fixed, 2° slope for drainage</td>
+            </tr>
+            <tr>
+                <td>Seals</td>
+                <td>EPDM acoustic gasket on all panel joints</td>
+            </tr>
+        </table>
+
+        <h3>5.3 Weatherproofing</h3>
+        <table>
+            <tr>
+                <th width="30%">Requirement</th>
+                <th>Specification</th>
+            </tr>
+            <tr>
+                <td>IP Rating</td>
+                <td>IP65 (enclosure), IP44 (louvre openings)</td>
+            </tr>
+            <tr>
+                <td>Louvre Rain Protection</td>
+                <td>Angled blades, 45° pitch, drip edges</td>
+            </tr>
+            <tr>
+                <td>Drainage</td>
+                <td>Floor drain with P-trap (maintains acoustic seal)</td>
+            </tr>
+            <tr>
+                <td>Cable Entry</td>
+                <td>IP68 glands through floor panel</td>
+            </tr>
+            <tr>
+                <td>Pipe Entry</td>
+                <td>Sealed grommets through rear panel</td>
+            </tr>
+        </table>
+
+        <!-- Cross Section Drawing -->
+        <h2>6. Technical Drawings</h2>
+
+        <div class="drawing-container">
+            <div class="drawing-title">Figure 2: APE-HC1 - Side Section View</div>
+            <svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
+                <!-- Ground -->
+                <rect x="0" y="380" width="600" height="70" fill="#e0d5c5"/>
+                <line x1="0" y1="380" x2="600" y2="380" stroke="#5D4E37" stroke-width="2"/>
+
+                <!-- Enclosure outline -->
+                <rect x="100" y="80" width="400" height="300" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+
+                <!-- Roof slope -->
+                <polygon points="95,80 505,80 510,70 90,70" fill="#d0d0d0" stroke="#333" stroke-width="2"/>
+
+                <!-- Acoustic panels (walls) -->
+                <rect x="100" y="80" width="50" height="300" fill="#fef3c7" stroke="#666"/>
+                <rect x="450" y="80" width="50" height="300" fill="#fef3c7" stroke="#666"/>
+
+                <!-- Acoustic panel hatching -->
+                <pattern id="wool" patternUnits="userSpaceOnUse" width="10" height="10">
+                    <circle cx="5" cy="5" r="2" fill="#d97706" fill-opacity="0.5"/>
+                </pattern>
+                <rect x="105" y="85" width="40" height="290" fill="url(#wool)"/>
+                <rect x="455" y="85" width="40" height="290" fill="url(#wool)"/>
+
+                <!-- Floor with isolators -->
+                <rect x="100" y="370" width="400" height="10" fill="#888" stroke="#333"/>
+                <rect x="130" y="375" width="20" height="15" fill="#333" rx="3"/>
+                <rect x="450" y="375" width="20" height="15" fill="#333" rx="3"/>
+
+                <!-- Heat pump -->
+                <rect x="200" y="180" width="200" height="180" fill="#dc2626" stroke="#333" stroke-width="2" rx="5"/>
+                <text x="300" y="260" text-anchor="middle" font-size="14" fill="white" font-weight="bold">HEAT</text>
+                <text x="300" y="280" text-anchor="middle" font-size="14" fill="white" font-weight="bold">PUMP</text>
+
+                <!-- Fan on top of heat pump -->
+                <ellipse cx="300" cy="180" rx="60" ry="15" fill="#333"/>
+                <text x="300" y="165" text-anchor="middle" font-size="10" fill="#666">Fan discharge</text>
+
+                <!-- Louvre intake (left) -->
+                <rect x="100" y="200" width="50" height="120" fill="none" stroke="#0891b2" stroke-width="2"/>
+                <line x1="105" y1="210" x2="145" y2="220" stroke="#0891b2" stroke-width="2"/>
+                <line x1="105" y1="240" x2="145" y2="250" stroke="#0891b2" stroke-width="2"/>
+                <line x1="105" y1="270" x2="145" y2="280" stroke="#0891b2" stroke-width="2"/>
+                <line x1="105" y1="300" x2="145" y2="310" stroke="#0891b2" stroke-width="2"/>
+
+                <!-- Louvre exhaust (right, top) -->
+                <rect x="450" y="100" width="50" height="100" fill="none" stroke="#dc2626" stroke-width="2"/>
+                <line x1="455" y1="110" x2="495" y2="120" stroke="#dc2626" stroke-width="2"/>
+                <line x1="455" y1="135" x2="495" y2="145" stroke="#dc2626" stroke-width="2"/>
+                <line x1="455" y1="160" x2="495" y2="170" stroke="#dc2626" stroke-width="2"/>
+                <line x1="455" y1="185" x2="495" y2="195" stroke="#dc2626" stroke-width="2"/>
+
+                <!-- Airflow arrows -->
+                <path d="M 60,260 C 80,260 90,260 100,260" stroke="#0891b2" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                <path d="M 160,260 L 190,260" stroke="#0891b2" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrowhead)"/>
+
+                <path d="M 300,160 L 300,120 L 440,120" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,2"/>
+                <path d="M 500,150 L 540,150" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowhead-red)"/>
+
+                <!-- Dimensions -->
+                <line x1="100" y1="420" x2="500" y2="420" stroke="#333" stroke-width="1"/>
+                <line x1="100" y1="415" x2="100" y2="425" stroke="#333" stroke-width="1"/>
+                <line x1="500" y1="415" x2="500" y2="425" stroke="#333" stroke-width="1"/>
+                <text x="300" y="440" text-anchor="middle" font-size="12">1200mm</text>
+
+                <line x1="550" y1="70" x2="550" y2="380" stroke="#333" stroke-width="1"/>
+                <line x1="545" y1="70" x2="555" y2="70" stroke="#333" stroke-width="1"/>
+                <line x1="545" y1="380" x2="555" y2="380" stroke="#333" stroke-width="1"/>
+                <text x="570" y="230" text-anchor="middle" font-size="12" transform="rotate(90, 570, 230)">900mm</text>
+
+                <!-- Labels -->
+                <text x="125" y="340" text-anchor="middle" font-size="9" fill="#92400e" transform="rotate(-90, 125, 340)">50mm Acoustic</text>
+                <text x="475" y="340" text-anchor="middle" font-size="9" fill="#92400e" transform="rotate(-90, 475, 340)">50mm Acoustic</text>
+                <text x="160" y="395" text-anchor="middle" font-size="9">Rubber isolator</text>
+            </svg>
+        </div>
+
+        <!-- Installation -->
+        <h2>7. Installation Requirements</h2>
+
+        <h3>7.1 Site Requirements</h3>
+        <table>
+            <tr>
+                <th width="30%">Requirement</th>
+                <th>Specification</th>
+            </tr>
+            <tr>
+                <td>Foundation</td>
+                <td>Level concrete pad, 100mm thick minimum</td>
+            </tr>
+            <tr>
+                <td>Clearance - Front</td>
+                <td>1000mm minimum for door opening and service</td>
+            </tr>
+            <tr>
+                <td>Clearance - Sides</td>
+                <td>300mm minimum (500mm preferred for airflow)</td>
+            </tr>
+            <tr>
+                <td>Clearance - Rear</td>
+                <td>300mm for pipe connections</td>
+            </tr>
+            <tr>
+                <td>Drainage</td>
+                <td>Floor drain connection to site drainage</td>
+            </tr>
+        </table>
+
+        <h3>7.2 Equipment Placement</h3>
+        <ul style="margin: 1rem 0 1rem 1.5rem;">
+            <li>Position heat pump with fan discharge facing exhaust louvre side</li>
+            <li>Maintain minimum 150mm clearance around equipment</li>
+            <li>Connect water pipes through rear panel grommets</li>
+            <li>Route electrical through floor cable glands</li>
+            <li>Ensure condensate drain is connected before closing</li>
+        </ul>
+
+        <div class="note critical">
+            <strong>Critical:</strong> Do not obstruct intake or exhaust louvres. Blocked airflow will cause heat pump malfunction and void equipment warranty.
+        </div>
+
+        <!-- Maintenance -->
+        <h2>8. Maintenance</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Interval</th>
+                    <th>Task</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Monthly</td>
+                    <td>Visual check of louvres for debris/blockage</td>
+                </tr>
+                <tr>
+                    <td>Quarterly</td>
+                    <td>Clean louvre blades with brush/water</td>
+                </tr>
+                <tr>
+                    <td>Quarterly</td>
+                    <td>Check door seals and latches</td>
+                </tr>
+                <tr>
+                    <td>Annually</td>
+                    <td>Inspect acoustic panels for water damage</td>
+                </tr>
+                <tr>
+                    <td>Annually</td>
+                    <td>Lubricate hinges and latches</td>
+                </tr>
+                <tr>
+                    <td>As needed</td>
+                    <td>Touch up powder coat scratches</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>
