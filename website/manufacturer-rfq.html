@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manufacturer RFQ - Apex Pool Enclosures</title>
+    <title>Manufacturer RFQ - Apex Acoustic Enclosures</title>
     <style>
         @media print {
             body { font-size: 11pt; }
@@ -12,13 +12,12 @@
             @page { margin: 15mm; }
         }
         :root {
-            --primary: #0891b2;
-            --primary-dark: #0e7490;
-            --secondary: #dc2626;
+            --primary: #dc2626;
+            --primary-light: #fef2f2;
             --text: #1a1a1a;
             --text-muted: #6b7280;
             --bg: #ffffff;
-            --bg-alt: #f0fdfa;
+            --bg-alt: #fef2f2;
             --border: #e5e7eb;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,7 +30,7 @@
 
         /* Document Navigation */
         .doc-nav {
-            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
             padding: 1rem 2rem;
         }
         .doc-nav h3 {
@@ -52,13 +51,13 @@
             font-size: 0.85rem;
             font-weight: 500;
         }
-        .doc-card:hover { border-color: var(--primary); background: #f0fdfa; }
+        .doc-card:hover { border-color: var(--primary); background: var(--bg-alt); }
         .doc-card.active { background: white; color: var(--primary); border-color: var(--primary); }
 
         .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
 
         .header {
-            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
             color: white;
             padding: 2rem;
             text-align: center;
@@ -74,8 +73,7 @@
             padding-bottom: 0.5rem;
             border-bottom: 2px solid var(--primary);
         }
-        h2.secondary { color: var(--secondary); border-bottom-color: var(--secondary); }
-        h3 { font-size: 1rem; margin: 1.5rem 0 0.75rem; }
+        h3 { font-size: 1rem; margin: 1.5rem 0 0.75rem; color: var(--primary); }
 
         table {
             width: 100%;
@@ -91,7 +89,7 @@
         th { background: var(--bg-alt); font-weight: 600; }
 
         .highlight { background: #fef3c7; }
-        .important { background: #fee2e2; }
+        .critical { background: #fee2e2; font-weight: 600; }
 
         .note {
             background: #fef3c7;
@@ -114,21 +112,25 @@
             margin: 1rem 0;
             font-size: 0.9rem;
         }
+        .warning {
+            background: #fee2e2;
+            padding: 1rem;
+            border-left: 4px solid #dc2626;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
 
         ul { margin-left: 1.5rem; }
         li { margin: 0.3rem 0; }
 
-        .product-card {
-            border: 2px solid var(--border);
+        .product-summary {
+            background: var(--bg-alt);
+            border: 2px solid var(--primary);
             border-radius: 8px;
             padding: 1.5rem;
             margin: 1rem 0;
         }
-        .product-card.pump { border-color: var(--primary); }
-        .product-card.heater { border-color: var(--secondary); }
-        .product-card h3 { margin-top: 0; }
-        .product-card h3.pump { color: var(--primary); }
-        .product-card h3.heater { color: var(--secondary); }
+        .product-summary h3 { margin-top: 0; font-size: 1.25rem; }
 
         .quote-table input {
             width: 100%;
@@ -150,6 +152,16 @@
             height: 40px;
             margin-bottom: 0.5rem;
         }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        @media (max-width: 600px) {
+            .spec-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -157,8 +169,7 @@
         <h3>Apex Pool Enclosures - Project Documents</h3>
         <div class="doc-nav-grid">
             <a href="index.html" class="doc-card">Website</a>
-            <a href="specification-pump.html" class="doc-card">Pump Spec</a>
-            <a href="specification-heater.html" class="doc-card">Heater Spec</a>
+            <a href="specification-heater.html" class="doc-card">Technical Spec</a>
             <a href="bom-detailed.html" class="doc-card">Bill of Materials</a>
             <a href="acoustic-design.html" class="doc-card">Acoustic Design</a>
             <a href="market-research.html" class="doc-card">Market Research</a>
@@ -170,178 +181,210 @@
 
     <div class="header">
         <h1>Request for Quotation</h1>
-        <div class="subtitle">Acoustic Pool Equipment Enclosures - Prototype & Production</div>
+        <div class="subtitle">APE-HC1 Acoustic Pool Heater/Chiller Enclosure</div>
         <div class="date">December 2025 | Apex Enclosures</div>
     </div>
 
     <div class="container">
 
         <h2>1. Company Introduction</h2>
-        <p><strong>Apex Enclosures</strong> is developing a range of acoustic enclosures for residential pool equipment in the UAE and Gulf region. We are seeking manufacturing partners for prototype development and eventual production.</p>
+        <p><strong>Apex Enclosures</strong> is developing acoustic enclosures for residential pool heat pumps in the UAE and Gulf region. Pool heaters/chillers generate 55-70 dB(A) noise - a significant issue for villa environments. We are seeking manufacturing partners for prototype development and production.</p>
 
         <div class="info">
-            <strong>Related Product Line:</strong> We are also developing outdoor TV enclosures (ATE series) and may combine orders for manufacturing efficiency.
+            <strong>Related Product Line:</strong> We are also developing outdoor TV enclosures (ATE series) and may combine orders for manufacturing efficiency. Same materials, same quality standards.
         </div>
 
-        <h2>2. Products Overview</h2>
+        <h2>2. Product Overview</h2>
 
-        <div class="product-card pump">
-            <h3 class="pump">APE-P1: Semi-Sunken Pump Enclosure</h3>
-            <table>
-                <tr><th width="35%">Specification</th><th>Requirement</th></tr>
-                <tr><td>External Dimensions</td><td><strong>1200 × 800 × 900mm</strong> (W × D × H)</td></tr>
-                <tr><td>Above-Grade Height</td><td>300mm (lid visible above ground)</td></tr>
-                <tr><td>Material</td><td>2mm 5052-H32 aluminum, powder coated</td></tr>
-                <tr><td>Colour</td><td>RAL 7030 (Stone Grey) or RAL 7016 (Anthracite)</td></tr>
-                <tr><td>Lid</td><td>Hinged with gas struts, 316 stainless hardware</td></tr>
-                <tr><td>Weatherproofing</td><td>IP65 minimum (dust tight, water jet protected)</td></tr>
-                <tr><td>Drainage</td><td>4× floor drain holes with mesh screens</td></tr>
-                <tr><td>Purpose</td><td>House pool pump & filter below grade, reduce noise</td></tr>
-            </table>
+        <div class="product-summary">
+            <h3>APE-HC1: Acoustic Heater/Chiller Enclosure</h3>
+            <p style="margin-bottom: 1rem; color: var(--text-muted);">Reduces pool heat pump noise by 15-20 dB(A) while maintaining required airflow for equipment cooling.</p>
+
+            <div class="spec-grid">
+                <div>
+                    <strong>External Dimensions:</strong><br>
+                    1200 × 700 × 900mm (W × D × H)
+                </div>
+                <div>
+                    <strong>Target Noise Reduction:</strong><br>
+                    15-20 dB(A)
+                </div>
+                <div>
+                    <strong>Installation:</strong><br>
+                    Above ground, on concrete pad
+                </div>
+                <div>
+                    <strong>Weatherproofing:</strong><br>
+                    IP65 (outdoor, Gulf climate)
+                </div>
+            </div>
         </div>
 
-        <div class="product-card heater">
-            <h3 class="heater">APE-HC1: Acoustic Heater/Chiller Enclosure</h3>
-            <table>
-                <tr><th width="35%">Specification</th><th>Requirement</th></tr>
-                <tr><td>External Dimensions</td><td><strong>1200 × 700 × 900mm</strong> (W × D × H)</td></tr>
-                <tr><td>Installation</td><td>Above ground, on concrete pad</td></tr>
-                <tr><td>Material</td><td>2mm 5052-H32 aluminum, powder coated</td></tr>
-                <tr><td>Colour</td><td>RAL 7030 (Stone Grey) or RAL 7016 (Anthracite)</td></tr>
-                <tr><td>Weatherproofing</td><td>IP65 minimum</td></tr>
-                <tr><td>Purpose</td><td>Reduce heat pump noise while allowing ventilation</td></tr>
-            </table>
-
-            <h4 style="margin-top: 1rem; color: var(--secondary);">Acoustic Requirements (CRITICAL)</h4>
-            <table>
-                <tr><th width="35%">Specification</th><th>Requirement</th></tr>
-                <tr class="highlight"><td>Noise Reduction Target</td><td><strong>15-20 dB(A)</strong> reduction</td></tr>
-                <tr><td>Wall Construction</td><td>Double-skin with acoustic infill</td></tr>
-                <tr><td>Outer Skin</td><td>2mm aluminum</td></tr>
-                <tr><td>Acoustic Infill</td><td>50mm mineral wool (48-64 kg/m³ density)</td></tr>
-                <tr><td>Inner Skin</td><td>1mm perforated aluminum (23% open area)</td></tr>
-                <tr><td>Total Wall Thickness</td><td>~55mm</td></tr>
-            </table>
-
-            <h4 style="margin-top: 1rem; color: var(--secondary);">Ventilation Requirements (CRITICAL)</h4>
-            <table>
-                <tr><th width="35%">Specification</th><th>Requirement</th></tr>
-                <tr><td>Louvre Type</td><td>Z-blade acoustic louvres</td></tr>
-                <tr><td>Blade Angle</td><td>45°</td></tr>
-                <tr><td>Blade Pitch</td><td>50mm</td></tr>
-                <tr><td>Blade Depth</td><td>75mm minimum</td></tr>
-                <tr><td>Intake Location</td><td>Left side panel, full height</td></tr>
-                <tr><td>Exhaust Location</td><td>Right side panel, upper 1/3</td></tr>
-                <tr class="highlight"><td>Free Area</td><td>Minimum 40% (for equipment airflow)</td></tr>
-            </table>
+        <div class="warning">
+            <strong>Critical Design Challenge:</strong> This enclosure must BOTH reduce noise AND allow sufficient airflow. Heat pumps require ventilation - a sealed box would cause overheating. The acoustic louvres are the key component.
         </div>
 
-        <h2>3. Material Specifications</h2>
+        <h2>3. Acoustic Wall Construction</h2>
+        <p>All four walls + roof use double-skin acoustic panel construction:</p>
 
-        <h3>3.1 Aluminum</h3>
         <table>
-            <tr><th>Component</th><th>Material</th><th>Thickness</th></tr>
-            <tr><td>All panels, frames</td><td>5052-H32 aluminum</td><td>2mm</td></tr>
-            <tr><td>Lid/door frames</td><td>5052-H32 aluminum</td><td>3mm</td></tr>
-            <tr><td>Inner perforated skin (HC1)</td><td>5052 aluminum, perforated</td><td>1mm</td></tr>
+            <tr><th width="25%">Layer</th><th>Material</th><th>Thickness</th></tr>
+            <tr><td>Outer Skin</td><td>5052-H32 aluminum, powder coated</td><td>2mm</td></tr>
+            <tr><td>Acoustic Infill</td><td>Mineral wool (Rockwool or equiv), 48-64 kg/m³</td><td>50mm</td></tr>
+            <tr><td>Inner Skin</td><td>Perforated aluminum, 23% open area, 3mm holes</td><td>1mm</td></tr>
+            <tr class="highlight"><td><strong>Total Wall</strong></td><td colspan="2"><strong>~55mm thickness</strong></td></tr>
         </table>
 
-        <h3>3.2 Finish</h3>
+        <h3>3.1 Expected Acoustic Performance</h3>
+        <table>
+            <tr><th>Component</th><th>Noise Reduction</th></tr>
+            <tr><td>Solid acoustic panels (walls, roof)</td><td>20-25 dB</td></tr>
+            <tr><td>Acoustic louvres (openings)</td><td>10-15 dB</td></tr>
+            <tr class="critical"><td><strong>Overall Target</strong></td><td><strong>15-20 dB(A)</strong></td></tr>
+        </table>
+
+        <h2>4. Acoustic Louvre Specifications (CRITICAL)</h2>
+
+        <div class="note">
+            <strong>Key Component:</strong> The acoustic louvres are the most important part of this design. They must block sound while allowing airflow. Standard louvres will NOT work.
+        </div>
+
+        <table>
+            <tr><th width="35%">Specification</th><th>Requirement</th></tr>
+            <tr class="critical"><td>Louvre Type</td><td><strong>Z-blade acoustic louvres</strong> (or chevron/bent blade)</td></tr>
+            <tr><td>Blade Angle</td><td>45°</td></tr>
+            <tr><td>Blade Pitch</td><td>50mm centre-to-centre</td></tr>
+            <tr><td>Blade Depth</td><td>75mm minimum</td></tr>
+            <tr><td>Blade Material</td><td>Aluminum with acoustic infill (mineral wool or foam)</td></tr>
+            <tr class="highlight"><td>Free Area</td><td>Minimum 40% (equipment needs airflow)</td></tr>
+            <tr class="highlight"><td>Insertion Loss</td><td>Target 10-15 dB</td></tr>
+        </table>
+
+        <h3>4.1 Louvre Locations</h3>
+        <table>
+            <tr><th>Location</th><th>Size</th><th>Purpose</th></tr>
+            <tr><td>Left side panel</td><td>Full height (approx 800 × 700mm)</td><td>Air intake</td></tr>
+            <tr><td>Right side panel</td><td>Upper 1/3 (approx 800 × 300mm)</td><td>Hot air exhaust</td></tr>
+        </table>
+
+        <h2>5. Material Specifications</h2>
+
+        <h3>5.1 Aluminum</h3>
+        <table>
+            <tr><th>Component</th><th>Material</th><th>Thickness</th></tr>
+            <tr><td>Outer panels</td><td>5052-H32 aluminum</td><td>2mm</td></tr>
+            <tr><td>Door frame</td><td>5052-H32 aluminum</td><td>3mm</td></tr>
+            <tr><td>Inner perforated skin</td><td>5052 aluminum, perforated</td><td>1mm</td></tr>
+            <tr><td>Louvre blades</td><td>5052 aluminum</td><td>1-1.5mm</td></tr>
+        </table>
+
+        <h3>5.2 Finish</h3>
         <table>
             <tr><th>Requirement</th><th>Specification</th></tr>
             <tr><td>Surface Prep</td><td>Chemical etch or mechanical abrasion</td></tr>
-            <tr><td>Primer</td><td>Epoxy primer (optional for Gulf climate)</td></tr>
-            <tr><td>Powder Coat</td><td>Polyester powder coat, 60-80 microns</td></tr>
+            <tr><td>Powder Coat</td><td>Polyester, 60-80 microns</td></tr>
             <tr><td>Colour</td><td>RAL 7030 Stone Grey or RAL 7016 Anthracite</td></tr>
         </table>
 
-        <h3>3.3 Hardware (All 316 Stainless Steel)</h3>
+        <h3>5.3 Hardware (All 316 Stainless Steel)</h3>
         <table>
             <tr><th>Item</th><th>Specification</th></tr>
-            <tr><td>Hinges</td><td>Piano hinge, full length, 316 SS</td></tr>
-            <tr><td>Gas Struts</td><td>100N, 316 SS fittings (APE-P1 lid)</td></tr>
+            <tr><td>Hinges</td><td>Heavy-duty, 316 SS, acoustic sealed</td></tr>
             <tr><td>Latches</td><td>Compression draw latches, lockable</td></tr>
-            <tr><td>Fasteners</td><td>M5/M6, 316 stainless steel throughout</td></tr>
-            <tr><td>Gaskets</td><td>EPDM, closed-cell, continuous seal</td></tr>
+            <tr><td>Fasteners</td><td>M5/M6, 316 stainless steel</td></tr>
+            <tr><td>Door Gaskets</td><td>EPDM, closed-cell, continuous seal</td></tr>
         </table>
 
-        <h3>3.4 Acoustic Materials (APE-HC1 Only)</h3>
+        <h3>5.4 Acoustic Materials</h3>
         <table>
             <tr><th>Item</th><th>Specification</th></tr>
             <tr><td>Mineral Wool</td><td>Rockwool or equivalent, 48-64 kg/m³ density</td></tr>
-            <tr><td>Thickness</td><td>50mm panels</td></tr>
-            <tr><td>Facing</td><td>Black acoustic fabric or direct to perforated skin</td></tr>
-            <tr><td>Mounting</td><td>Friction fit between skins, no adhesive required</td></tr>
+            <tr><td>Panel Thickness</td><td>50mm</td></tr>
+            <tr><td>Louvre Blade Fill</td><td>25mm acoustic foam or compressed mineral wool</td></tr>
         </table>
 
         <div class="page-break"></div>
 
-        <h2>4. Prototype Requirements</h2>
+        <h2>6. Assembly & Access</h2>
 
-        <div class="note">
-            <strong>Initial Order:</strong> We require 1 prototype of each model for validation testing. Production quantities will follow successful testing.
-        </div>
+        <h3>6.1 Door</h3>
+        <ul>
+            <li>Full-height hinged door on front panel</li>
+            <li>Same acoustic construction as walls (double-skin with infill)</li>
+            <li>Continuous EPDM seal around perimeter</li>
+            <li>Lockable compression latches</li>
+        </ul>
+
+        <h3>6.2 Base</h3>
+        <ul>
+            <li>Open bottom (equipment sits on concrete pad)</li>
+            <li>Enclosure drops over equipment</li>
+            <li>Bottom edge sealed with weatherstrip to pad</li>
+        </ul>
+
+        <h2>7. Prototype Requirements</h2>
 
         <table>
             <tr><th>Requirement</th><th>Detail</th></tr>
-            <tr><td>Prototype Quantity</td><td><strong>1× APE-P1 + 1× APE-HC1</strong></td></tr>
+            <tr class="highlight"><td>Prototype Quantity</td><td><strong>1 unit</strong></td></tr>
             <tr><td>Lead Time Target</td><td>3-4 weeks from order</td></tr>
-            <tr><td>Delivery</td><td>Dubai, UAE (or local pickup if UAE manufacturer)</td></tr>
-            <tr><td>Documentation</td><td>Material certificates, test reports if available</td></tr>
+            <tr><td>Delivery</td><td>Dubai, UAE (or local pickup)</td></tr>
+            <tr><td>Documentation</td><td>Material certificates, acoustic test data if available</td></tr>
         </table>
 
-        <h2>5. Quality Requirements</h2>
+        <h2>8. Quality Requirements</h2>
         <ul>
             <li>All welds ground smooth, no sharp edges</li>
             <li>Powder coat uniform, no runs, chips, or thin spots</li>
-            <li>Gaskets continuous, no gaps at corners</li>
-            <li>Hardware operation smooth (hinges, latches)</li>
+            <li>Door gaskets continuous, proper compression when closed</li>
+            <li>Acoustic panels properly seated, no rattles or vibration</li>
+            <li>Louvre blades aligned, consistent spacing</li>
             <li>Dimensional tolerance: ±3mm</li>
-            <li>APE-HC1: Acoustic panels properly seated, no rattles</li>
         </ul>
 
-        <h2>6. Quotation Request</h2>
+        <h2>9. Quotation Request</h2>
 
-        <p>Please provide pricing for the following:</p>
-
-        <h3>6.1 APE-P1 Pump Enclosure (1200 × 800 × 900mm)</h3>
+        <h3>9.1 APE-HC1 Acoustic Enclosure (1200 × 700 × 900mm)</h3>
         <table class="quote-table">
             <tr><th>Quantity</th><th>Unit Price (USD)</th><th>Lead Time</th></tr>
             <tr><td>1 (prototype)</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
             <tr><td>10 units</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
             <tr><td>50 units</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
+            <tr><td>100 units</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
         </table>
 
-        <h3 class="secondary">6.2 APE-HC1 Heater/Chiller Enclosure (1200 × 700 × 900mm)</h3>
+        <h3>9.2 Breakdown (if possible)</h3>
         <table class="quote-table">
-            <tr><th>Quantity</th><th>Unit Price (USD)</th><th>Lead Time</th></tr>
-            <tr><td>1 (prototype)</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
-            <tr><td>10 units</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
-            <tr><td>50 units</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
+            <tr><th>Component</th><th>Cost (USD)</th></tr>
+            <tr><td>Aluminum fabrication (panels, frame)</td><td><input type="text" placeholder="$___"></td></tr>
+            <tr><td>Acoustic louvres</td><td><input type="text" placeholder="$___"></td></tr>
+            <tr><td>Powder coating</td><td><input type="text" placeholder="$___"></td></tr>
+            <tr><td>Acoustic infill (mineral wool)</td><td><input type="text" placeholder="$___"></td></tr>
+            <tr><td>Hardware (hinges, latches, gaskets)</td><td><input type="text" placeholder="$___"></td></tr>
+            <tr><td>Assembly labour</td><td><input type="text" placeholder="$___"></td></tr>
         </table>
 
-        <h3>6.3 Additional Costs</h3>
+        <h3>9.3 Additional Costs</h3>
         <table class="quote-table">
             <tr><th>Item</th><th>Cost (USD)</th></tr>
             <tr><td>Tooling/Setup (if any)</td><td><input type="text" placeholder="$___"></td></tr>
-            <tr><td>Shipping to Dubai</td><td><input type="text" placeholder="$___"></td></tr>
-            <tr><td>Sample materials/finishes</td><td><input type="text" placeholder="$___"></td></tr>
+            <tr><td>Delivery to Dubai</td><td><input type="text" placeholder="$___"></td></tr>
         </table>
 
-        <h2>7. Manufacturer Capabilities</h2>
+        <h2>10. Manufacturer Capabilities</h2>
         <p>Please confirm your capabilities:</p>
 
         <table>
             <tr><th>Capability</th><th>Yes/No</th><th>Notes</th></tr>
             <tr><td>5052-H32 aluminum fabrication</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
             <tr><td>Powder coating in-house</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
-            <tr><td>Acoustic panel assembly</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
-            <tr><td>IP65 enclosure experience</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
+            <tr class="highlight"><td><strong>Acoustic louvre manufacturing</strong></td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
+            <tr><td>Perforated aluminum sourcing</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
+            <tr><td>Mineral wool/acoustic material sourcing</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
             <tr><td>316 SS hardware sourcing</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
-            <tr><td>ISO 9001 certified</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
         </table>
 
-        <h2>8. Contact Information</h2>
+        <h2>11. Contact Information</h2>
 
         <div class="success">
             <strong>Apex Enclosures</strong><br>
@@ -351,20 +394,21 @@
             Location: Dubai, UAE
         </div>
 
-        <h2>9. Response Requested</h2>
+        <h2>12. Response Requested</h2>
         <ul>
             <li>Completed quotation form above</li>
             <li>Company profile / capability statement</li>
-            <li>Examples of similar work (photos if available)</li>
+            <li>Examples of acoustic enclosure work (if any)</li>
+            <li>Acoustic louvre sourcing approach</li>
             <li>Confirmation of lead time for prototype</li>
             <li>Payment terms</li>
         </ul>
 
-        <div class="note">
-            <strong>Note:</strong> This RFQ is for the pool enclosure product line. We are also developing outdoor TV enclosures (ATE series) - please enquire if interested in quoting for both product lines.
+        <div class="info">
+            <strong>Note:</strong> We are also developing outdoor TV enclosures (ATE series) with the same manufacturing partner. If you are quoting for both product lines, please indicate any volume discounts for combined orders.
         </div>
 
-        <h2>10. Acceptance</h2>
+        <h2>13. Acceptance</h2>
 
         <div class="signature-box">
             <div>
