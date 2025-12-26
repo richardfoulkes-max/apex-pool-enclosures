@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manufacturer RFQ - Apex Pool Enclosures</title>
+    <style>
+        @media print {
+            body { font-size: 11pt; }
+            .doc-nav, .no-print { display: none !important; }
+            .page-break { page-break-before: always; }
+            @page { margin: 15mm; }
+        }
+        :root {
+            --primary: #0891b2;
+            --primary-dark: #0e7490;
+            --secondary: #dc2626;
+            --text: #1a1a1a;
+            --text-muted: #6b7280;
+            --bg: #ffffff;
+            --bg-alt: #f0fdfa;
+            --border: #e5e7eb;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        /* Document Navigation */
+        .doc-nav {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            padding: 1rem 2rem;
+        }
+        .doc-nav h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.75rem;
+        }
+        .doc-nav-grid { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+        .doc-card {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--text);
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .doc-card:hover { border-color: var(--primary); background: #f0fdfa; }
+        .doc-card.active { background: white; color: var(--primary); border-color: var(--primary); }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .header {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .header h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+        .header .subtitle { opacity: 0.9; }
+        .header .date { margin-top: 1rem; font-size: 0.9rem; opacity: 0.8; }
+
+        h2 {
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+        }
+        h2.secondary { color: var(--secondary); border-bottom-color: var(--secondary); }
+        h3 { font-size: 1rem; margin: 1.5rem 0 0.75rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        th, td {
+            padding: 0.6rem;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+        th { background: var(--bg-alt); font-weight: 600; }
+
+        .highlight { background: #fef3c7; }
+        .important { background: #fee2e2; }
+
+        .note {
+            background: #fef3c7;
+            padding: 1rem;
+            border-left: 4px solid #d97706;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        .info {
+            background: #e0f2fe;
+            padding: 1rem;
+            border-left: 4px solid #0891b2;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        .success {
+            background: #dcfce7;
+            padding: 1rem;
+            border-left: 4px solid #059669;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        ul { margin-left: 1.5rem; }
+        li { margin: 0.3rem 0; }
+
+        .product-card {
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        .product-card.pump { border-color: var(--primary); }
+        .product-card.heater { border-color: var(--secondary); }
+        .product-card h3 { margin-top: 0; }
+        .product-card h3.pump { color: var(--primary); }
+        .product-card h3.heater { color: var(--secondary); }
+
+        .quote-table input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+        }
+
+        .signature-box {
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .signature-line {
+            border-bottom: 1px solid var(--text);
+            height: 40px;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="doc-nav">
+        <h3>Apex Pool Enclosures - Project Documents</h3>
+        <div class="doc-nav-grid">
+            <a href="index.html" class="doc-card">Website</a>
+            <a href="specification-pump.html" class="doc-card">Pump Spec</a>
+            <a href="specification-heater.html" class="doc-card">Heater Spec</a>
+            <a href="bom-detailed.html" class="doc-card">Bill of Materials</a>
+            <a href="acoustic-design.html" class="doc-card">Acoustic Design</a>
+            <a href="market-research.html" class="doc-card">Market Research</a>
+            <a href="designs.html" class="doc-card">Designs</a>
+            <a href="manufacturer-rfq.html" class="doc-card active">RFQ Document</a>
+            <a href="project-tracker.html" class="doc-card">Project Tracker</a>
+        </div>
+    </nav>
+
+    <div class="header">
+        <h1>Request for Quotation</h1>
+        <div class="subtitle">Acoustic Pool Equipment Enclosures - Prototype & Production</div>
+        <div class="date">December 2025 | Apex Enclosures</div>
+    </div>
+
+    <div class="container">
+
+        <h2>1. Company Introduction</h2>
+        <p><strong>Apex Enclosures</strong> is developing a range of acoustic enclosures for residential pool equipment in the UAE and Gulf region. We are seeking manufacturing partners for prototype development and eventual production.</p>
+
+        <div class="info">
+            <strong>Related Product Line:</strong> We are also developing outdoor TV enclosures (ATE series) and may combine orders for manufacturing efficiency.
+        </div>
+
+        <h2>2. Products Overview</h2>
+
+        <div class="product-card pump">
+            <h3 class="pump">APE-P1: Semi-Sunken Pump Enclosure</h3>
+            <table>
+                <tr><th width="35%">Specification</th><th>Requirement</th></tr>
+                <tr><td>External Dimensions</td><td><strong>1200 × 800 × 900mm</strong> (W × D × H)</td></tr>
+                <tr><td>Above-Grade Height</td><td>300mm (lid visible above ground)</td></tr>
+                <tr><td>Material</td><td>2mm 5052-H32 aluminum, powder coated</td></tr>
+                <tr><td>Colour</td><td>RAL 7030 (Stone Grey) or RAL 7016 (Anthracite)</td></tr>
+                <tr><td>Lid</td><td>Hinged with gas struts, 316 stainless hardware</td></tr>
+                <tr><td>Weatherproofing</td><td>IP65 minimum (dust tight, water jet protected)</td></tr>
+                <tr><td>Drainage</td><td>4× floor drain holes with mesh screens</td></tr>
+                <tr><td>Purpose</td><td>House pool pump & filter below grade, reduce noise</td></tr>
+            </table>
+        </div>
+
+        <div class="product-card heater">
+            <h3 class="heater">APE-HC1: Acoustic Heater/Chiller Enclosure</h3>
+            <table>
+                <tr><th width="35%">Specification</th><th>Requirement</th></tr>
+                <tr><td>External Dimensions</td><td><strong>1200 × 700 × 900mm</strong> (W × D × H)</td></tr>
+                <tr><td>Installation</td><td>Above ground, on concrete pad</td></tr>
+                <tr><td>Material</td><td>2mm 5052-H32 aluminum, powder coated</td></tr>
+                <tr><td>Colour</td><td>RAL 7030 (Stone Grey) or RAL 7016 (Anthracite)</td></tr>
+                <tr><td>Weatherproofing</td><td>IP65 minimum</td></tr>
+                <tr><td>Purpose</td><td>Reduce heat pump noise while allowing ventilation</td></tr>
+            </table>
+
+            <h4 style="margin-top: 1rem; color: var(--secondary);">Acoustic Requirements (CRITICAL)</h4>
+            <table>
+                <tr><th width="35%">Specification</th><th>Requirement</th></tr>
+                <tr class="highlight"><td>Noise Reduction Target</td><td><strong>15-20 dB(A)</strong> reduction</td></tr>
+                <tr><td>Wall Construction</td><td>Double-skin with acoustic infill</td></tr>
+                <tr><td>Outer Skin</td><td>2mm aluminum</td></tr>
+                <tr><td>Acoustic Infill</td><td>50mm mineral wool (48-64 kg/m³ density)</td></tr>
+                <tr><td>Inner Skin</td><td>1mm perforated aluminum (23% open area)</td></tr>
+                <tr><td>Total Wall Thickness</td><td>~55mm</td></tr>
+            </table>
+
+            <h4 style="margin-top: 1rem; color: var(--secondary);">Ventilation Requirements (CRITICAL)</h4>
+            <table>
+                <tr><th width="35%">Specification</th><th>Requirement</th></tr>
+                <tr><td>Louvre Type</td><td>Z-blade acoustic louvres</td></tr>
+                <tr><td>Blade Angle</td><td>45°</td></tr>
+                <tr><td>Blade Pitch</td><td>50mm</td></tr>
+                <tr><td>Blade Depth</td><td>75mm minimum</td></tr>
+                <tr><td>Intake Location</td><td>Left side panel, full height</td></tr>
+                <tr><td>Exhaust Location</td><td>Right side panel, upper 1/3</td></tr>
+                <tr class="highlight"><td>Free Area</td><td>Minimum 40% (for equipment airflow)</td></tr>
+            </table>
+        </div>
+
+        <h2>3. Material Specifications</h2>
+
+        <h3>3.1 Aluminum</h3>
+        <table>
+            <tr><th>Component</th><th>Material</th><th>Thickness</th></tr>
+            <tr><td>All panels, frames</td><td>5052-H32 aluminum</td><td>2mm</td></tr>
+            <tr><td>Lid/door frames</td><td>5052-H32 aluminum</td><td>3mm</td></tr>
+            <tr><td>Inner perforated skin (HC1)</td><td>5052 aluminum, perforated</td><td>1mm</td></tr>
+        </table>
+
+        <h3>3.2 Finish</h3>
+        <table>
+            <tr><th>Requirement</th><th>Specification</th></tr>
+            <tr><td>Surface Prep</td><td>Chemical etch or mechanical abrasion</td></tr>
+            <tr><td>Primer</td><td>Epoxy primer (optional for Gulf climate)</td></tr>
+            <tr><td>Powder Coat</td><td>Polyester powder coat, 60-80 microns</td></tr>
+            <tr><td>Colour</td><td>RAL 7030 Stone Grey or RAL 7016 Anthracite</td></tr>
+        </table>
+
+        <h3>3.3 Hardware (All 316 Stainless Steel)</h3>
+        <table>
+            <tr><th>Item</th><th>Specification</th></tr>
+            <tr><td>Hinges</td><td>Piano hinge, full length, 316 SS</td></tr>
+            <tr><td>Gas Struts</td><td>100N, 316 SS fittings (APE-P1 lid)</td></tr>
+            <tr><td>Latches</td><td>Compression draw latches, lockable</td></tr>
+            <tr><td>Fasteners</td><td>M5/M6, 316 stainless steel throughout</td></tr>
+            <tr><td>Gaskets</td><td>EPDM, closed-cell, continuous seal</td></tr>
+        </table>
+
+        <h3>3.4 Acoustic Materials (APE-HC1 Only)</h3>
+        <table>
+            <tr><th>Item</th><th>Specification</th></tr>
+            <tr><td>Mineral Wool</td><td>Rockwool or equivalent, 48-64 kg/m³ density</td></tr>
+            <tr><td>Thickness</td><td>50mm panels</td></tr>
+            <tr><td>Facing</td><td>Black acoustic fabric or direct to perforated skin</td></tr>
+            <tr><td>Mounting</td><td>Friction fit between skins, no adhesive required</td></tr>
+        </table>
+
+        <div class="page-break"></div>
+
+        <h2>4. Prototype Requirements</h2>
+
+        <div class="note">
+            <strong>Initial Order:</strong> We require 1 prototype of each model for validation testing. Production quantities will follow successful testing.
+        </div>
+
+        <table>
+            <tr><th>Requirement</th><th>Detail</th></tr>
+            <tr><td>Prototype Quantity</td><td><strong>1× APE-P1 + 1× APE-HC1</strong></td></tr>
+            <tr><td>Lead Time Target</td><td>3-4 weeks from order</td></tr>
+            <tr><td>Delivery</td><td>Dubai, UAE (or local pickup if UAE manufacturer)</td></tr>
+            <tr><td>Documentation</td><td>Material certificates, test reports if available</td></tr>
+        </table>
+
+        <h2>5. Quality Requirements</h2>
+        <ul>
+            <li>All welds ground smooth, no sharp edges</li>
+            <li>Powder coat uniform, no runs, chips, or thin spots</li>
+            <li>Gaskets continuous, no gaps at corners</li>
+            <li>Hardware operation smooth (hinges, latches)</li>
+            <li>Dimensional tolerance: ±3mm</li>
+            <li>APE-HC1: Acoustic panels properly seated, no rattles</li>
+        </ul>
+
+        <h2>6. Quotation Request</h2>
+
+        <p>Please provide pricing for the following:</p>
+
+        <h3>6.1 APE-P1 Pump Enclosure (1200 × 800 × 900mm)</h3>
+        <table class="quote-table">
+            <tr><th>Quantity</th><th>Unit Price (USD)</th><th>Lead Time</th></tr>
+            <tr><td>1 (prototype)</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
+            <tr><td>10 units</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
+            <tr><td>50 units</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
+        </table>
+
+        <h3 class="secondary">6.2 APE-HC1 Heater/Chiller Enclosure (1200 × 700 × 900mm)</h3>
+        <table class="quote-table">
+            <tr><th>Quantity</th><th>Unit Price (USD)</th><th>Lead Time</th></tr>
+            <tr><td>1 (prototype)</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
+            <tr><td>10 units</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
+            <tr><td>50 units</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
+        </table>
+
+        <h3>6.3 Additional Costs</h3>
+        <table class="quote-table">
+            <tr><th>Item</th><th>Cost (USD)</th></tr>
+            <tr><td>Tooling/Setup (if any)</td><td><input type="text" placeholder="$___"></td></tr>
+            <tr><td>Shipping to Dubai</td><td><input type="text" placeholder="$___"></td></tr>
+            <tr><td>Sample materials/finishes</td><td><input type="text" placeholder="$___"></td></tr>
+        </table>
+
+        <h2>7. Manufacturer Capabilities</h2>
+        <p>Please confirm your capabilities:</p>
+
+        <table>
+            <tr><th>Capability</th><th>Yes/No</th><th>Notes</th></tr>
+            <tr><td>5052-H32 aluminum fabrication</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
+            <tr><td>Powder coating in-house</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
+            <tr><td>Acoustic panel assembly</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
+            <tr><td>IP65 enclosure experience</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
+            <tr><td>316 SS hardware sourcing</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
+            <tr><td>ISO 9001 certified</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
+        </table>
+
+        <h2>8. Contact Information</h2>
+
+        <div class="success">
+            <strong>Apex Enclosures</strong><br>
+            Contact: Richard<br>
+            Email: apexenclosures@icloud.com<br>
+            WhatsApp: +971 50 559 8675<br>
+            Location: Dubai, UAE
+        </div>
+
+        <h2>9. Response Requested</h2>
+        <ul>
+            <li>Completed quotation form above</li>
+            <li>Company profile / capability statement</li>
+            <li>Examples of similar work (photos if available)</li>
+            <li>Confirmation of lead time for prototype</li>
+            <li>Payment terms</li>
+        </ul>
+
+        <div class="note">
+            <strong>Note:</strong> This RFQ is for the pool enclosure product line. We are also developing outdoor TV enclosures (ATE series) - please enquire if interested in quoting for both product lines.
+        </div>
+
+        <h2>10. Acceptance</h2>
+
+        <div class="signature-box">
+            <div>
+                <strong>Manufacturer Representative:</strong>
+                <div class="signature-line"></div>
+                <p>Name: _______________________</p>
+                <p>Title: _______________________</p>
+                <p>Date: _______________________</p>
+            </div>
+            <div>
+                <strong>Apex Enclosures:</strong>
+                <div class="signature-line"></div>
+                <p>Name: Richard</p>
+                <p>Title: Founder</p>
+                <p>Date: _______________________</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
