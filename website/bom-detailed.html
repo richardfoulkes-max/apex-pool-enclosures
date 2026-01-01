@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bill of Materials - Apex Pool Enclosures</title>
+    <title>Bill of Materials - APE-HC1 Acoustic Enclosure</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0891b2;
-            --primary-dark: #0e7490;
-            --secondary: #dc2626;
+            --primary: #dc2626;
+            --primary-dark: #b91c1c;
+            --secondary: #0891b2;
             --text: #1a1a1a;
             --text-muted: #6b7280;
             --bg: #ffffff;
-            --bg-alt: #f0fdfa;
+            --bg-alt: #fef2f2;
             --border: #e5e7eb;
             --success: #059669;
         }
@@ -28,7 +28,7 @@
 
         /* Document Navigation */
         .doc-nav {
-            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
             padding: 1rem 2rem;
         }
         .doc-nav h3 {
@@ -56,7 +56,7 @@
         }
         .doc-card:hover {
             border-color: var(--primary);
-            background: #f0fdfa;
+            background: #fef2f2;
         }
         .doc-card.active {
             background: white;
@@ -66,7 +66,7 @@
         .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
 
         header {
-            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
             color: white;
             padding: 2rem;
         }
@@ -80,7 +80,6 @@
             padding-bottom: 0.5rem;
             border-bottom: 2px solid var(--primary);
         }
-        h2.heater { color: var(--secondary); border-bottom-color: var(--secondary); }
 
         table {
             width: 100%;
@@ -96,10 +95,8 @@
         }
         th { background: var(--bg-alt); font-weight: 600; }
         .category { background: var(--primary); color: white; font-weight: 600; }
-        .category.heater { background: var(--secondary); }
         .subtotal { background: #dcfce7; font-weight: 600; }
         .total { background: var(--primary); color: white; font-weight: 700; font-size: 1rem; }
-        .total.heater { background: var(--secondary); }
 
         .note {
             background: #fef3c7;
@@ -108,36 +105,50 @@
             margin: 1rem 0;
             font-size: 0.9rem;
         }
+        .note.info {
+            background: #dbeafe;
+            border-left-color: #2563eb;
+        }
 
         .summary-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
             margin: 2rem 0;
         }
         .summary-card {
             background: white;
-            border: 2px solid var(--border);
+            border: 2px solid var(--primary);
             border-radius: 12px;
             padding: 1.5rem;
             text-align: center;
         }
-        .summary-card.pump { border-color: var(--primary); }
-        .summary-card.heater { border-color: var(--secondary); }
         .summary-card h3 {
-            font-size: 1rem;
+            font-size: 0.9rem;
             margin-bottom: 0.5rem;
+            color: var(--text-muted);
         }
         .summary-card .price {
             font-size: 2rem;
             font-weight: 700;
+            color: var(--primary);
         }
-        .summary-card.pump .price { color: var(--primary); }
-        .summary-card.heater .price { color: var(--secondary); }
         .summary-card .detail {
             font-size: 0.85rem;
             color: var(--text-muted);
-            margin-top: 0.5rem;
+            margin-top: 0.25rem;
+        }
+
+        .dimension-note {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid #22c55e;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .dimension-note h4 {
+            color: #166534;
+            margin-bottom: 0.5rem;
         }
 
         @media print {
@@ -150,10 +161,10 @@
         <h3>Apex Pool Enclosures - Project Documents</h3>
         <div class="doc-nav-grid">
             <a href="index.html" class="doc-card">Website</a>
-            <a href="specification-pump.html" class="doc-card">Pump Enclosure Spec</a>
-            <a href="specification-heater.html" class="doc-card">Heater/Chiller Spec</a>
+            <a href="specification-heater.html" class="doc-card">APE-HC1 Spec</a>
             <a href="bom-detailed.html" class="doc-card active">Bill of Materials</a>
             <a href="acoustic-design.html" class="doc-card">Acoustic Design</a>
+            <a href="engineering-analysis.html" class="doc-card">Engineering Analysis</a>
             <a href="market-research.html" class="doc-card">Market Research</a>
             <a href="designs.html" class="doc-card">Engineering Designs</a>
             <a href="manufacturer-rfq.html" class="doc-card">RFQ Document</a>
@@ -162,216 +173,48 @@
     </nav>
 
     <header>
-        <h1>Bill of Materials</h1>
-        <div class="subtitle">Detailed component costs for APE-P1 (Pump) and APE-HC1 (Heater/Chiller) enclosures</div>
+        <h1>Bill of Materials - APE-HC1</h1>
+        <div class="subtitle">Acoustic Enclosure with Chimney for ROTEAM Europa 44kW Heat Pump</div>
     </header>
 
     <div class="container">
 
+        <div class="dimension-note">
+            <h4>Enclosure Dimensions (v2.0)</h4>
+            <p><strong>Base:</strong> 1400 × 900 × 900 mm | <strong>Chimney:</strong> 1400 × 900 × 600 mm | <strong>Total Height:</strong> 1500 mm</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #166534;">Designed for ROTEAM Europa 44kW heat pump with dual top-exhaust fans</p>
+        </div>
+
         <div class="note">
-            <strong>Note:</strong> Prices are estimates based on UAE supplier quotes and international sourcing. Actual costs may vary by 10-20%. Quantities shown are per unit.
+            <strong>Note:</strong> Prices are estimates based on UAE supplier quotes and international sourcing. Actual costs may vary by 10-20%. This is a significantly larger enclosure than v1.0 due to the chimney requirement.
         </div>
 
         <!-- Summary Cards -->
         <div class="summary-grid">
-            <div class="summary-card pump">
-                <h3>APE-P1 Pump Enclosure</h3>
-                <div class="price">$285</div>
-                <div class="detail">~AED 1,050 material cost</div>
-                <div class="detail">Target sell: AED 3,500</div>
+            <div class="summary-card">
+                <h3>Materials</h3>
+                <div class="price">$1,580</div>
+                <div class="detail">Raw materials</div>
             </div>
-            <div class="summary-card heater">
-                <h3>APE-HC1 Heater/Chiller</h3>
-                <div class="price">$520</div>
-                <div class="detail">~AED 1,910 material cost</div>
-                <div class="detail">Target sell: AED 6,500</div>
+            <div class="summary-card">
+                <h3>Labour</h3>
+                <div class="price">$420</div>
+                <div class="detail">28 hours @ $15/hr</div>
+            </div>
+            <div class="summary-card">
+                <h3>Contingency</h3>
+                <div class="price">$200</div>
+                <div class="detail">10% buffer</div>
+            </div>
+            <div class="summary-card">
+                <h3>Total Cost</h3>
+                <div class="price">$2,200</div>
+                <div class="detail">~AED 8,000</div>
             </div>
         </div>
 
-        <!-- APE-P1 Pump Enclosure BOM -->
-        <h2>APE-P1 Pump Enclosure (1200 x 800 x 900mm)</h2>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>Description</th>
-                    <th>Qty</th>
-                    <th>Unit</th>
-                    <th>Unit Cost</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Frame -->
-                <tr class="category">
-                    <td colspan="6">FRAME & STRUCTURE</td>
-                </tr>
-                <tr>
-                    <td>Aluminium extrusion</td>
-                    <td>6063-T5, 40x40mm box, 2mm wall</td>
-                    <td>12</td>
-                    <td>m</td>
-                    <td>$4.50</td>
-                    <td>$54.00</td>
-                </tr>
-                <tr>
-                    <td>Corner brackets</td>
-                    <td>Die-cast aluminium, 40mm</td>
-                    <td>12</td>
-                    <td>pcs</td>
-                    <td>$1.50</td>
-                    <td>$18.00</td>
-                </tr>
-                <tr>
-                    <td>M8 bolts & nuts</td>
-                    <td>Stainless steel 304</td>
-                    <td>48</td>
-                    <td>sets</td>
-                    <td>$0.30</td>
-                    <td>$14.40</td>
-                </tr>
-
-                <!-- Panels -->
-                <tr class="category">
-                    <td colspan="6">PANELS</td>
-                </tr>
-                <tr>
-                    <td>Wall panels</td>
-                    <td>2mm 5052-H32 aluminium sheet</td>
-                    <td>4.5</td>
-                    <td>m²</td>
-                    <td>$18.00</td>
-                    <td>$81.00</td>
-                </tr>
-                <tr>
-                    <td>Floor panel</td>
-                    <td>3mm aluminium chequer plate</td>
-                    <td>1</td>
-                    <td>m²</td>
-                    <td>$28.00</td>
-                    <td>$28.00</td>
-                </tr>
-                <tr>
-                    <td>Lid panel</td>
-                    <td>2mm aluminium with reinforcement</td>
-                    <td>1</td>
-                    <td>m²</td>
-                    <td>$22.00</td>
-                    <td>$22.00</td>
-                </tr>
-
-                <!-- Hardware -->
-                <tr class="category">
-                    <td colspan="6">HARDWARE</td>
-                </tr>
-                <tr>
-                    <td>Piano hinge</td>
-                    <td>316 stainless, 1200mm length</td>
-                    <td>1</td>
-                    <td>pc</td>
-                    <td>$18.00</td>
-                    <td>$18.00</td>
-                </tr>
-                <tr>
-                    <td>Gas struts</td>
-                    <td>400N, 300mm stroke</td>
-                    <td>2</td>
-                    <td>pcs</td>
-                    <td>$8.00</td>
-                    <td>$16.00</td>
-                </tr>
-                <tr>
-                    <td>Hasp & staple</td>
-                    <td>316 stainless, for padlock</td>
-                    <td>1</td>
-                    <td>set</td>
-                    <td>$6.00</td>
-                    <td>$6.00</td>
-                </tr>
-                <tr>
-                    <td>Louvred vents</td>
-                    <td>150x100mm, aluminium with mesh</td>
-                    <td>4</td>
-                    <td>pcs</td>
-                    <td>$5.00</td>
-                    <td>$20.00</td>
-                </tr>
-
-                <!-- Sealing -->
-                <tr class="category">
-                    <td colspan="6">SEALING & WEATHERPROOFING</td>
-                </tr>
-                <tr>
-                    <td>EPDM gasket</td>
-                    <td>15x10mm, closed cell foam</td>
-                    <td>5</td>
-                    <td>m</td>
-                    <td>$2.00</td>
-                    <td>$10.00</td>
-                </tr>
-                <tr>
-                    <td>Cable glands</td>
-                    <td>IP68, M20/M25 assorted</td>
-                    <td>4</td>
-                    <td>pcs</td>
-                    <td>$2.50</td>
-                    <td>$10.00</td>
-                </tr>
-                <tr>
-                    <td>Pipe grommets</td>
-                    <td>50mm rubber, compression seal</td>
-                    <td>4</td>
-                    <td>pcs</td>
-                    <td>$3.00</td>
-                    <td>$12.00</td>
-                </tr>
-                <tr>
-                    <td>Drain fitting</td>
-                    <td>25mm with strainer</td>
-                    <td>1</td>
-                    <td>pc</td>
-                    <td>$5.00</td>
-                    <td>$5.00</td>
-                </tr>
-
-                <!-- Finish -->
-                <tr class="category">
-                    <td colspan="6">FINISH</td>
-                </tr>
-                <tr>
-                    <td>Powder coating</td>
-                    <td>Polyester, 60-80 microns, UV stable</td>
-                    <td>6</td>
-                    <td>m²</td>
-                    <td>$8.00</td>
-                    <td>$48.00</td>
-                </tr>
-
-                <!-- Subtotal -->
-                <tr class="subtotal">
-                    <td colspan="5"><strong>Material Subtotal</strong></td>
-                    <td><strong>$362.40</strong></td>
-                </tr>
-                <tr>
-                    <td colspan="5">Fabrication labour (est. 8 hours @ $15/hr)</td>
-                    <td>$120.00</td>
-                </tr>
-                <tr>
-                    <td colspan="5">Contingency (10%)</td>
-                    <td>$48.24</td>
-                </tr>
-
-                <!-- Total -->
-                <tr class="total">
-                    <td colspan="5"><strong>APE-P1 TOTAL COST</strong></td>
-                    <td><strong>$530.64</strong></td>
-                </tr>
-            </tbody>
-        </table>
-
         <!-- APE-HC1 Heater/Chiller Enclosure BOM -->
-        <h2 class="heater">APE-HC1 Heater/Chiller Enclosure (1200 x 700 x 900mm)</h2>
+        <h2>APE-HC1 v2.0 - Base Enclosure (1400 × 900 × 900mm)</h2>
 
         <table>
             <thead>
@@ -386,127 +229,119 @@
             </thead>
             <tbody>
                 <!-- Frame -->
-                <tr class="category heater">
+                <tr class="category">
                     <td colspan="6">FRAME & STRUCTURE</td>
                 </tr>
                 <tr>
                     <td>Aluminium extrusion</td>
-                    <td>6063-T5, 50x50mm box, 2mm wall</td>
-                    <td>14</td>
+                    <td>6063-T5, 50×50mm box, 2mm wall</td>
+                    <td>18</td>
                     <td>m</td>
                     <td>$6.00</td>
-                    <td>$84.00</td>
+                    <td>$108.00</td>
                 </tr>
                 <tr>
                     <td>Corner brackets</td>
                     <td>Die-cast aluminium, 50mm heavy duty</td>
-                    <td>16</td>
+                    <td>20</td>
                     <td>pcs</td>
                     <td>$2.00</td>
-                    <td>$32.00</td>
+                    <td>$40.00</td>
                 </tr>
                 <tr>
                     <td>M10 bolts & nuts</td>
                     <td>Stainless steel 304</td>
-                    <td>64</td>
+                    <td>80</td>
                     <td>sets</td>
                     <td>$0.40</td>
-                    <td>$25.60</td>
+                    <td>$32.00</td>
                 </tr>
 
                 <!-- Acoustic Panels -->
-                <tr class="category heater">
-                    <td colspan="6">ACOUSTIC PANELS</td>
+                <tr class="category">
+                    <td colspan="6">ACOUSTIC PANELS (Base Enclosure)</td>
                 </tr>
                 <tr>
-                    <td>Outer skin</td>
+                    <td>Outer skin - walls</td>
                     <td>2mm 5052-H32 aluminium sheet</td>
-                    <td>5</td>
+                    <td>7.5</td>
                     <td>m²</td>
                     <td>$18.00</td>
-                    <td>$90.00</td>
+                    <td>$135.00</td>
                 </tr>
                 <tr>
                     <td>Inner skin (perforated)</td>
                     <td>1mm aluminium, 23% open, 3mm holes</td>
-                    <td>5</td>
+                    <td>7.5</td>
                     <td>m²</td>
                     <td>$22.00</td>
-                    <td>$110.00</td>
+                    <td>$165.00</td>
                 </tr>
                 <tr>
                     <td>Mineral wool infill</td>
-                    <td>50mm, 48kg/m³, hydrophobic</td>
-                    <td>5</td>
+                    <td>50mm, 60kg/m³, hydrophobic</td>
+                    <td>7.5</td>
                     <td>m²</td>
-                    <td>$12.00</td>
-                    <td>$60.00</td>
-                </tr>
-                <tr>
-                    <td>Roof panel</td>
-                    <td>2mm aluminium, sloped</td>
-                    <td>0.9</td>
-                    <td>m²</td>
-                    <td>$22.00</td>
-                    <td>$19.80</td>
+                    <td>$14.00</td>
+                    <td>$105.00</td>
                 </tr>
                 <tr>
                     <td>Floor panel</td>
                     <td>3mm aluminium chequer plate</td>
-                    <td>0.85</td>
+                    <td>1.3</td>
                     <td>m²</td>
                     <td>$28.00</td>
-                    <td>$23.80</td>
+                    <td>$36.40</td>
                 </tr>
 
                 <!-- Acoustic Louvres -->
-                <tr class="category heater">
-                    <td colspan="6">ACOUSTIC LOUVRES</td>
+                <tr class="category">
+                    <td colspan="6">INTAKE ACOUSTIC LOUVRES (3 Sides)</td>
                 </tr>
                 <tr>
-                    <td>Intake louvre assembly</td>
-                    <td>Z-blade acoustic, 500x400mm</td>
+                    <td>Front louvre panel</td>
+                    <td>Z-blade acoustic, 1400×700mm</td>
                     <td>1</td>
                     <td>set</td>
-                    <td>$85.00</td>
-                    <td>$85.00</td>
+                    <td>$180.00</td>
+                    <td>$180.00</td>
                 </tr>
                 <tr>
-                    <td>Exhaust louvre assembly</td>
-                    <td>Z-blade acoustic, 500x300mm</td>
-                    <td>1</td>
-                    <td>set</td>
-                    <td>$75.00</td>
-                    <td>$75.00</td>
+                    <td>Side louvre panels</td>
+                    <td>Z-blade acoustic, 900×700mm each</td>
+                    <td>2</td>
+                    <td>sets</td>
+                    <td>$120.00</td>
+                    <td>$240.00</td>
                 </tr>
                 <tr>
                     <td>Louvre mineral wool</td>
-                    <td>25mm infill for blades</td>
-                    <td>1</td>
+                    <td>25mm infill for blades, 45° angle</td>
+                    <td>2.5</td>
                     <td>m²</td>
                     <td>$10.00</td>
-                    <td>$10.00</td>
+                    <td>$25.00</td>
                 </tr>
                 <tr>
                     <td>Bird/debris mesh</td>
                     <td>Stainless steel, 6mm aperture</td>
-                    <td>0.4</td>
+                    <td>2.5</td>
                     <td>m²</td>
                     <td>$15.00</td>
-                    <td>$6.00</td>
+                    <td>$37.50</td>
                 </tr>
 
                 <!-- Hardware -->
-                <tr class="category heater">
+                <tr class="category">
                     <td colspan="6">HARDWARE</td>
                 </tr>
                 <tr>
                     <td>Door hinges</td>
                     <td>316 stainless, heavy duty, lift-off</td>
-                    <td>3</td>
+                    <td>4</td>
                     <td>pcs</td>
                     <td>$12.00</td>
-                    <td>$36.00</td>
+                    <td>$48.00</td>
                 </tr>
                 <tr>
                     <td>Compression latches</td>
@@ -526,40 +361,181 @@
                 </tr>
                 <tr>
                     <td>Quarter-turn fasteners</td>
-                    <td>For removable side panels</td>
-                    <td>12</td>
+                    <td>For side panel access</td>
+                    <td>16</td>
                     <td>pcs</td>
                     <td>$3.00</td>
-                    <td>$36.00</td>
+                    <td>$48.00</td>
                 </tr>
                 <tr>
                     <td>Rubber isolator feet</td>
-                    <td>Anti-vibration, M10 thread</td>
-                    <td>4</td>
+                    <td>Anti-vibration, M12 thread</td>
+                    <td>6</td>
                     <td>pcs</td>
-                    <td>$4.00</td>
-                    <td>$16.00</td>
+                    <td>$5.00</td>
+                    <td>$30.00</td>
                 </tr>
 
+                <!-- Subtotal Base -->
+                <tr class="subtotal">
+                    <td colspan="5"><strong>Base Enclosure Subtotal</strong></td>
+                    <td><strong>$1,265.90</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Chimney Section -->
+        <h2>Acoustic Chimney (1400 × 900 × 600mm)</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Description</th>
+                    <th>Qty</th>
+                    <th>Unit</th>
+                    <th>Unit Cost</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Chimney Structure -->
+                <tr class="category">
+                    <td colspan="6">CHIMNEY STRUCTURE</td>
+                </tr>
+                <tr>
+                    <td>Aluminium extrusion</td>
+                    <td>6063-T5, 50×50mm box, 2mm wall</td>
+                    <td>8</td>
+                    <td>m</td>
+                    <td>$6.00</td>
+                    <td>$48.00</td>
+                </tr>
+                <tr>
+                    <td>Corner brackets</td>
+                    <td>Die-cast aluminium, 50mm</td>
+                    <td>8</td>
+                    <td>pcs</td>
+                    <td>$2.00</td>
+                    <td>$16.00</td>
+                </tr>
+                <tr>
+                    <td>Flange plate</td>
+                    <td>3mm aluminium, mounting to base</td>
+                    <td>1</td>
+                    <td>set</td>
+                    <td>$25.00</td>
+                    <td>$25.00</td>
+                </tr>
+
+                <!-- Chimney Panels -->
+                <tr class="category">
+                    <td colspan="6">CHIMNEY ACOUSTIC LINING</td>
+                </tr>
+                <tr>
+                    <td>Outer skin</td>
+                    <td>2mm powder-coated aluminium</td>
+                    <td>3.5</td>
+                    <td>m²</td>
+                    <td>$18.00</td>
+                    <td>$63.00</td>
+                </tr>
+                <tr>
+                    <td>Inner lining (perforated)</td>
+                    <td>1mm aluminium, 23% open (4 sides)</td>
+                    <td>3.0</td>
+                    <td>m²</td>
+                    <td>$22.00</td>
+                    <td>$66.00</td>
+                </tr>
+                <tr>
+                    <td>Mineral wool lining</td>
+                    <td>50mm, 60kg/m³, all 4 internal faces</td>
+                    <td>3.0</td>
+                    <td>m²</td>
+                    <td>$14.00</td>
+                    <td>$42.00</td>
+                </tr>
+
+                <!-- Chimney Top -->
+                <tr class="category">
+                    <td colspan="6">CHIMNEY TOP & WEATHER PROTECTION</td>
+                </tr>
+                <tr>
+                    <td>Top louvre assembly</td>
+                    <td>Acoustic louvres, 1200×700mm internal</td>
+                    <td>1</td>
+                    <td>set</td>
+                    <td>$150.00</td>
+                    <td>$150.00</td>
+                </tr>
+                <tr>
+                    <td>Rain hood</td>
+                    <td>Aluminium, angled with drip edge</td>
+                    <td>1</td>
+                    <td>pc</td>
+                    <td>$45.00</td>
+                    <td>$45.00</td>
+                </tr>
+                <tr>
+                    <td>Bird mesh</td>
+                    <td>Stainless steel, 6mm aperture</td>
+                    <td>1</td>
+                    <td>m²</td>
+                    <td>$15.00</td>
+                    <td>$15.00</td>
+                </tr>
+
+                <!-- Subtotal Chimney -->
+                <tr class="subtotal">
+                    <td colspan="5"><strong>Chimney Subtotal</strong></td>
+                    <td><strong>$470.00</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Sealing & Finish -->
+        <h2>Sealing, Finish & Final Assembly</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Description</th>
+                    <th>Qty</th>
+                    <th>Unit</th>
+                    <th>Unit Cost</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
                 <!-- Sealing -->
-                <tr class="category heater">
+                <tr class="category">
                     <td colspan="6">SEALING & WEATHERPROOFING</td>
                 </tr>
                 <tr>
                     <td>EPDM acoustic gasket</td>
-                    <td>15x15mm, closed cell, all panel joints</td>
-                    <td>12</td>
+                    <td>15×15mm, closed cell, all panel joints</td>
+                    <td>18</td>
                     <td>m</td>
                     <td>$2.50</td>
-                    <td>$30.00</td>
+                    <td>$45.00</td>
                 </tr>
                 <tr>
                     <td>Door seal</td>
                     <td>EPDM bulb seal, continuous</td>
-                    <td>4</td>
+                    <td>5</td>
                     <td>m</td>
                     <td>$4.00</td>
-                    <td>$16.00</td>
+                    <td>$20.00</td>
+                </tr>
+                <tr>
+                    <td>Chimney-to-base gasket</td>
+                    <td>EPDM weatherproof, flange seal</td>
+                    <td>5</td>
+                    <td>m</td>
+                    <td>$3.00</td>
+                    <td>$15.00</td>
                 </tr>
                 <tr>
                     <td>Cable glands</td>
@@ -587,40 +563,86 @@
                 </tr>
 
                 <!-- Finish -->
-                <tr class="category heater">
+                <tr class="category">
                     <td colspan="6">FINISH</td>
                 </tr>
                 <tr>
                     <td>Powder coating</td>
-                    <td>Polyester, 60-80 microns, UV stable</td>
-                    <td>8</td>
+                    <td>Polyester, 60-80 microns, UV stable, RAL 7016</td>
+                    <td>14</td>
                     <td>m²</td>
                     <td>$8.00</td>
-                    <td>$64.00</td>
+                    <td>$112.00</td>
                 </tr>
 
-                <!-- Subtotal -->
+                <!-- Subtotal Sealing -->
                 <tr class="subtotal">
-                    <td colspan="5"><strong>Material Subtotal</strong></td>
-                    <td><strong>$1,011.20</strong></td>
+                    <td colspan="5"><strong>Sealing & Finish Subtotal</strong></td>
+                    <td><strong>$232.00</strong></td>
                 </tr>
-                <tr>
-                    <td colspan="5">Fabrication labour (est. 16 hours @ $15/hr)</td>
-                    <td>$240.00</td>
-                </tr>
-                <tr>
-                    <td colspan="5">Acoustic panel assembly (est. 4 hours @ $15/hr)</td>
-                    <td>$60.00</td>
-                </tr>
-                <tr>
-                    <td colspan="5">Contingency (10%)</td>
-                    <td>$131.12</td>
-                </tr>
+            </tbody>
+        </table>
 
-                <!-- Total -->
-                <tr class="total heater">
-                    <td colspan="5"><strong>APE-HC1 TOTAL COST</strong></td>
-                    <td><strong>$1,442.32</strong></td>
+        <!-- Final Summary -->
+        <h2>Cost Summary</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Cost (USD)</th>
+                    <th>Cost (AED)</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Base Enclosure Materials</td>
+                    <td>$1,265.90</td>
+                    <td>AED 4,650</td>
+                    <td>Frame, panels, louvres, hardware</td>
+                </tr>
+                <tr>
+                    <td>Acoustic Chimney Materials</td>
+                    <td>$470.00</td>
+                    <td>AED 1,725</td>
+                    <td>Structure, lining, top louvres</td>
+                </tr>
+                <tr>
+                    <td>Sealing & Finish</td>
+                    <td>$232.00</td>
+                    <td>AED 850</td>
+                    <td>Gaskets, coating</td>
+                </tr>
+                <tr class="subtotal">
+                    <td><strong>Material Subtotal</strong></td>
+                    <td><strong>$1,967.90</strong></td>
+                    <td><strong>AED 7,225</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Fabrication Labour</td>
+                    <td>$300.00</td>
+                    <td>AED 1,100</td>
+                    <td>20 hours @ $15/hr</td>
+                </tr>
+                <tr>
+                    <td>Acoustic Assembly</td>
+                    <td>$120.00</td>
+                    <td>AED 440</td>
+                    <td>8 hours @ $15/hr</td>
+                </tr>
+                <tr>
+                    <td>Contingency (10%)</td>
+                    <td>$238.79</td>
+                    <td>AED 877</td>
+                    <td>Buffer for variations</td>
+                </tr>
+                <tr class="total">
+                    <td><strong>TOTAL COST</strong></td>
+                    <td><strong>$2,626.69</strong></td>
+                    <td><strong>AED 9,642</strong></td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>
@@ -631,39 +653,110 @@
         <table>
             <thead>
                 <tr>
-                    <th>Model</th>
-                    <th>Unit Cost</th>
-                    <th>Target Sell (AED)</th>
-                    <th>Target Sell (USD)</th>
+                    <th>Scenario</th>
+                    <th>Sell Price</th>
+                    <th>Cost</th>
                     <th>Gross Margin</th>
+                    <th>Gross Profit</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>APE-P1 (Pump)</td>
-                    <td>$530</td>
-                    <td>AED 3,500</td>
-                    <td>$953</td>
-                    <td style="color: var(--success); font-weight: 600;">44%</td>
+                    <td>Conservative</td>
+                    <td>AED 12,000 ($3,270)</td>
+                    <td>$2,627</td>
+                    <td style="color: var(--success); font-weight: 600;">20%</td>
+                    <td>$643</td>
                 </tr>
                 <tr>
-                    <td>APE-HC1 (Heater/Chiller)</td>
-                    <td>$1,442</td>
-                    <td>AED 6,500</td>
-                    <td>$1,770</td>
-                    <td style="color: var(--success); font-weight: 600;">19%</td>
+                    <td>Target</td>
+                    <td>AED 15,000 ($4,090)</td>
+                    <td>$2,627</td>
+                    <td style="color: var(--success); font-weight: 600;">36%</td>
+                    <td>$1,463</td>
+                </tr>
+                <tr>
+                    <td>Premium</td>
+                    <td>AED 18,000 ($4,900)</td>
+                    <td>$2,627</td>
+                    <td style="color: var(--success); font-weight: 600;">46%</td>
+                    <td>$2,273</td>
                 </tr>
             </tbody>
         </table>
 
         <div class="note">
-            <strong>Margin Notes:</strong>
+            <strong>Pricing Notes:</strong>
             <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                <li>APE-HC1 margin is lower due to acoustic components - consider AED 7,500 pricing</li>
-                <li>Volume production (10+ units) should reduce costs by 15-20%</li>
+                <li>This is a significantly larger and more complex enclosure than v1.0 (~$1,450)</li>
+                <li>The acoustic chimney adds ~$470 in materials alone</li>
+                <li>Premium pricing justified by noise reduction value proposition</li>
+                <li>Volume production (5+ units) could reduce costs by 15-20%</li>
                 <li>Acoustic louvres are the highest-cost component - explore local fabrication</li>
             </ul>
         </div>
+
+        <div class="note info">
+            <strong>Cost Reduction Opportunities:</strong>
+            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                <li><strong>Louvres:</strong> Fabricate Z-blades locally instead of buying assemblies (-$200)</li>
+                <li><strong>Chimney:</strong> Simplify to 3-sided lining if rear faces wall (-$40)</li>
+                <li><strong>Volume:</strong> 5-10 unit batch reduces material cost 15% (-$300)</li>
+                <li><strong>Potential optimized cost:</strong> ~$2,100 per unit</li>
+            </ul>
+        </div>
+
+        <!-- Comparison -->
+        <h2>Comparison: v1.0 vs v2.0</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>APE-HC1 v1.0</th>
+                    <th>APE-HC1 v2.0</th>
+                    <th>Change</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dimensions</td>
+                    <td>1200 × 700 × 900mm</td>
+                    <td>1400 × 900 × 1500mm</td>
+                    <td>+67% volume</td>
+                </tr>
+                <tr>
+                    <td>Airflow Design</td>
+                    <td>Side-to-side</td>
+                    <td>Top exhaust chimney</td>
+                    <td>Complete redesign</td>
+                </tr>
+                <tr>
+                    <td>Louvre Area</td>
+                    <td>~0.5 m²</td>
+                    <td>~2.5 m²</td>
+                    <td>+400%</td>
+                </tr>
+                <tr>
+                    <td>Target Unit</td>
+                    <td>Generic 10-12kW</td>
+                    <td>ROTEAM 44kW</td>
+                    <td>3.5× larger unit</td>
+                </tr>
+                <tr>
+                    <td>Material Cost</td>
+                    <td>$1,011</td>
+                    <td>$1,968</td>
+                    <td>+95%</td>
+                </tr>
+                <tr>
+                    <td>Total Cost</td>
+                    <td>$1,442</td>
+                    <td>$2,627</td>
+                    <td>+82%</td>
+                </tr>
+            </tbody>
+        </table>
 
     </div>
 </body>

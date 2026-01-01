@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APE-HC Heater/Chiller Enclosure - Technical Specification</title>
+    <title>APE-HC1 Heater/Chiller Enclosure - Technical Specification</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -27,7 +27,7 @@
 
         /* Document Navigation */
         .doc-nav {
-            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
             padding: 1rem 2rem;
         }
         .doc-nav h3 {
@@ -54,8 +54,8 @@
             transition: all 0.2s ease;
         }
         .doc-card:hover {
-            border-color: var(--secondary);
-            background: #f0fdfa;
+            border-color: var(--primary);
+            background: #fef2f2;
         }
         .doc-card.active {
             background: white;
@@ -116,12 +116,19 @@
             background: #fef3c7;
             border-left-color: #d97706;
         }
+        .spec-box.chimney {
+            background: #dbeafe;
+            border-left-color: #2563eb;
+        }
         .spec-box h4 {
             color: var(--primary);
             margin-bottom: 0.75rem;
         }
         .spec-box.acoustic h4 {
             color: #92400e;
+        }
+        .spec-box.chimney h4 {
+            color: #1d4ed8;
         }
         .spec-box ul {
             list-style: none;
@@ -159,6 +166,10 @@
             background: #fee2e2;
             border-left-color: #dc2626;
         }
+        .note.info {
+            background: #dbeafe;
+            border-left-color: #2563eb;
+        }
 
         .acoustic-highlight {
             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
@@ -194,6 +205,18 @@
             color: var(--text-muted);
         }
 
+        .target-unit {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid #22c55e;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .target-unit h3 {
+            color: #166534;
+            margin-top: 0;
+        }
+
         @media print {
             .doc-nav { display: none; }
         }
@@ -204,10 +227,10 @@
         <h3>Apex Pool Enclosures - Project Documents</h3>
         <div class="doc-nav-grid">
             <a href="index.html" class="doc-card">Website</a>
-            <a href="specification-pump.html" class="doc-card">Pump Enclosure Spec</a>
-            <a href="specification-heater.html" class="doc-card active">Heater/Chiller Spec</a>
+            <a href="specification-heater.html" class="doc-card active">APE-HC1 Spec</a>
             <a href="bom-detailed.html" class="doc-card">Bill of Materials</a>
             <a href="acoustic-design.html" class="doc-card">Acoustic Design</a>
+            <a href="engineering-analysis.html" class="doc-card">Engineering Analysis</a>
             <a href="market-research.html" class="doc-card">Market Research</a>
             <a href="designs.html" class="doc-card">Engineering Designs</a>
             <a href="manufacturer-rfq.html" class="doc-card">RFQ Document</a>
@@ -217,127 +240,284 @@
 
     <header>
         <div class="container">
-            <h1>APE-HC Series - Heater/Chiller Enclosure</h1>
-            <div class="subtitle">Acoustic Enclosure with Ventilation for Pool Heat Pumps</div>
-            <div class="badge">Model: APE-HC1 | Rev 1.0 | December 2025</div>
+            <h1>APE-HC1 - Acoustic Heater/Chiller Enclosure</h1>
+            <div class="subtitle">With Integrated Acoustic Chimney for Top-Exhaust Heat Pumps</div>
+            <div class="badge">Model: APE-HC1 v2.0 | Rev 2.0 | December 2025</div>
         </div>
     </header>
 
     <div class="container">
         <!-- Overview -->
         <h2>1. Product Overview</h2>
-        <p>The APE-HC series is an acoustic enclosure designed to reduce noise from pool heat pumps and chillers while maintaining adequate ventilation for equipment operation. The enclosure uses a combination of acoustic panels and louvred ventilation to achieve up to 18dB noise reduction.</p>
+        <p>The APE-HC1 is an acoustic enclosure designed specifically for top-exhaust pool heat pumps. It features an integrated acoustic chimney that attenuates noise from the vertical exhaust fans while maintaining full airflow capacity. Target noise reduction: 15-20 dB(A).</p>
 
         <div class="performance-grid">
             <div class="perf-card">
-                <div class="value">18dB</div>
-                <div class="label">Noise Reduction</div>
+                <div class="value">15-20</div>
+                <div class="label">dB(A) Reduction</div>
             </div>
             <div class="perf-card">
                 <div class="value">IP65</div>
                 <div class="label">Weather Rating</div>
             </div>
             <div class="perf-card">
-                <div class="value">50mm</div>
-                <div class="label">Acoustic Panels</div>
+                <div class="value">1500</div>
+                <div class="label">mm Total Height</div>
             </div>
             <div class="perf-card">
-                <div class="value">400+</div>
-                <div class="label">CFM Airflow</div>
+                <div class="value">11,000</div>
+                <div class="label">m³/hr Airflow</div>
             </div>
+        </div>
+
+        <!-- Target Unit -->
+        <div class="target-unit">
+            <h3>Reference Unit: ROTEAM Europa Heat Pump</h3>
+            <p>This specification is designed around the following heat pump unit:</p>
+            <table style="margin-top: 1rem;">
+                <tr>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Model</td>
+                    <td>00500450</td>
+                </tr>
+                <tr>
+                    <td>Heating Capacity</td>
+                    <td>44 kW (150,000 BTU)</td>
+                </tr>
+                <tr>
+                    <td>Cooling Capacity</td>
+                    <td>34 kW</td>
+                </tr>
+                <tr>
+                    <td>Power Supply</td>
+                    <td>380V / 3 Phase / 50Hz</td>
+                </tr>
+                <tr>
+                    <td>Fan Configuration</td>
+                    <td>2 × 400mm TOP exhaust</td>
+                </tr>
+                <tr>
+                    <td>Estimated Dimensions</td>
+                    <td>~1000 × 600 × 800 mm (L×W×H)</td>
+                </tr>
+            </table>
         </div>
 
         <div class="spec-grid">
             <div class="spec-box">
                 <h4>Key Features</h4>
                 <ul>
-                    <li>+ 50mm mineral wool acoustic panels</li>
-                    <li>+ Acoustic louvre ventilation system</li>
-                    <li>+ Labyrinth airflow path</li>
+                    <li>+ Acoustic chimney for top exhaust</li>
+                    <li>+ Three-sided Z-blade intake louvres</li>
+                    <li>+ 50mm mineral wool panels</li>
                     <li>+ IP65 weatherproof rating</li>
-                    <li>+ Front access door</li>
-                    <li>+ Removable side panels for service</li>
+                    <li>+ Full-height hinged access door</li>
+                    <li>+ Marine-grade powder coat</li>
                 </ul>
             </div>
-            <div class="spec-box">
-                <h4>Target Equipment</h4>
+            <div class="spec-box chimney">
+                <h4>Acoustic Chimney</h4>
                 <ul>
-                    <li>+ Pool heat pumps (10-25kW)</li>
-                    <li>+ Pool chillers</li>
-                    <li>+ Inverter heat pump units</li>
-                    <li>+ Split system outdoor units</li>
+                    <li>+ 600mm height for sound attenuation</li>
+                    <li>+ Lined with 50mm mineral wool</li>
+                    <li>+ Weather-protected top outlet</li>
+                    <li>+ 8-12 dB additional reduction</li>
+                    <li>+ Handles full fan airflow</li>
                 </ul>
             </div>
             <div class="spec-box acoustic">
-                <h4>Acoustic Challenge</h4>
+                <h4>Design Challenge Solved</h4>
                 <ul>
-                    <li>! Heat pumps produce 55-65 dB(A)</li>
-                    <li>! Low frequency compressor hum</li>
-                    <li>! Fan noise at air discharge</li>
-                    <li>! Must maintain airflow for cooling</li>
-                    <li>! Enclosed space amplifies noise</li>
+                    <li>! Top-exhaust fans (not side airflow)</li>
+                    <li>! High airflow: ~11,000 m³/hr</li>
+                    <li>! Large louvre area required</li>
+                    <li>! Must not restrict equipment</li>
+                    <li>✓ Chimney attenuates exhaust noise</li>
                 </ul>
             </div>
         </div>
 
         <!-- Dimensions -->
-        <h2>2. Dimensions & Sizes</h2>
-        <p>Sized to accommodate common pool heat pump dimensions with clearance for airflow:</p>
+        <h2>2. Dimensions</h2>
+        <p>Sized for the ROTEAM Europa 44kW heat pump with adequate clearance for airflow and service access:</p>
 
         <table>
             <thead>
                 <tr>
-                    <th>Model</th>
-                    <th>External (L x W x H)</th>
-                    <th>Internal Clear</th>
-                    <th>Max Equipment Size</th>
-                    <th>Heat Pump Capacity</th>
+                    <th>Component</th>
+                    <th>Dimension (mm)</th>
+                    <th>Notes</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>APE-HC1</strong></td>
-                    <td>1200 x 700 x 900 mm</td>
-                    <td>1060 x 560 x 760 mm</td>
-                    <td>900 x 400 x 600 mm</td>
-                    <td>Up to 12kW</td>
+                    <td><strong>External Length</strong></td>
+                    <td>1400</td>
+                    <td>Allows 150mm clearance each end</td>
                 </tr>
                 <tr>
-                    <td><strong>APE-HC2</strong></td>
-                    <td>1400 x 800 x 1000 mm</td>
-                    <td>1260 x 660 x 860 mm</td>
-                    <td>1100 x 500 x 700 mm</td>
-                    <td>Up to 18kW</td>
+                    <td><strong>External Width</strong></td>
+                    <td>900</td>
+                    <td>Allows 100mm clearance each side</td>
                 </tr>
                 <tr>
-                    <td><strong>APE-HC3</strong></td>
-                    <td>1600 x 900 x 1100 mm</td>
-                    <td>1460 x 760 x 960 mm</td>
-                    <td>1300 x 600 x 800 mm</td>
-                    <td>Up to 25kW</td>
+                    <td><strong>Base Height</strong></td>
+                    <td>900</td>
+                    <td>No top panel - open to chimney</td>
+                </tr>
+                <tr>
+                    <td><strong>Chimney Height</strong></td>
+                    <td>600</td>
+                    <td>Acoustic attenuation length</td>
+                </tr>
+                <tr style="background: #dcfce7;">
+                    <td><strong>Total Height</strong></td>
+                    <td><strong>1500</strong></td>
+                    <td>Base + chimney</td>
+                </tr>
+                <tr>
+                    <td>Internal Length</td>
+                    <td>1300</td>
+                    <td>After 50mm panels each side</td>
+                </tr>
+                <tr>
+                    <td>Internal Width</td>
+                    <td>800</td>
+                    <td>After 50mm panels each side</td>
+                </tr>
+                <tr>
+                    <td>Internal Base Height</td>
+                    <td>900</td>
+                    <td>Clear height to chimney opening</td>
+                </tr>
+                <tr>
+                    <td>Panel Thickness</td>
+                    <td>54</td>
+                    <td>2mm outer + 50mm wool + 1mm inner</td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="note">
-            <strong>Clearance Requirements:</strong> Minimum 150mm clearance on all sides of heat pump for airflow. Check manufacturer's installation requirements.
+        <div class="note info">
+            <strong>Size Comparison:</strong> This is significantly larger than standard acoustic enclosures due to the high-capacity 44kW unit and top-exhaust chimney requirement. The previous 1200×700×900mm design was inadequate.
+        </div>
+
+        <!-- Airflow Diagram -->
+        <h2>3. Airflow Design</h2>
+
+        <div class="acoustic-highlight">
+            <h3>Top-Exhaust Chimney Design</h3>
+            <p>Unlike side-to-side airflow enclosures, this design accommodates heat pumps with vertical exhaust fans. Air enters through louvres on three sides, passes through the heat pump, and exits vertically through the acoustic chimney.</p>
+        </div>
+
+        <div class="drawing-container">
+            <div class="drawing-title">Figure 1: APE-HC1 Airflow Path (Section View)</div>
+            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                <!-- Background -->
+                <rect x="0" y="0" width="500" height="500" fill="#f8f9fa"/>
+
+                <!-- Chimney -->
+                <rect x="125" y="30" width="250" height="120" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+                <text x="250" y="80" text-anchor="middle" font-size="12" fill="#1d4ed8" font-weight="bold">ACOUSTIC CHIMNEY</text>
+                <text x="250" y="100" text-anchor="middle" font-size="10" fill="#1d4ed8">600mm lined plenum</text>
+
+                <!-- Chimney louvres at top -->
+                <rect x="150" y="30" width="200" height="25" fill="#93c5fd" stroke="#2563eb"/>
+                <line x1="160" y1="35" x2="200" y2="50" stroke="#2563eb" stroke-width="2"/>
+                <line x1="210" y1="35" x2="250" y2="50" stroke="#2563eb" stroke-width="2"/>
+                <line x1="260" y1="35" x2="300" y2="50" stroke="#2563eb" stroke-width="2"/>
+                <line x1="310" y1="35" x2="340" y2="50" stroke="#2563eb" stroke-width="2"/>
+
+                <!-- Base enclosure -->
+                <rect x="75" y="150" width="350" height="280" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+
+                <!-- Acoustic panels (sides) -->
+                <rect x="75" y="150" width="50" height="280" fill="#fef3c7" stroke="#d97706"/>
+                <rect x="375" y="150" width="50" height="280" fill="#fef3c7" stroke="#d97706"/>
+
+                <!-- Heat pump -->
+                <rect x="150" y="240" width="200" height="170" fill="#dc2626" stroke="#333" stroke-width="2" rx="5"/>
+                <text x="250" y="310" text-anchor="middle" font-size="14" fill="white" font-weight="bold">ROTEAM</text>
+                <text x="250" y="330" text-anchor="middle" font-size="14" fill="white" font-weight="bold">EUROPA</text>
+                <text x="250" y="355" text-anchor="middle" font-size="10" fill="white">44kW Heat Pump</text>
+
+                <!-- Fans on top of heat pump -->
+                <ellipse cx="200" cy="240" rx="35" ry="12" fill="#333"/>
+                <ellipse cx="300" cy="240" rx="35" ry="12" fill="#333"/>
+                <text x="200" y="225" text-anchor="middle" font-size="9" fill="#666">Fan 1</text>
+                <text x="300" y="225" text-anchor="middle" font-size="9" fill="#666">Fan 2</text>
+
+                <!-- Intake louvres (left) -->
+                <rect x="75" y="260" width="50" height="140" fill="none" stroke="#0891b2" stroke-width="2"/>
+                <line x1="80" y1="275" x2="120" y2="290" stroke="#0891b2" stroke-width="2"/>
+                <line x1="80" y1="310" x2="120" y2="325" stroke="#0891b2" stroke-width="2"/>
+                <line x1="80" y1="345" x2="120" y2="360" stroke="#0891b2" stroke-width="2"/>
+                <line x1="80" y1="380" x2="120" y2="395" stroke="#0891b2" stroke-width="2"/>
+
+                <!-- Intake louvres (right) -->
+                <rect x="375" y="260" width="50" height="140" fill="none" stroke="#0891b2" stroke-width="2"/>
+                <line x1="380" y1="275" x2="420" y2="290" stroke="#0891b2" stroke-width="2"/>
+                <line x1="380" y1="310" x2="420" y2="325" stroke="#0891b2" stroke-width="2"/>
+                <line x1="380" y1="345" x2="420" y2="360" stroke="#0891b2" stroke-width="2"/>
+                <line x1="380" y1="380" x2="420" y2="395" stroke="#0891b2" stroke-width="2"/>
+
+                <!-- Floor -->
+                <rect x="75" y="420" width="350" height="10" fill="#888" stroke="#333"/>
+
+                <!-- Airflow arrows - intake -->
+                <defs>
+                    <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                        <polygon points="0 0, 8 3, 0 6" fill="#0891b2"/>
+                    </marker>
+                    <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                        <polygon points="0 0, 8 3, 0 6" fill="#dc2626"/>
+                    </marker>
+                </defs>
+
+                <!-- Intake arrows (left) -->
+                <path d="M 30,330 L 75,330" stroke="#0891b2" stroke-width="3" marker-end="url(#arrow-blue)"/>
+                <text x="20" y="310" font-size="10" fill="#0891b2">Air In</text>
+
+                <!-- Intake arrows (right) -->
+                <path d="M 470,330 L 425,330" stroke="#0891b2" stroke-width="3" marker-end="url(#arrow-blue)"/>
+                <text x="445" y="310" font-size="10" fill="#0891b2">Air In</text>
+
+                <!-- Exhaust arrows (up through chimney) -->
+                <path d="M 200,225 L 200,160" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrow-red)"/>
+                <path d="M 300,225 L 300,160" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrow-red)"/>
+
+                <!-- Exit arrows at top -->
+                <path d="M 250,30 L 250,10" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow-red)"/>
+                <text x="250" y="8" text-anchor="middle" font-size="10" fill="#dc2626">Hot Air Out</text>
+
+                <!-- Dimensions -->
+                <line x1="75" y1="460" x2="425" y2="460" stroke="#333" stroke-width="1"/>
+                <line x1="75" y1="455" x2="75" y2="465" stroke="#333" stroke-width="1"/>
+                <line x1="425" y1="455" x2="425" y2="465" stroke="#333" stroke-width="1"/>
+                <text x="250" y="478" text-anchor="middle" font-size="11">1400mm</text>
+
+                <line x1="460" y1="30" x2="460" y2="430" stroke="#333" stroke-width="1"/>
+                <line x1="455" y1="30" x2="465" y2="30" stroke="#333" stroke-width="1"/>
+                <line x1="455" y1="430" x2="465" y2="430" stroke="#333" stroke-width="1"/>
+                <text x="480" y="230" text-anchor="middle" font-size="11" transform="rotate(90, 480, 230)">1500mm Total</text>
+
+                <!-- Legend -->
+                <rect x="30" y="460" width="15" height="10" fill="#0891b2" fill-opacity="0.3" stroke="#0891b2"/>
+                <text x="50" y="469" font-size="9">Intake louvre</text>
+                <rect x="130" y="460" width="15" height="10" fill="#fef3c7" stroke="#d97706"/>
+                <text x="150" y="469" font-size="9">Acoustic panel</text>
+                <rect x="230" y="460" width="15" height="10" fill="#dbeafe" stroke="#2563eb"/>
+                <text x="250" y="469" font-size="9">Chimney</text>
+            </svg>
         </div>
 
         <!-- Acoustic Design -->
-        <h2>3. Acoustic Design</h2>
+        <h2>4. Acoustic Design</h2>
 
-        <div class="acoustic-highlight">
-            <h3>The Ventilation Paradox</h3>
-            <p>Heat pumps require continuous airflow but sound travels through air openings. The APE-HC solves this with:</p>
-            <ul style="margin-top: 1rem; padding-left: 1.5rem;">
-                <li><strong>Acoustic Louvres:</strong> Sound-attenuating air passages that block direct sound paths</li>
-                <li><strong>Labyrinth Path:</strong> Sound must travel around multiple bends, losing energy at each turn</li>
-                <li><strong>Absorptive Lining:</strong> Mineral wool panels absorb sound inside the enclosure</li>
-                <li><strong>Mass Barrier:</strong> 2mm aluminium walls block airborne sound transmission</li>
-            </ul>
-        </div>
-
-        <h3>3.1 Acoustic Panel Construction</h3>
+        <h3>4.1 Acoustic Panel Construction</h3>
         <table>
             <tr>
                 <th width="30%">Layer</th>
@@ -351,13 +531,13 @@
             </tr>
             <tr>
                 <td>Acoustic Core</td>
-                <td>50mm mineral wool, 48kg/m³ density</td>
-                <td>Sound absorption (NRC 0.85+)</td>
+                <td>50mm mineral wool, 60 kg/m³ density</td>
+                <td>Sound absorption (NRC 0.90+)</td>
             </tr>
             <tr>
                 <td>Inner Face</td>
                 <td>1mm perforated aluminium (23% open)</td>
-                <td>Protects core, allows sound to enter absorber</td>
+                <td>Protects core, allows sound entry</td>
             </tr>
             <tr>
                 <td>Total Thickness</td>
@@ -366,7 +546,7 @@
             </tr>
         </table>
 
-        <h3>3.2 Acoustic Louvre Specification</h3>
+        <h3>4.2 Z-Blade Acoustic Louvres</h3>
         <table>
             <tr>
                 <th width="30%">Parameter</th>
@@ -377,37 +557,74 @@
                 <td>Acoustic attenuating, Z-blade profile</td>
             </tr>
             <tr>
+                <td>Blade Angle</td>
+                <td>45° from horizontal</td>
+            </tr>
+            <tr>
                 <td>Blade Pitch</td>
-                <td>75mm centre-to-centre</td>
+                <td>50mm centre-to-centre</td>
             </tr>
             <tr>
                 <td>Blade Depth</td>
-                <td>100mm (sound path length)</td>
+                <td>75mm (sound path length)</td>
             </tr>
             <tr>
                 <td>Blade Fill</td>
-                <td>25mm mineral wool, perforated facing</td>
+                <td>25mm mineral wool with perforated facing</td>
             </tr>
             <tr>
                 <td>Free Area</td>
-                <td>~40% (balance of airflow vs attenuation)</td>
+                <td>~50% (optimized for airflow + acoustics)</td>
             </tr>
             <tr>
                 <td>Attenuation</td>
-                <td>12-15 dB per louvre bank</td>
+                <td>10-12 dB per louvre bank</td>
             </tr>
             <tr>
                 <td>Weather Protection</td>
-                <td>Angled blades exclude rain, debris screen</td>
+                <td>Angled blades exclude rain + insect mesh</td>
             </tr>
         </table>
 
-        <h3>3.3 Expected Noise Reduction</h3>
+        <h3>4.3 Acoustic Chimney</h3>
+        <p>The chimney is the critical component for attenuating exhaust noise while allowing vertical airflow:</p>
+        <table>
+            <tr>
+                <th width="30%">Parameter</th>
+                <th>Specification</th>
+            </tr>
+            <tr>
+                <td>Height</td>
+                <td>600mm</td>
+            </tr>
+            <tr>
+                <td>Internal Dimensions</td>
+                <td>1200 × 700mm (after lining)</td>
+            </tr>
+            <tr>
+                <td>Lining</td>
+                <td>50mm mineral wool on all 4 internal faces</td>
+            </tr>
+            <tr>
+                <td>Top Outlet</td>
+                <td>Acoustic louvres with rain hood</td>
+            </tr>
+            <tr>
+                <td>Attenuation (500 Hz)</td>
+                <td>8-12 dB</td>
+            </tr>
+            <tr>
+                <td>Attenuation (1-2 kHz)</td>
+                <td>12-18 dB</td>
+            </tr>
+        </table>
+
+        <h3>4.4 Expected Noise Reduction</h3>
         <table>
             <tr>
                 <th>Frequency Band</th>
                 <th>Typical Heat Pump</th>
-                <th>With APE-HC</th>
+                <th>With APE-HC1</th>
                 <th>Reduction</th>
             </tr>
             <tr>
@@ -419,140 +636,139 @@
             <tr>
                 <td>250 Hz</td>
                 <td>62 dB</td>
-                <td>48 dB</td>
-                <td>14 dB</td>
+                <td>47 dB</td>
+                <td>15 dB</td>
             </tr>
             <tr>
                 <td>500 Hz</td>
                 <td>60 dB</td>
-                <td>44 dB</td>
-                <td>16 dB</td>
+                <td>43 dB</td>
+                <td>17 dB</td>
             </tr>
             <tr>
                 <td>1000 Hz</td>
                 <td>55 dB</td>
-                <td>38 dB</td>
-                <td>17 dB</td>
+                <td>37 dB</td>
+                <td>18 dB</td>
             </tr>
             <tr>
                 <td>2000 Hz</td>
                 <td>50 dB</td>
-                <td>32 dB</td>
-                <td>18 dB</td>
+                <td>30 dB</td>
+                <td>20 dB</td>
             </tr>
             <tr style="background: #dcfce7;">
                 <td><strong>Overall dB(A)</strong></td>
                 <td><strong>62 dB(A)</strong></td>
-                <td><strong>44 dB(A)</strong></td>
-                <td><strong>18 dB(A)</strong></td>
+                <td><strong>44-47 dB(A)</strong></td>
+                <td><strong>15-18 dB(A)</strong></td>
             </tr>
         </table>
 
         <div class="note">
-            <strong>Context:</strong> 10 dB reduction = perceived halving of loudness. 18 dB reduction makes a "loud" heat pump (62 dB) into "quiet background" noise (44 dB).
+            <strong>Context:</strong> 10 dB reduction = perceived halving of loudness. 15-18 dB reduction makes a "loud" heat pump (62 dB) into "quiet background" noise (44-47 dB), suitable for residential environments.
         </div>
 
-        <!-- Ventilation -->
-        <h2>4. Ventilation System</h2>
+        <!-- Louvre Area Calculation -->
+        <h2>5. Ventilation Calculations</h2>
 
-        <h3>4.1 Airflow Requirements</h3>
-        <p>Heat pumps require adequate airflow to operate efficiently. Restricting airflow causes:</p>
-        <ul style="margin: 1rem 0 1rem 1.5rem;">
-            <li>Reduced heating/cooling capacity</li>
-            <li>Increased energy consumption</li>
-            <li>Compressor overheating and shutdown</li>
-            <li>Premature equipment failure</li>
-        </ul>
-
+        <h3>5.1 Airflow Requirements</h3>
         <table>
             <tr>
-                <th>Heat Pump Size</th>
-                <th>Typical Airflow Required</th>
-                <th>APE-HC Provision</th>
+                <th>Parameter</th>
+                <th>Value</th>
+                <th>Notes</th>
             </tr>
             <tr>
-                <td>10-12 kW</td>
-                <td>2000-3000 m³/hr</td>
-                <td>APE-HC1: 3500 m³/hr capacity</td>
+                <td>Heat Pump Capacity</td>
+                <td>44 kW</td>
+                <td>Heating mode</td>
             </tr>
             <tr>
-                <td>15-18 kW</td>
-                <td>3500-4500 m³/hr</td>
-                <td>APE-HC2: 5000 m³/hr capacity</td>
+                <td>Airflow Factor</td>
+                <td>250 m³/h per kW</td>
+                <td>Conservative estimate</td>
             </tr>
             <tr>
-                <td>20-25 kW</td>
-                <td>5000-6000 m³/hr</td>
-                <td>APE-HC3: 7000 m³/hr capacity</td>
+                <td><strong>Required Airflow</strong></td>
+                <td><strong>11,000 m³/h</strong></td>
+                <td>Minimum for full capacity</td>
+            </tr>
+            <tr>
+                <td>Target Face Velocity</td>
+                <td>1.5-2.0 m/s</td>
+                <td>For acoustic performance</td>
+            </tr>
+            <tr>
+                <td>Required Louvre Area</td>
+                <td>1.5-2.0 m²</td>
+                <td>Effective open area</td>
             </tr>
         </table>
 
-        <h3>4.2 Ventilation Layout</h3>
-        <div class="drawing-container">
-            <div class="drawing-title">Figure 1: APE-HC Airflow Path (Plan View)</div>
-            <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-                <!-- Enclosure outline -->
-                <rect x="50" y="50" width="500" height="300" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
+        <h3>5.2 Provided Louvre Area</h3>
+        <table>
+            <tr>
+                <th>Location</th>
+                <th>Gross Area</th>
+                <th>@ 50% Free Area</th>
+            </tr>
+            <tr>
+                <td>Front panel (intake)</td>
+                <td>1400 × 700 = 0.98 m²</td>
+                <td>0.49 m²</td>
+            </tr>
+            <tr>
+                <td>Left panel (intake)</td>
+                <td>900 × 700 = 0.63 m²</td>
+                <td>0.32 m²</td>
+            </tr>
+            <tr>
+                <td>Right panel (intake)</td>
+                <td>900 × 700 = 0.63 m²</td>
+                <td>0.32 m²</td>
+            </tr>
+            <tr style="background: #dcfce7;">
+                <td><strong>Total Intake</strong></td>
+                <td><strong>2.24 m²</strong></td>
+                <td><strong>1.12 m²</strong></td>
+            </tr>
+            <tr>
+                <td>Chimney top (exhaust)</td>
+                <td>1200 × 700 = 0.84 m²</td>
+                <td>0.42 m²</td>
+            </tr>
+        </table>
 
-                <!-- Acoustic panels (hatched) -->
-                <pattern id="hatch" patternUnits="userSpaceOnUse" width="8" height="8">
-                    <path d="M0,8 L8,0" stroke="#999" stroke-width="1"/>
-                </pattern>
-                <rect x="50" y="50" width="30" height="300" fill="url(#hatch)" stroke="#666"/>
-                <rect x="520" y="50" width="30" height="300" fill="url(#hatch)" stroke="#666"/>
-                <rect x="50" y="50" width="500" height="30" fill="url(#hatch)" stroke="#666"/>
-                <rect x="50" y="320" width="500" height="30" fill="url(#hatch)" stroke="#666"/>
+        <div class="note">
+            <strong>Airflow Adequacy:</strong> Effective intake area (1.12 m²) at 2.0 m/s velocity provides ~8,000 m³/h. For full 11,000 m³/h, face velocity increases to ~2.7 m/s, which remains acceptable with slight acoustic penalty.
+        </div>
 
-                <!-- Heat pump unit -->
-                <rect x="180" y="120" width="240" height="160" fill="#dc2626" stroke="#333" stroke-width="2" rx="5"/>
-                <text x="300" y="190" text-anchor="middle" font-size="14" fill="white" font-weight="bold">HEAT PUMP</text>
-                <text x="300" y="210" text-anchor="middle" font-size="11" fill="white">Fan discharge →</text>
+        <h3>5.3 Temperature Rise</h3>
+        <p>With proper airflow maintained:</p>
+        <table>
+            <tr>
+                <td>Heat input to enclosure</td>
+                <td>~5 kW (compressor + fans + solar)</td>
+            </tr>
+            <tr>
+                <td>Air mass flow rate</td>
+                <td>3.7 kg/s @ 11,000 m³/h</td>
+            </tr>
+            <tr style="background: #dcfce7;">
+                <td><strong>Temperature rise</strong></td>
+                <td><strong>~1.4°C</strong></td>
+            </tr>
+        </table>
 
-                <!-- Air intake (left louvres) -->
-                <rect x="50" y="130" width="60" height="140" fill="#0891b2" fill-opacity="0.3" stroke="#0891b2" stroke-width="2"/>
-                <text x="80" y="205" text-anchor="middle" font-size="10" fill="#0891b2" font-weight="bold" transform="rotate(-90, 80, 205)">INTAKE LOUVRE</text>
-
-                <!-- Air exhaust (right louvres) -->
-                <rect x="490" y="130" width="60" height="140" fill="#dc2626" fill-opacity="0.3" stroke="#dc2626" stroke-width="2"/>
-                <text x="520" y="205" text-anchor="middle" font-size="10" fill="#dc2626" font-weight="bold" transform="rotate(-90, 520, 205)">EXHAUST LOUVRE</text>
-
-                <!-- Airflow arrows -->
-                <defs>
-                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                        <polygon points="0 0, 10 3.5, 0 7" fill="#0891b2"/>
-                    </marker>
-                    <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                        <polygon points="0 0, 10 3.5, 0 7" fill="#dc2626"/>
-                    </marker>
-                </defs>
-
-                <!-- Intake arrows -->
-                <path d="M 20,180 L 50,180" stroke="#0891b2" stroke-width="3" marker-end="url(#arrowhead)"/>
-                <path d="M 20,220" L 50,220" stroke="#0891b2" stroke-width="3" marker-end="url(#arrowhead)"/>
-                <path d="M 110,200 L 160,200" stroke="#0891b2" stroke-width="2" marker-end="url(#arrowhead)" stroke-dasharray="5,3"/>
-
-                <!-- Exhaust arrows -->
-                <path d="M 420,200 L 490,200" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowhead-red)" stroke-dasharray="5,3"/>
-                <path d="M 550,180 L 580,180" stroke="#dc2626" stroke-width="3" marker-end="url(#arrowhead-red)"/>
-                <path d="M 550,220 L 580,220" stroke="#dc2626" stroke-width="3" marker-end="url(#arrowhead-red)"/>
-
-                <!-- Labels -->
-                <text x="20" y="160" font-size="11" fill="#0891b2">Cool air in</text>
-                <text x="540" y="160" font-size="11" fill="#dc2626">Warm air out</text>
-
-                <!-- Legend -->
-                <rect x="200" y="310" width="20" height="15" fill="url(#hatch)" stroke="#666"/>
-                <text x="225" y="322" font-size="10">Acoustic panel (50mm)</text>
-
-                <rect x="350" y="310" width="20" height="15" fill="#0891b2" fill-opacity="0.3" stroke="#0891b2"/>
-                <text x="375" y="322" font-size="10">Acoustic louvre</text>
-            </svg>
+        <div class="note" style="background: #dcfce7; border-color: #22c55e;">
+            <strong>Thermal Performance:</strong> The enclosure will NOT overheat the heat pump. With maintained airflow, temperature rise is only 1-2°C above ambient.
         </div>
 
         <!-- Construction -->
-        <h2>5. Construction Specification</h2>
+        <h2>6. Construction Specification</h2>
 
-        <h3>5.1 Frame & Structure</h3>
+        <h3>6.1 Frame & Structure</h3>
         <table>
             <tr>
                 <th width="30%">Component</th>
@@ -560,7 +776,7 @@
             </tr>
             <tr>
                 <td>Frame Material</td>
-                <td>6063-T5 aluminium extrusion, 50x50mm box section, 2mm wall</td>
+                <td>6063-T5 aluminium extrusion, 50×50mm box section, 2mm wall</td>
             </tr>
             <tr>
                 <td>Panel Outer Skin</td>
@@ -572,7 +788,7 @@
             </tr>
             <tr>
                 <td>Acoustic Fill</td>
-                <td>50mm mineral wool, 48 kg/m³, hydrophobic treatment</td>
+                <td>50mm mineral wool, 60 kg/m³, hydrophobic treatment</td>
             </tr>
             <tr>
                 <td>Floor</td>
@@ -582,9 +798,41 @@
                 <td>Finish</td>
                 <td>Polyester powder coat, 60-80 microns, UV stable</td>
             </tr>
+            <tr>
+                <td>Colour</td>
+                <td>RAL 7016 Anthracite Grey (or custom)</td>
+            </tr>
         </table>
 
-        <h3>5.2 Access & Panels</h3>
+        <h3>6.2 Chimney Construction</h3>
+        <table>
+            <tr>
+                <th width="30%">Component</th>
+                <th>Specification</th>
+            </tr>
+            <tr>
+                <td>Structure</td>
+                <td>Aluminium box section, bolted to base enclosure</td>
+            </tr>
+            <tr>
+                <td>External skin</td>
+                <td>2mm powder-coated aluminium</td>
+            </tr>
+            <tr>
+                <td>Internal lining</td>
+                <td>50mm mineral wool + 1mm perforated facing (all 4 sides)</td>
+            </tr>
+            <tr>
+                <td>Top</td>
+                <td>Rain hood with acoustic louvres underneath</td>
+            </tr>
+            <tr>
+                <td>Mounting</td>
+                <td>Flanged base with weatherproof gasket</td>
+            </tr>
+        </table>
+
+        <h3>6.3 Access & Panels</h3>
         <table>
             <tr>
                 <th width="30%">Component</th>
@@ -596,129 +844,21 @@
             </tr>
             <tr>
                 <td>Door Locks</td>
-                <td>2x compression latches + padlock hasp</td>
+                <td>2× compression latches + padlock hasp</td>
             </tr>
             <tr>
                 <td>Side Panels</td>
-                <td>Removable for equipment service, quarter-turn fasteners</td>
+                <td>Fixed with quarter-turn fasteners for service access</td>
             </tr>
             <tr>
-                <td>Roof</td>
-                <td>Fixed, 2° slope for drainage</td>
+                <td>Rear Panel</td>
+                <td>Fixed, pipe penetrations with sealed grommets</td>
             </tr>
             <tr>
                 <td>Seals</td>
-                <td>EPDM acoustic gasket on all panel joints</td>
+                <td>EPDM acoustic gasket on all panel joints and door</td>
             </tr>
         </table>
-
-        <h3>5.3 Weatherproofing</h3>
-        <table>
-            <tr>
-                <th width="30%">Requirement</th>
-                <th>Specification</th>
-            </tr>
-            <tr>
-                <td>IP Rating</td>
-                <td>IP65 (enclosure), IP44 (louvre openings)</td>
-            </tr>
-            <tr>
-                <td>Louvre Rain Protection</td>
-                <td>Angled blades, 45° pitch, drip edges</td>
-            </tr>
-            <tr>
-                <td>Drainage</td>
-                <td>Floor drain with P-trap (maintains acoustic seal)</td>
-            </tr>
-            <tr>
-                <td>Cable Entry</td>
-                <td>IP68 glands through floor panel</td>
-            </tr>
-            <tr>
-                <td>Pipe Entry</td>
-                <td>Sealed grommets through rear panel</td>
-            </tr>
-        </table>
-
-        <!-- Cross Section Drawing -->
-        <h2>6. Technical Drawings</h2>
-
-        <div class="drawing-container">
-            <div class="drawing-title">Figure 2: APE-HC1 - Side Section View</div>
-            <svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
-                <!-- Ground -->
-                <rect x="0" y="380" width="600" height="70" fill="#e0d5c5"/>
-                <line x1="0" y1="380" x2="600" y2="380" stroke="#5D4E37" stroke-width="2"/>
-
-                <!-- Enclosure outline -->
-                <rect x="100" y="80" width="400" height="300" fill="#f5f5f5" stroke="#333" stroke-width="2"/>
-
-                <!-- Roof slope -->
-                <polygon points="95,80 505,80 510,70 90,70" fill="#d0d0d0" stroke="#333" stroke-width="2"/>
-
-                <!-- Acoustic panels (walls) -->
-                <rect x="100" y="80" width="50" height="300" fill="#fef3c7" stroke="#666"/>
-                <rect x="450" y="80" width="50" height="300" fill="#fef3c7" stroke="#666"/>
-
-                <!-- Acoustic panel hatching -->
-                <pattern id="wool" patternUnits="userSpaceOnUse" width="10" height="10">
-                    <circle cx="5" cy="5" r="2" fill="#d97706" fill-opacity="0.5"/>
-                </pattern>
-                <rect x="105" y="85" width="40" height="290" fill="url(#wool)"/>
-                <rect x="455" y="85" width="40" height="290" fill="url(#wool)"/>
-
-                <!-- Floor with isolators -->
-                <rect x="100" y="370" width="400" height="10" fill="#888" stroke="#333"/>
-                <rect x="130" y="375" width="20" height="15" fill="#333" rx="3"/>
-                <rect x="450" y="375" width="20" height="15" fill="#333" rx="3"/>
-
-                <!-- Heat pump -->
-                <rect x="200" y="180" width="200" height="180" fill="#dc2626" stroke="#333" stroke-width="2" rx="5"/>
-                <text x="300" y="260" text-anchor="middle" font-size="14" fill="white" font-weight="bold">HEAT</text>
-                <text x="300" y="280" text-anchor="middle" font-size="14" fill="white" font-weight="bold">PUMP</text>
-
-                <!-- Fan on top of heat pump -->
-                <ellipse cx="300" cy="180" rx="60" ry="15" fill="#333"/>
-                <text x="300" y="165" text-anchor="middle" font-size="10" fill="#666">Fan discharge</text>
-
-                <!-- Louvre intake (left) -->
-                <rect x="100" y="200" width="50" height="120" fill="none" stroke="#0891b2" stroke-width="2"/>
-                <line x1="105" y1="210" x2="145" y2="220" stroke="#0891b2" stroke-width="2"/>
-                <line x1="105" y1="240" x2="145" y2="250" stroke="#0891b2" stroke-width="2"/>
-                <line x1="105" y1="270" x2="145" y2="280" stroke="#0891b2" stroke-width="2"/>
-                <line x1="105" y1="300" x2="145" y2="310" stroke="#0891b2" stroke-width="2"/>
-
-                <!-- Louvre exhaust (right, top) -->
-                <rect x="450" y="100" width="50" height="100" fill="none" stroke="#dc2626" stroke-width="2"/>
-                <line x1="455" y1="110" x2="495" y2="120" stroke="#dc2626" stroke-width="2"/>
-                <line x1="455" y1="135" x2="495" y2="145" stroke="#dc2626" stroke-width="2"/>
-                <line x1="455" y1="160" x2="495" y2="170" stroke="#dc2626" stroke-width="2"/>
-                <line x1="455" y1="185" x2="495" y2="195" stroke="#dc2626" stroke-width="2"/>
-
-                <!-- Airflow arrows -->
-                <path d="M 60,260 C 80,260 90,260 100,260" stroke="#0891b2" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
-                <path d="M 160,260 L 190,260" stroke="#0891b2" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrowhead)"/>
-
-                <path d="M 300,160 L 300,120 L 440,120" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,2"/>
-                <path d="M 500,150 L 540,150" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowhead-red)"/>
-
-                <!-- Dimensions -->
-                <line x1="100" y1="420" x2="500" y2="420" stroke="#333" stroke-width="1"/>
-                <line x1="100" y1="415" x2="100" y2="425" stroke="#333" stroke-width="1"/>
-                <line x1="500" y1="415" x2="500" y2="425" stroke="#333" stroke-width="1"/>
-                <text x="300" y="440" text-anchor="middle" font-size="12">1200mm</text>
-
-                <line x1="550" y1="70" x2="550" y2="380" stroke="#333" stroke-width="1"/>
-                <line x1="545" y1="70" x2="555" y2="70" stroke="#333" stroke-width="1"/>
-                <line x1="545" y1="380" x2="555" y2="380" stroke="#333" stroke-width="1"/>
-                <text x="570" y="230" text-anchor="middle" font-size="12" transform="rotate(90, 570, 230)">900mm</text>
-
-                <!-- Labels -->
-                <text x="125" y="340" text-anchor="middle" font-size="9" fill="#92400e" transform="rotate(-90, 125, 340)">50mm Acoustic</text>
-                <text x="475" y="340" text-anchor="middle" font-size="9" fill="#92400e" transform="rotate(-90, 475, 340)">50mm Acoustic</text>
-                <text x="160" y="395" text-anchor="middle" font-size="9">Rubber isolator</text>
-            </svg>
-        </div>
 
         <!-- Installation -->
         <h2>7. Installation Requirements</h2>
@@ -731,7 +871,7 @@
             </tr>
             <tr>
                 <td>Foundation</td>
-                <td>Level concrete pad, 100mm thick minimum</td>
+                <td>Level concrete pad, 150mm thick, 1600 × 1100mm minimum</td>
             </tr>
             <tr>
                 <td>Clearance - Front</td>
@@ -739,11 +879,15 @@
             </tr>
             <tr>
                 <td>Clearance - Sides</td>
-                <td>300mm minimum (500mm preferred for airflow)</td>
+                <td>500mm minimum for airflow intake</td>
             </tr>
             <tr>
                 <td>Clearance - Rear</td>
-                <td>300mm for pipe connections</td>
+                <td>400mm for pipe connections</td>
+            </tr>
+            <tr>
+                <td>Clearance - Above</td>
+                <td>Unobstructed (vertical exhaust)</td>
             </tr>
             <tr>
                 <td>Drainage</td>
@@ -751,18 +895,19 @@
             </tr>
         </table>
 
+        <div class="note critical">
+            <strong>Critical:</strong> Do not position enclosure under overhangs, trees, or structures that would obstruct the vertical exhaust from the chimney. The top must have clear access to open air.
+        </div>
+
         <h3>7.2 Equipment Placement</h3>
         <ul style="margin: 1rem 0 1rem 1.5rem;">
-            <li>Position heat pump with fan discharge facing exhaust louvre side</li>
-            <li>Maintain minimum 150mm clearance around equipment</li>
+            <li>Position heat pump centrally within enclosure</li>
+            <li>Ensure fan outlets align with chimney opening</li>
+            <li>Maintain minimum 100mm clearance around equipment</li>
             <li>Connect water pipes through rear panel grommets</li>
             <li>Route electrical through floor cable glands</li>
             <li>Ensure condensate drain is connected before closing</li>
         </ul>
-
-        <div class="note critical">
-            <strong>Critical:</strong> Do not obstruct intake or exhaust louvres. Blocked airflow will cause heat pump malfunction and void equipment warranty.
-        </div>
 
         <!-- Maintenance -->
         <h2>8. Maintenance</h2>
@@ -777,7 +922,7 @@
             <tbody>
                 <tr>
                     <td>Monthly</td>
-                    <td>Visual check of louvres for debris/blockage</td>
+                    <td>Visual check of louvres and chimney top for debris</td>
                 </tr>
                 <tr>
                     <td>Quarterly</td>
@@ -789,7 +934,7 @@
                 </tr>
                 <tr>
                     <td>Annually</td>
-                    <td>Inspect acoustic panels for water damage</td>
+                    <td>Inspect acoustic panels and chimney lining</td>
                 </tr>
                 <tr>
                     <td>Annually</td>
@@ -800,6 +945,26 @@
                     <td>Touch up powder coat scratches</td>
                 </tr>
             </tbody>
+        </table>
+
+        <!-- Revision History -->
+        <h2>9. Revision History</h2>
+        <table>
+            <tr>
+                <th>Rev</th>
+                <th>Date</th>
+                <th>Changes</th>
+            </tr>
+            <tr>
+                <td>1.0</td>
+                <td>Dec 2025</td>
+                <td>Initial specification (side-to-side airflow design)</td>
+            </tr>
+            <tr>
+                <td>2.0</td>
+                <td>Dec 2025</td>
+                <td>Complete redesign for top-exhaust with acoustic chimney. Based on ROTEAM Europa 44kW unit specifications.</td>
+            </tr>
         </table>
 
     </div>

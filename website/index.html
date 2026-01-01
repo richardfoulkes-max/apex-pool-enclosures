@@ -3,478 +3,307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Pool Enclosures - Acoustic & Weatherproof Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Apex Pool Enclosures | Acoustic Pool Equipment Enclosures UAE</title>
+    <meta name="description" content="Premium acoustic enclosures for pool pumps, filters, and chillers. 70-80% noise reduction. Modular design. Made for UAE/Gulf climate.">
     <style>
         :root {
             --primary: #0891b2;
             --primary-dark: #0e7490;
-            --secondary: #059669;
-            --text: #1a1a1a;
-            --text-muted: #6b7280;
-            --bg: #ffffff;
-            --bg-alt: #f0fdfa;
-            --border: #e5e7eb;
-            --gold: #d4a017;
+            --primary-light: #06b6d4;
+            --accent: #f59e0b;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --bg: #f0f9ff;
+            --card: #ffffff;
+            --border: #e0f2fe;
+            --success: #10b981;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-        /* Document Navigation */
-        .doc-nav {
-            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
-            padding: 1rem 2rem;
-        }
-        .doc-nav h3 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 0.75rem;
-        }
-        .doc-nav-grid {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-        .doc-card {
-            background: white;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            text-decoration: none;
-            color: var(--text);
-            border: 1px solid var(--border);
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-        .doc-card:hover {
-            border-color: var(--primary);
-            background: #f0fdfa;
-        }
-        .doc-card.active {
-            background: white;
-            color: var(--primary);
-        }
+        /* Navigation */
+        .nav { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); padding: 1rem 2rem; }
+        .nav-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .nav-brand { color: white; font-size: 1.25rem; font-weight: 700; text-decoration: none; }
+        .nav-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .nav-links a { background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; color: white; border: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; font-weight: 500; transition: all 0.2s; }
+        .nav-links a:hover { background: rgba(255,255,255,0.2); }
+        .nav-links a.active { background: white; color: var(--primary); }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        .hero h1 span { color: var(--primary); }
-        .hero .subtitle {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-        .hero-badges {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .hero-badge {
-            background: rgba(255,255,255,0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
+        /* Hero */
+        .hero { background: linear-gradient(135deg, var(--primary-dark) 0%, #065f46 100%); color: white; padding: 4rem 2rem; text-align: center; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto 2rem; }
+        .hero-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-top: 2rem; }
+        .hero-stat { text-align: center; }
+        .hero-stat .number { font-size: 2.5rem; font-weight: 700; }
+        .hero-stat .label { font-size: 0.9rem; opacity: 0.8; }
 
-        /* Products Section */
-        .products {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        .section-title h2 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        .section-title p {
-            color: var(--text-muted);
-        }
+        /* Container */
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        .product-card {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            border: 1px solid var(--border);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-        }
-        .product-header {
-            padding: 2rem;
-            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
-            color: white;
-        }
-        .product-header.heater {
-            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-        }
-        .product-header h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-        .product-header .model {
-            opacity: 0.9;
-            font-size: 0.9rem;
-        }
-        .product-body {
-            padding: 2rem;
-        }
-        .product-body p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-        .feature-list {
-            list-style: none;
-        }
-        .feature-list li {
-            padding: 0.5rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.95rem;
-        }
-        .feature-list .icon {
-            width: 24px;
-            height: 24px;
-            background: var(--bg-alt);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-        }
-        .product-footer {
-            padding: 1.5rem 2rem;
-            background: var(--bg-alt);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        .price span {
-            font-size: 0.9rem;
-            font-weight: 400;
-            color: var(--text-muted);
-        }
+        /* Section */
+        .section { margin-bottom: 3rem; }
+        .section h2 { color: var(--primary-dark); font-size: 1.75rem; margin-bottom: 1.5rem; text-align: center; }
 
-        /* Specs Summary */
-        .specs-summary {
-            background: var(--bg-alt);
-            padding: 4rem 2rem;
-        }
-        .specs-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        .spec-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        .spec-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        .spec-card h4 {
-            margin-bottom: 0.5rem;
-        }
-        .spec-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
+        /* Product Grid */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .product-card { background: white; border-radius: 12px; padding: 2rem; border: 1px solid var(--border); text-align: center; transition: transform 0.2s, box-shadow 0.2s; }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.1); }
+        .product-card .icon { font-size: 3rem; margin-bottom: 1rem; }
+        .product-card h3 { color: var(--primary-dark); margin-bottom: 0.5rem; }
+        .product-card .dimensions { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .product-card .price { font-size: 1.5rem; font-weight: 700; color: var(--primary); margin: 1rem 0; }
+        .product-card .price span { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); }
+        .product-card ul { text-align: left; font-size: 0.9rem; color: var(--text-muted); margin: 1rem 0; padding-left: 1.25rem; }
+        .product-card li { margin-bottom: 0.35rem; }
 
-        /* Comparison Table */
-        .comparison {
-            padding: 4rem 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .comparison table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .comparison th, .comparison td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-        .comparison th {
-            background: var(--bg-alt);
-            font-weight: 600;
-        }
-        .comparison th:first-child {
-            border-radius: 8px 0 0 0;
-        }
-        .comparison th:last-child {
-            border-radius: 0 8px 0 0;
-        }
-        .check { color: var(--secondary); font-weight: bold; }
-        .cross { color: #dc2626; }
+        /* Features */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .feature-card { background: white; border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border); }
+        .feature-card h4 { color: var(--primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .feature-card p { color: var(--text-muted); font-size: 0.9rem; }
 
-        /* Contact */
-        .contact {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-        .contact h2 {
-            margin-bottom: 1rem;
-        }
-        .contact p {
-            opacity: 0.9;
-            margin-bottom: 2rem;
-        }
-        .contact-info {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .contact-item {
-            background: rgba(255,255,255,0.1);
-            padding: 1rem 2rem;
-            border-radius: 8px;
-        }
+        /* CTA */
+        .cta { background: linear-gradient(135deg, var(--accent) 0%, #d97706 100%); color: white; padding: 3rem 2rem; text-align: center; border-radius: 12px; margin: 2rem 0; }
+        .cta h2 { margin-bottom: 1rem; }
+        .cta p { opacity: 0.9; margin-bottom: 1.5rem; }
+        .cta-btn { display: inline-block; background: white; color: var(--accent); padding: 0.75rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.2s; }
+        .cta-btn:hover { transform: scale(1.05); }
+
+        /* Docs Grid */
+        .docs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .doc-card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; text-decoration: none; color: var(--text); transition: all 0.2s; }
+        .doc-card:hover { border-color: var(--primary); background: var(--bg); }
+        .doc-card h4 { color: var(--primary); margin-bottom: 0.5rem; }
+        .doc-card p { font-size: 0.85rem; color: var(--text-muted); }
 
         /* Footer */
-        footer {
-            padding: 2rem;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
+        .footer { background: var(--primary-dark); color: white; padding: 2rem; text-align: center; margin-top: 3rem; }
+        .footer p { opacity: 0.8; font-size: 0.9rem; }
+        .footer a { color: white; }
+
+        /* Badge */
+        .badge { display: inline-block; background: var(--success); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-bottom: 1rem; }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .product-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 1.75rem; }
+            .hero-stats { gap: 1.5rem; }
+            .hero-stat .number { font-size: 1.75rem; }
         }
     </style>
 </head>
 <body>
-    <nav class="doc-nav">
-        <h3>Apex Pool Enclosures - Project Documents</h3>
-        <div class="doc-nav-grid">
-            <a href="index.html" class="doc-card active">Website</a>
-            <a href="specification-pump.html" class="doc-card">Pump Enclosure Spec</a>
-            <a href="specification-heater.html" class="doc-card">Heater/Chiller Spec</a>
-            <a href="bom-detailed.html" class="doc-card">Bill of Materials</a>
-            <a href="acoustic-design.html" class="doc-card">Acoustic Design</a>
-            <a href="market-research.html" class="doc-card">Market Research</a>
-            <a href="designs.html" class="doc-card">Engineering Designs</a>
-            <a href="manufacturer-rfq.html" class="doc-card">RFQ Document</a>
-            <a href="project-tracker.html" class="doc-card">Project Tracker</a>
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="index.html" class="nav-brand">Apex Pool Enclosures</a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="specification.html">Specification</a>
+                <a href="designs.html">Designs</a>
+                <a href="bom.html">BOM</a>
+                <a href="market-research.html">Research</a>
+            </div>
         </div>
     </nav>
 
     <section class="hero">
-        <h1>Apex <span>Pool Enclosures</span></h1>
-        <p class="subtitle">Premium weatherproof and acoustic enclosures for pool equipment. Designed for the Gulf region climate.</p>
-        <div class="hero-badges">
-            <div class="hero-badge">IP65 Weatherproof</div>
-            <div class="hero-badge">Up to 18dB Noise Reduction</div>
-            <div class="hero-badge">UAE Manufactured</div>
-            <div class="hero-badge">Villa-Ready Design</div>
+        <h1>Acoustic Pool Equipment Enclosures</h1>
+        <p>Reduce pool pump noise by 70-80% with our modular acoustic enclosure system. Engineered for UAE/Gulf climate. Premium materials. Tool-free assembly.</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="number">70-80%</div>
+                <div class="label">Noise Reduction</div>
+            </div>
+            <div class="hero-stat">
+                <div class="number">$148</div>
+                <div class="label">BASE Unit BOM</div>
+            </div>
+            <div class="hero-stat">
+                <div class="number">316 SS</div>
+                <div class="label">Marine Hardware</div>
+            </div>
+            <div class="hero-stat">
+                <div class="number">0</div>
+                <div class="label">UAE Competitors</div>
+            </div>
         </div>
     </section>
 
-    <section class="products" id="products">
-        <div class="section-title">
-            <h2>Product Range</h2>
-            <p>Two enclosure solutions for complete pool equipment management</p>
-        </div>
-
-        <div class="product-grid">
-            <!-- Pump Enclosure -->
-            <div class="product-card">
-                <div class="product-header">
-                    <h3>Pump Enclosure</h3>
-                    <div class="model">APE-P Series | Semi-Sunken Design</div>
-                </div>
-                <div class="product-body">
-                    <p>Weatherproof housing for pool pumps and filtration systems. Semi-sunken design integrates with landscaping while providing easy access for maintenance.</p>
-                    <ul class="feature-list">
-                        <li><span class="icon">+</span> Semi-sunken installation (300mm above grade)</li>
-                        <li><span class="icon">+</span> IP65 weatherproof rating</li>
-                        <li><span class="icon">+</span> Hinged lid with gas struts</li>
-                        <li><span class="icon">+</span> Integrated drainage system</li>
-                        <li><span class="icon">+</span> Powder-coated aluminium</li>
-                        <li><span class="icon">+</span> Lockable access</li>
+    <div class="container">
+        <!-- Products -->
+        <section class="section">
+            <h2>Modular Product Range</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <span class="badge">Most Popular</span>
+                    <div class="icon">🔄</div>
+                    <h3>APE-BASE</h3>
+                    <div class="dimensions">600 × 600 × 800mm</div>
+                    <div class="price">AED 1,500-2,000 <span>retail</span></div>
+                    <ul>
+                        <li>Single pool pump capacity</li>
+                        <li>25mm acoustic foam (sides/top)</li>
+                        <li>50mm acoustic foam (rear)</li>
+                        <li>Passive ventilation (no fans)</li>
+                        <li>Tool-free modular connections</li>
                     </ul>
                 </div>
-                <div class="product-footer">
-                    <div class="price">AED 3,500 <span>/ estimated</span></div>
-                </div>
-            </div>
 
-            <!-- Heater/Chiller Enclosure -->
-            <div class="product-card">
-                <div class="product-header heater">
-                    <h3>Heater/Chiller Enclosure</h3>
-                    <div class="model">APE-HC Series | Acoustic + Ventilated</div>
-                </div>
-                <div class="product-body">
-                    <p>Acoustic enclosure for pool heat pumps and chillers. Reduces noise by up to 18dB while maintaining proper airflow for equipment operation.</p>
-                    <ul class="feature-list">
-                        <li><span class="icon">+</span> 18dB acoustic noise reduction</li>
-                        <li><span class="icon">+</span> Acoustic louvre ventilation system</li>
-                        <li><span class="icon">+</span> 50mm mineral wool panels</li>
-                        <li><span class="icon">+</span> IP65 weatherproof rating</li>
-                        <li><span class="icon">+</span> Front access door with locks</li>
-                        <li><span class="icon">+</span> Removable side panels</li>
+                <div class="product-card">
+                    <div class="icon">🧪</div>
+                    <h3>APE-EXT-A</h3>
+                    <div class="dimensions">300 × 600 × 800mm</div>
+                    <div class="price">+AED 800-1,000 <span>add-on</span></div>
+                    <ul>
+                        <li>Filter module extension</li>
+                        <li>Sand or cartridge filter</li>
+                        <li>Connects to BASE unit</li>
+                        <li>Same acoustic treatment</li>
+                        <li>Single latch access door</li>
                     </ul>
                 </div>
-                <div class="product-footer">
-                    <div class="price">AED 6,500 <span>/ estimated</span></div>
+
+                <div class="product-card">
+                    <div class="icon">⚙️</div>
+                    <h3>APE-EXT-B</h3>
+                    <div class="dimensions">400 × 600 × 800mm</div>
+                    <div class="price">+AED 1,000-1,200 <span>add-on</span></div>
+                    <ul>
+                        <li>Automation module</li>
+                        <li>Chlorinator + controller</li>
+                        <li>Connects to BASE or EXT-A</li>
+                        <li>Full acoustic treatment</li>
+                        <li>Two latch access door</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <div class="icon">❄️</div>
+                    <h3>APE-CHILL</h3>
+                    <div class="dimensions">1200 × 600 × 1000mm</div>
+                    <div class="price">AED 4,000-5,500 <span>standalone</span></div>
+                    <ul>
+                        <li>Pool chiller enclosure</li>
+                        <li>Louvered design (50% open)</li>
+                        <li>50-60% noise reduction*</li>
+                        <li>Compressor airflow maintained</li>
+                        <li>Removable front panel</li>
+                    </ul>
                 </div>
             </div>
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">*Chiller cannot be fully enclosed due to compressor airflow requirements</p>
+        </section>
+
+        <!-- Features -->
+        <section class="section">
+            <h2>Why Apex Pool Enclosures?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h4>🔇 Acoustic Engineering</h4>
+                    <p>25-50mm closed-cell polyethylene foam with NRC 0.65-0.75. Class O fire rated. Reduces pump noise from 65dB to 15-20dB at 3m distance.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🧩 Modular Design</h4>
+                    <p>Tongue-and-groove connection system. Tool-free single-person assembly. Configure for any equipment combination.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🌊 Salt Pool Compatible</h4>
+                    <p>All fasteners are 316 stainless steel - the only grade that survives salt chlorinator environments long-term.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>☀️ Gulf Climate Ready</h4>
+                    <p>5052-H32 marine-grade aluminum. 1500-hour salt spray tested powder coat. EPDM gaskets rated for 45°C+ ambient.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>💨 Passive Ventilation</h4>
+                    <p>No fans or electricity required. Natural convection through acoustic baffles keeps equipment cool while blocking sound.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔧 Easy Service Access</h4>
+                    <p>Full-width hinged front panel with gas struts. Quick-release latches. No tools needed for routine maintenance.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Documentation -->
+        <section class="section">
+            <h2>Engineering Documentation</h2>
+            <div class="docs-grid">
+                <a href="specification.html" class="doc-card">
+                    <h4>Full Specification</h4>
+                    <p>Complete engineering spec with 12 sections covering all modules and materials.</p>
+                </a>
+                <a href="designs.html" class="doc-card">
+                    <h4>Technical Drawings</h4>
+                    <p>5 SVG drawings: cross-sections, modular connections, chiller variant, access panels.</p>
+                </a>
+                <a href="bom.html" class="doc-card">
+                    <h4>Bill of Materials</h4>
+                    <p>Component costing for all modules. BOM from $78 (extension) to $252 (chiller).</p>
+                </a>
+                <a href="market-research.html" class="doc-card">
+                    <h4>Market Research</h4>
+                    <p>Competitor analysis, sizing challenges, UAE market opportunity.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="cta">
+            <h2>Ready to Manufacture?</h2>
+            <p>Complete engineering package ready for OEM quotation. Same supplier network as our TV enclosure line.</p>
+            <a href="specification.html" class="cta-btn">View Full Specification →</a>
         </div>
-    </section>
 
-    <section class="specs-summary">
-        <div class="specs-grid">
-            <div class="spec-card">
-                <div class="icon">🔇</div>
-                <h4>Acoustic Performance</h4>
-                <p>Up to 18dB reduction using 50mm mineral wool panels and acoustic louvres</p>
+        <!-- Pricing Summary -->
+        <section class="section">
+            <h2>Pricing Overview</h2>
+            <div style="background: white; border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border); overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--border);">
+                            <th style="text-align: left; padding: 0.75rem; color: var(--primary-dark);">Configuration</th>
+                            <th style="text-align: right; padding: 0.75rem; color: var(--primary-dark);">BOM Cost</th>
+                            <th style="text-align: right; padding: 0.75rem; color: var(--primary-dark);">FOB Target</th>
+                            <th style="text-align: right; padding: 0.75rem; color: var(--primary-dark);">Retail (AED)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 0.75rem;"><strong>APE-BASE</strong> (pump only)</td>
+                            <td style="padding: 0.75rem; text-align: right;">$148</td>
+                            <td style="padding: 0.75rem; text-align: right;">$180-220</td>
+                            <td style="padding: 0.75rem; text-align: right;">1,500-2,000</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 0.75rem;"><strong>BASE + EXT-A</strong> (pump + filter)</td>
+                            <td style="padding: 0.75rem; text-align: right;">$226</td>
+                            <td style="padding: 0.75rem; text-align: right;">$280-340</td>
+                            <td style="padding: 0.75rem; text-align: right;">3,000-4,000</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 0.75rem;"><strong>Full System</strong> (BASE + A + B)</td>
+                            <td style="padding: 0.75rem; text-align: right;">$318</td>
+                            <td style="padding: 0.75rem; text-align: right;">$400-480</td>
+                            <td style="padding: 0.75rem; text-align: right;">5,000-6,500</td>
+                        </tr>
+                        <tr style="background: #fef3c7;">
+                            <td style="padding: 0.75rem;"><strong>APE-CHILL</strong> (standalone)</td>
+                            <td style="padding: 0.75rem; text-align: right;">$252</td>
+                            <td style="padding: 0.75rem; text-align: right;">$320-380</td>
+                            <td style="padding: 0.75rem; text-align: right;">4,000-5,500</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="spec-card">
-                <div class="icon">🌡️</div>
-                <h4>Ventilation Design</h4>
-                <p>Labyrinth airflow path maintains equipment cooling while blocking sound</p>
-            </div>
-            <div class="spec-card">
-                <div class="icon">☀️</div>
-                <h4>Gulf Climate Ready</h4>
-                <p>UV-stable materials, IP65 weatherproofing, designed for 55°C ambient</p>
-            </div>
-            <div class="spec-card">
-                <div class="icon">🏠</div>
-                <h4>Villa Aesthetic</h4>
-                <p>Clean powder-coated finish in white, sand, or custom RAL colours</p>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <section class="comparison">
-        <div class="section-title">
-            <h2>Model Comparison</h2>
-            <p>Choose the right enclosure for your equipment</p>
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Feature</th>
-                    <th>APE-P (Pump)</th>
-                    <th>APE-HC (Heater/Chiller)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Installation Type</td>
-                    <td>Semi-sunken</td>
-                    <td>Surface mounted</td>
-                </tr>
-                <tr>
-                    <td>Acoustic Panels</td>
-                    <td class="cross">-</td>
-                    <td class="check">50mm mineral wool</td>
-                </tr>
-                <tr>
-                    <td>Noise Reduction</td>
-                    <td>Basic (enclosure only)</td>
-                    <td class="check">Up to 18dB</td>
-                </tr>
-                <tr>
-                    <td>Ventilation</td>
-                    <td>Passive vents</td>
-                    <td class="check">Acoustic louvres</td>
-                </tr>
-                <tr>
-                    <td>Weatherproofing</td>
-                    <td class="check">IP65</td>
-                    <td class="check">IP65</td>
-                </tr>
-                <tr>
-                    <td>Material</td>
-                    <td>2mm Aluminium</td>
-                    <td>2mm Aluminium + panels</td>
-                </tr>
-                <tr>
-                    <td>Access</td>
-                    <td>Top hinged lid</td>
-                    <td>Front door + side panels</td>
-                </tr>
-                <tr>
-                    <td>Estimated Price</td>
-                    <td>AED 3,500</td>
-                    <td>AED 6,500</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section class="contact" id="contact">
-        <h2>Ready to Discuss Your Project?</h2>
-        <p>Contact us for custom sizing, specifications, or bulk orders</p>
-        <div class="contact-info">
-            <div class="contact-item">
-                <strong>WhatsApp</strong><br>
-                +971 50 559 8675
-            </div>
-            <div class="contact-item">
-                <strong>Email</strong><br>
-                apexenclosures@icloud.com
-            </div>
-            <div class="contact-item">
-                <strong>Location</strong><br>
-                Dubai, UAE
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>Apex Enclosures | Dubai, UAE | Pool & Outdoor Equipment Solutions</p>
+    <footer class="footer">
+        <p><strong>Apex Pool Enclosures</strong> - A product line of Apex Enclosures</p>
+        <p style="margin-top: 0.5rem;">Dubai, UAE | WhatsApp: +971 50 559 8675</p>
+        <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.6;">Engineering Specification v1.0 | January 2026</p>
     </footer>
 </body>
 </html>

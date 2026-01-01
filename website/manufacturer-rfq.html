@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manufacturer RFQ - Apex Acoustic Enclosures</title>
+    <title>Manufacturer RFQ - APE-HC1 v2.0 Acoustic Enclosure</title>
     <style>
         @media print {
             body { font-size: 11pt; }
@@ -90,6 +90,7 @@
 
         .highlight { background: #fef3c7; }
         .critical { background: #fee2e2; font-weight: 600; }
+        .new { background: #dbeafe; }
 
         .note {
             background: #fef3c7;
@@ -162,6 +163,22 @@
         @media (max-width: 600px) {
             .spec-grid { grid-template-columns: 1fr; }
         }
+
+        .diagram {
+            background: #f8f9fa;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        .diagram pre {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            line-height: 1.3;
+            display: inline-block;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -169,9 +186,10 @@
         <h3>Apex Pool Enclosures - Project Documents</h3>
         <div class="doc-nav-grid">
             <a href="index.html" class="doc-card">Website</a>
-            <a href="specification-heater.html" class="doc-card">Technical Spec</a>
+            <a href="specification-heater.html" class="doc-card">APE-HC1 Spec</a>
             <a href="bom-detailed.html" class="doc-card">Bill of Materials</a>
             <a href="acoustic-design.html" class="doc-card">Acoustic Design</a>
+            <a href="engineering-analysis.html" class="doc-card">Engineering Analysis</a>
             <a href="market-research.html" class="doc-card">Market Research</a>
             <a href="designs.html" class="doc-card">Designs</a>
             <a href="manufacturer-rfq.html" class="doc-card active">RFQ Document</a>
@@ -181,11 +199,16 @@
 
     <div class="header">
         <h1>Request for Quotation</h1>
-        <div class="subtitle">APE-HC1 Acoustic Pool Heater/Chiller Enclosure</div>
-        <div class="date">December 2025 | Apex Enclosures</div>
+        <div class="subtitle">APE-HC1 v2.0 - Acoustic Enclosure with Chimney</div>
+        <div class="date">December 2025 | Apex Enclosures | Rev 2.0</div>
     </div>
 
     <div class="container">
+
+        <div class="warning">
+            <strong>REVISION 2.0 - MAJOR DESIGN CHANGE</strong><br>
+            This RFQ supersedes all previous versions. The enclosure now includes an <strong>acoustic chimney</strong> for top-exhaust heat pumps. This is a larger and more complex product than v1.0.
+        </div>
 
         <h2>1. Company Introduction</h2>
         <p><strong>Apex Enclosures</strong> is developing acoustic enclosures for residential pool heat pumps in the UAE and Gulf region. Pool heaters/chillers generate 55-70 dB(A) noise - a significant issue for villa environments. We are seeking manufacturing partners for prototype development and production.</p>
@@ -197,21 +220,29 @@
         <h2>2. Product Overview</h2>
 
         <div class="product-summary">
-            <h3>APE-HC1: Acoustic Heater/Chiller Enclosure</h3>
-            <p style="margin-bottom: 1rem; color: var(--text-muted);">Reduces pool heat pump noise by 15-20 dB(A) while maintaining required airflow for equipment cooling.</p>
+            <h3>APE-HC1 v2.0: Acoustic Enclosure with Chimney</h3>
+            <p style="margin-bottom: 1rem; color: var(--text-muted);">Reduces pool heat pump noise by 15-20 dB(A) while maintaining required airflow for equipment cooling. Features an acoustic chimney for top-exhaust heat pumps.</p>
 
             <div class="spec-grid">
                 <div>
-                    <strong>External Dimensions:</strong><br>
-                    1200 × 700 × 900mm (W × D × H)
+                    <strong>Base Enclosure:</strong><br>
+                    1400 × 900 × 900mm (L × W × H)
+                </div>
+                <div>
+                    <strong>Acoustic Chimney:</strong><br>
+                    1400 × 900 × 600mm (L × W × H)
+                </div>
+                <div>
+                    <strong>Total Height:</strong><br>
+                    1500mm (base + chimney)
                 </div>
                 <div>
                     <strong>Target Noise Reduction:</strong><br>
                     15-20 dB(A)
                 </div>
                 <div>
-                    <strong>Installation:</strong><br>
-                    Above ground, on concrete pad
+                    <strong>Target Unit:</strong><br>
+                    ROTEAM Europa 44kW heat pump
                 </div>
                 <div>
                     <strong>Weatherproofing:</strong><br>
@@ -220,30 +251,104 @@
             </div>
         </div>
 
+        <h3>2.1 Target Heat Pump Specifications</h3>
+        <p>The enclosure is designed for this specific unit:</p>
+        <table>
+            <tr><th>Parameter</th><th>Value</th></tr>
+            <tr><td>Model</td><td>ROTEAM Europa 00500450</td></tr>
+            <tr><td>Heating Capacity</td><td>44 kW (150,000 BTU)</td></tr>
+            <tr><td>Cooling Capacity</td><td>34 kW</td></tr>
+            <tr><td>Power</td><td>380V / 3 Phase / 50Hz</td></tr>
+            <tr class="critical"><td>Fan Configuration</td><td><strong>2 × 400mm TOP EXHAUST</strong></td></tr>
+            <tr><td>Estimated Unit Size</td><td>~1000 × 600 × 800mm</td></tr>
+        </table>
+
         <div class="warning">
-            <strong>Critical Design Challenge:</strong> This enclosure must BOTH reduce noise AND allow sufficient airflow. Heat pumps require ventilation - a sealed box would cause overheating. The acoustic louvres are the key component.
+            <strong>Critical Design Requirement:</strong> The heat pump has TOP-mounted exhaust fans (vertical airflow), NOT side exhaust. The enclosure requires an acoustic chimney to attenuate the upward exhaust noise. Standard side-to-side airflow enclosures will NOT work.
         </div>
 
-        <h2>3. Acoustic Wall Construction</h2>
-        <p>All four walls + roof use double-skin acoustic panel construction:</p>
+        <h2>3. Design Overview</h2>
 
+        <div class="diagram">
+            <strong>APE-HC1 v2.0 Section View</strong>
+            <pre>
+                    ┌─────────────────┐
+                    │ ACOUSTIC LOUVRES│ ← Rain hood + louvres
+                    ├─────────────────┤
+                    │                 │
+                    │  ACOUSTIC       │ ← 600mm chimney
+                    │  CHIMNEY        │   Lined with 50mm mineral wool
+                    │  (lined)        │
+                    │                 │
+              ┌─────┴─────────────────┴─────┐
+              │                             │
+        Air → ░░░                       ░░░ ← Air In (3 sides)
+        In    ░░░   ┌───────────────┐   ░░░
+              ░░░   │   HEAT PUMP   │   ░░░ ← Z-blade louvres
+              ░░░   │   ROTEAM      │   ░░░
+              ░░░   │   44kW        │   ░░░
+              ░░░   └───────────────┘   ░░░
+              │                             │
+              └─────────────────────────────┘
+                     BASE ENCLOSURE
+                   1400 × 900 × 900mm
+            </pre>
+        </div>
+
+        <h2>4. Component 1: Base Enclosure</h2>
+
+        <h3>4.1 Dimensions</h3>
+        <table>
+            <tr><th>Dimension</th><th>External</th><th>Internal</th></tr>
+            <tr><td>Length</td><td>1400mm</td><td>1300mm</td></tr>
+            <tr><td>Width</td><td>900mm</td><td>800mm</td></tr>
+            <tr><td>Height</td><td>900mm</td><td>900mm (open top to chimney)</td></tr>
+        </table>
+
+        <h3>4.2 Acoustic Wall Construction</h3>
+        <p>Rear wall + lower sections of side/front walls use double-skin acoustic panel construction:</p>
         <table>
             <tr><th width="25%">Layer</th><th>Material</th><th>Thickness</th></tr>
             <tr><td>Outer Skin</td><td>5052-H32 aluminum, powder coated</td><td>2mm</td></tr>
-            <tr><td>Acoustic Infill</td><td>Mineral wool (Rockwool or equiv), 48-64 kg/m³</td><td>50mm</td></tr>
+            <tr><td>Acoustic Infill</td><td>Mineral wool, 60 kg/m³, hydrophobic</td><td>50mm</td></tr>
             <tr><td>Inner Skin</td><td>Perforated aluminum, 23% open area, 3mm holes</td><td>1mm</td></tr>
-            <tr class="highlight"><td><strong>Total Wall</strong></td><td colspan="2"><strong>~55mm thickness</strong></td></tr>
+            <tr class="highlight"><td><strong>Total Wall</strong></td><td colspan="2"><strong>~54mm thickness</strong></td></tr>
         </table>
 
-        <h3>3.1 Expected Acoustic Performance</h3>
+        <h3>4.3 Intake Louvres (3 Sides)</h3>
         <table>
-            <tr><th>Component</th><th>Noise Reduction</th></tr>
-            <tr><td>Solid acoustic panels (walls, roof)</td><td>20-25 dB</td></tr>
-            <tr><td>Acoustic louvres (openings)</td><td>10-15 dB</td></tr>
-            <tr class="critical"><td><strong>Overall Target</strong></td><td><strong>15-20 dB(A)</strong></td></tr>
+            <tr><th>Location</th><th>Size (W × H)</th><th>Gross Area</th></tr>
+            <tr><td>Front panel</td><td>1400 × 700mm</td><td>0.98 m²</td></tr>
+            <tr><td>Left side panel</td><td>900 × 700mm</td><td>0.63 m²</td></tr>
+            <tr><td>Right side panel</td><td>900 × 700mm</td><td>0.63 m²</td></tr>
+            <tr class="highlight"><td><strong>Total Intake</strong></td><td></td><td><strong>2.24 m²</strong></td></tr>
         </table>
 
-        <h2>4. Acoustic Louvre Specifications (CRITICAL)</h2>
+        <h2>5. Component 2: Acoustic Chimney (NEW)</h2>
+
+        <div class="info">
+            <strong>Key Component:</strong> The acoustic chimney is essential for attenuating exhaust noise from the top-mounted fans. It must be lined with acoustic material on all 4 internal faces.
+        </div>
+
+        <h3>5.1 Chimney Dimensions</h3>
+        <table>
+            <tr><th>Dimension</th><th>External</th><th>Internal (after lining)</th></tr>
+            <tr><td>Length</td><td>1400mm</td><td>1200mm</td></tr>
+            <tr><td>Width</td><td>900mm</td><td>700mm</td></tr>
+            <tr><td>Height</td><td>600mm</td><td>600mm</td></tr>
+        </table>
+
+        <h3>5.2 Chimney Construction</h3>
+        <table>
+            <tr><th>Component</th><th>Specification</th></tr>
+            <tr><td>Frame</td><td>50×50mm aluminum box section, 2mm wall</td></tr>
+            <tr><td>External skin</td><td>2mm powder-coated aluminum</td></tr>
+            <tr><td>Internal lining</td><td>50mm mineral wool + 1mm perforated aluminum (all 4 sides)</td></tr>
+            <tr><td>Top outlet</td><td>Acoustic louvres (1200×700mm) with rain hood</td></tr>
+            <tr><td>Base mounting</td><td>Flange with weatherproof gasket, bolted to base enclosure</td></tr>
+        </table>
+
+        <h2>6. Z-Blade Acoustic Louvre Specifications (CRITICAL)</h2>
 
         <div class="note">
             <strong>Key Component:</strong> The acoustic louvres are the most important part of this design. They must block sound while allowing airflow. Standard louvres will NOT work.
@@ -252,139 +357,160 @@
         <table>
             <tr><th width="35%">Specification</th><th>Requirement</th></tr>
             <tr class="critical"><td>Louvre Type</td><td><strong>Z-blade acoustic louvres</strong> (or chevron/bent blade)</td></tr>
-            <tr><td>Blade Angle</td><td>45°</td></tr>
+            <tr><td>Blade Angle</td><td>45° from horizontal</td></tr>
             <tr><td>Blade Pitch</td><td>50mm centre-to-centre</td></tr>
             <tr><td>Blade Depth</td><td>75mm minimum</td></tr>
-            <tr><td>Blade Material</td><td>Aluminum with acoustic infill (mineral wool or foam)</td></tr>
-            <tr class="highlight"><td>Free Area</td><td>Minimum 40% (equipment needs airflow)</td></tr>
-            <tr class="highlight"><td>Insertion Loss</td><td>Target 10-15 dB</td></tr>
+            <tr><td>Blade Material</td><td>Aluminum with 25mm mineral wool infill</td></tr>
+            <tr class="highlight"><td>Free Area</td><td>Minimum 50% (11,000 m³/h airflow required)</td></tr>
+            <tr class="highlight"><td>Insertion Loss</td><td>Target 10-12 dB</td></tr>
         </table>
 
-        <h3>4.1 Louvre Locations</h3>
+        <h3>6.1 Louvre Quantities</h3>
         <table>
-            <tr><th>Location</th><th>Size</th><th>Purpose</th></tr>
-            <tr><td>Left side panel</td><td>Full height (approx 800 × 700mm)</td><td>Air intake</td></tr>
-            <tr><td>Right side panel</td><td>Upper 1/3 (approx 800 × 300mm)</td><td>Hot air exhaust</td></tr>
+            <tr><th>Location</th><th>Size</th><th>Qty</th></tr>
+            <tr><td>Front intake panel</td><td>1400 × 700mm</td><td>1</td></tr>
+            <tr><td>Side intake panels</td><td>900 × 700mm</td><td>2</td></tr>
+            <tr class="new"><td>Chimney exhaust top</td><td>1200 × 700mm</td><td>1</td></tr>
         </table>
 
-        <h2>5. Material Specifications</h2>
+        <h2>7. Material Specifications</h2>
 
-        <h3>5.1 Aluminum</h3>
+        <h3>7.1 Aluminum</h3>
         <table>
             <tr><th>Component</th><th>Material</th><th>Thickness</th></tr>
+            <tr><td>Frame extrusion</td><td>6063-T5 aluminum, 50×50mm box</td><td>2mm wall</td></tr>
             <tr><td>Outer panels</td><td>5052-H32 aluminum</td><td>2mm</td></tr>
-            <tr><td>Door frame</td><td>5052-H32 aluminum</td><td>3mm</td></tr>
-            <tr><td>Inner perforated skin</td><td>5052 aluminum, perforated</td><td>1mm</td></tr>
+            <tr><td>Inner perforated skin</td><td>5052 aluminum, 23% open, 3mm holes</td><td>1mm</td></tr>
             <tr><td>Louvre blades</td><td>5052 aluminum</td><td>1-1.5mm</td></tr>
+            <tr><td>Floor</td><td>5052 aluminum chequer plate</td><td>3mm</td></tr>
         </table>
 
-        <h3>5.2 Finish</h3>
+        <h3>7.2 Finish</h3>
         <table>
             <tr><th>Requirement</th><th>Specification</th></tr>
             <tr><td>Surface Prep</td><td>Chemical etch or mechanical abrasion</td></tr>
-            <tr><td>Powder Coat</td><td>Polyester, 60-80 microns</td></tr>
-            <tr><td>Colour</td><td>RAL 7030 Stone Grey or RAL 7016 Anthracite</td></tr>
+            <tr><td>Powder Coat</td><td>Polyester, 60-80 microns, UV stable</td></tr>
+            <tr><td>Colour</td><td>RAL 7016 Anthracite Grey (or custom)</td></tr>
         </table>
 
-        <h3>5.3 Hardware (All 316 Stainless Steel)</h3>
+        <h3>7.3 Hardware (All 316 Stainless Steel)</h3>
         <table>
-            <tr><th>Item</th><th>Specification</th></tr>
-            <tr><td>Hinges</td><td>Heavy-duty, 316 SS, acoustic sealed</td></tr>
-            <tr><td>Latches</td><td>Compression draw latches, lockable</td></tr>
-            <tr><td>Fasteners</td><td>M5/M6, 316 stainless steel</td></tr>
-            <tr><td>Door Gaskets</td><td>EPDM, closed-cell, continuous seal</td></tr>
+            <tr><th>Item</th><th>Specification</th><th>Qty</th></tr>
+            <tr><td>Door hinges</td><td>Heavy-duty, 316 SS, lift-off</td><td>4</td></tr>
+            <tr><td>Compression latches</td><td>Adjustable, lockable</td><td>2</td></tr>
+            <tr><td>Padlock hasp</td><td>316 SS</td><td>1</td></tr>
+            <tr><td>Quarter-turn fasteners</td><td>For panel access</td><td>16</td></tr>
+            <tr><td>Rubber isolator feet</td><td>Anti-vibration, M12</td><td>6</td></tr>
+            <tr><td>Door gaskets</td><td>EPDM, closed-cell, continuous</td><td>5m</td></tr>
+            <tr><td>Panel gaskets</td><td>EPDM acoustic, 15×15mm</td><td>18m</td></tr>
         </table>
 
-        <h3>5.4 Acoustic Materials</h3>
+        <h3>7.4 Acoustic Materials</h3>
         <table>
-            <tr><th>Item</th><th>Specification</th></tr>
-            <tr><td>Mineral Wool</td><td>Rockwool or equivalent, 48-64 kg/m³ density</td></tr>
-            <tr><td>Panel Thickness</td><td>50mm</td></tr>
-            <tr><td>Louvre Blade Fill</td><td>25mm acoustic foam or compressed mineral wool</td></tr>
+            <tr><th>Item</th><th>Specification</th><th>Qty</th></tr>
+            <tr><td>Wall panel mineral wool</td><td>50mm, 60 kg/m³, hydrophobic</td><td>~8 m²</td></tr>
+            <tr><td>Chimney lining mineral wool</td><td>50mm, 60 kg/m³, hydrophobic</td><td>~3 m²</td></tr>
+            <tr><td>Louvre blade infill</td><td>25mm mineral wool or acoustic foam</td><td>~3 m²</td></tr>
         </table>
 
         <div class="page-break"></div>
 
-        <h2>6. Assembly & Access</h2>
+        <h2>8. Assembly Features</h2>
 
-        <h3>6.1 Door</h3>
+        <h3>8.1 Access Door</h3>
         <ul>
-            <li>Full-height hinged door on front panel</li>
+            <li>Full-height hinged door on front panel (below louvres)</li>
             <li>Same acoustic construction as walls (double-skin with infill)</li>
             <li>Continuous EPDM seal around perimeter</li>
             <li>Lockable compression latches</li>
         </ul>
 
-        <h3>6.2 Base</h3>
+        <h3>8.2 Chimney Mounting</h3>
         <ul>
-            <li>Open bottom (equipment sits on concrete pad)</li>
-            <li>Enclosure drops over equipment</li>
-            <li>Bottom edge sealed with weatherstrip to pad</li>
+            <li>Chimney bolts to base enclosure via flange plate</li>
+            <li>Weatherproof EPDM gasket between chimney and base</li>
+            <li>Must be removable for installation (drop over equipment first, then mount chimney)</li>
         </ul>
 
-        <h2>7. Prototype Requirements</h2>
+        <h3>8.3 Base</h3>
+        <ul>
+            <li>Floor panel with rubber isolator feet</li>
+            <li>Equipment sits on floor panel</li>
+            <li>Bottom edge sealed with weatherstrip to concrete pad</li>
+        </ul>
+
+        <h2>9. Prototype Requirements</h2>
 
         <table>
             <tr><th>Requirement</th><th>Detail</th></tr>
-            <tr class="highlight"><td>Prototype Quantity</td><td><strong>1 unit</strong></td></tr>
-            <tr><td>Lead Time Target</td><td>3-4 weeks from order</td></tr>
+            <tr class="highlight"><td>Prototype Quantity</td><td><strong>1 unit (base + chimney)</strong></td></tr>
+            <tr><td>Target Unit</td><td>ROTEAM Europa 44kW heat pump</td></tr>
+            <tr><td>Lead Time Target</td><td>4-5 weeks from order</td></tr>
             <tr><td>Delivery</td><td>Dubai, UAE (or local pickup)</td></tr>
-            <tr><td>Documentation</td><td>Material certificates, acoustic test data if available</td></tr>
+            <tr><td>Documentation</td><td>Material certificates, assembly drawings</td></tr>
         </table>
 
-        <h2>8. Quality Requirements</h2>
+        <h2>10. Quality Requirements</h2>
         <ul>
             <li>All welds ground smooth, no sharp edges</li>
             <li>Powder coat uniform, no runs, chips, or thin spots</li>
             <li>Door gaskets continuous, proper compression when closed</li>
             <li>Acoustic panels properly seated, no rattles or vibration</li>
             <li>Louvre blades aligned, consistent spacing</li>
+            <li>Chimney-to-base seal weatherproof</li>
             <li>Dimensional tolerance: ±3mm</li>
         </ul>
 
-        <h2>9. Quotation Request</h2>
+        <h2>11. Quotation Request</h2>
 
-        <h3>9.1 APE-HC1 Acoustic Enclosure (1200 × 700 × 900mm)</h3>
+        <h3>11.1 APE-HC1 v2.0 Complete Unit (Base + Chimney)</h3>
         <table class="quote-table">
             <tr><th>Quantity</th><th>Unit Price (USD)</th><th>Lead Time</th></tr>
             <tr><td>1 (prototype)</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
+            <tr><td>5 units</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
             <tr><td>10 units</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
-            <tr><td>50 units</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
-            <tr><td>100 units</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
+            <tr><td>25 units</td><td><input type="text" placeholder="$___"></td><td><input type="text" placeholder="___ weeks"></td></tr>
         </table>
 
-        <h3>9.2 Breakdown (if possible)</h3>
+        <h3>11.2 Component Breakdown (if possible)</h3>
         <table class="quote-table">
             <tr><th>Component</th><th>Cost (USD)</th></tr>
-            <tr><td>Aluminum fabrication (panels, frame)</td><td><input type="text" placeholder="$___"></td></tr>
-            <tr><td>Acoustic louvres</td><td><input type="text" placeholder="$___"></td></tr>
-            <tr><td>Powder coating</td><td><input type="text" placeholder="$___"></td></tr>
-            <tr><td>Acoustic infill (mineral wool)</td><td><input type="text" placeholder="$___"></td></tr>
+            <tr><td>Base enclosure frame + panels</td><td><input type="text" placeholder="$___"></td></tr>
+            <tr><td>Acoustic chimney (complete)</td><td><input type="text" placeholder="$___"></td></tr>
+            <tr><td>Intake louvres (3 panels)</td><td><input type="text" placeholder="$___"></td></tr>
+            <tr><td>Exhaust louvre (chimney top)</td><td><input type="text" placeholder="$___"></td></tr>
+            <tr><td>Powder coating (all components)</td><td><input type="text" placeholder="$___"></td></tr>
+            <tr><td>Mineral wool (panels + louvres + chimney)</td><td><input type="text" placeholder="$___"></td></tr>
             <tr><td>Hardware (hinges, latches, gaskets)</td><td><input type="text" placeholder="$___"></td></tr>
             <tr><td>Assembly labour</td><td><input type="text" placeholder="$___"></td></tr>
         </table>
 
-        <h3>9.3 Additional Costs</h3>
+        <h3>11.3 Additional Costs</h3>
         <table class="quote-table">
             <tr><th>Item</th><th>Cost (USD)</th></tr>
             <tr><td>Tooling/Setup (if any)</td><td><input type="text" placeholder="$___"></td></tr>
             <tr><td>Delivery to Dubai</td><td><input type="text" placeholder="$___"></td></tr>
         </table>
 
-        <h2>10. Manufacturer Capabilities</h2>
+        <div class="note">
+            <strong>Budget Reference:</strong> Our estimated material cost is ~$2,000 and total build cost ~$2,600. Please indicate if your quote differs significantly and explain the variance.
+        </div>
+
+        <h2>12. Manufacturer Capabilities</h2>
         <p>Please confirm your capabilities:</p>
 
         <table>
             <tr><th>Capability</th><th>Yes/No</th><th>Notes</th></tr>
+            <tr><td>Aluminum extrusion cutting + assembly</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
             <tr><td>5052-H32 aluminum fabrication</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
             <tr><td>Powder coating in-house</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
-            <tr class="highlight"><td><strong>Acoustic louvre manufacturing</strong></td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
+            <tr class="critical"><td><strong>Z-blade acoustic louvre manufacturing</strong></td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
             <tr><td>Perforated aluminum sourcing</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
             <tr><td>Mineral wool/acoustic material sourcing</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
             <tr><td>316 SS hardware sourcing</td><td><input type="text" style="width:60px"></td><td><input type="text" placeholder=""></td></tr>
         </table>
 
-        <h2>11. Contact Information</h2>
+        <h2>13. Contact Information</h2>
 
         <div class="success">
             <strong>Apex Enclosures</strong><br>
@@ -394,12 +520,12 @@
             Location: Dubai, UAE
         </div>
 
-        <h2>12. Response Requested</h2>
+        <h2>14. Response Requested</h2>
         <ul>
             <li>Completed quotation form above</li>
             <li>Company profile / capability statement</li>
-            <li>Examples of acoustic enclosure work (if any)</li>
-            <li>Acoustic louvre sourcing approach</li>
+            <li>Examples of acoustic enclosure or chimney work (if any)</li>
+            <li>Acoustic louvre sourcing or fabrication approach</li>
             <li>Confirmation of lead time for prototype</li>
             <li>Payment terms</li>
         </ul>
@@ -408,7 +534,7 @@
             <strong>Note:</strong> We are also developing outdoor TV enclosures (ATE series) with the same manufacturing partner. If you are quoting for both product lines, please indicate any volume discounts for combined orders.
         </div>
 
-        <h2>13. Acceptance</h2>
+        <h2>15. Acceptance</h2>
 
         <div class="signature-box">
             <div>
