@@ -22,12 +22,30 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-        .doc-nav { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); padding: 1rem 2rem; }
-        .doc-nav h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7); margin-bottom: 0.75rem; }
-        .doc-nav-grid { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-        .doc-card { background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; color: white; border: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; font-weight: 500; }
-        .doc-card:hover { background: rgba(255,255,255,0.2); }
-        .doc-card.active { background: white; color: var(--primary); }
+        /* Layout */
+        .layout { display: flex; min-height: 100vh; }
+
+        /* Sidebar */
+        .sidebar { width: 240px; background: linear-gradient(180deg, var(--primary-dark) 0%, #065f46 100%); color: white; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100; }
+        .sidebar-header { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .sidebar-header h1 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .sidebar-header p { font-size: 0.75rem; opacity: 0.7; }
+        .sidebar-nav { padding: 1rem 0; }
+        .sidebar-section { padding: 0.5rem 1.5rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.5); margin-top: 0.5rem; }
+        .sidebar-link { display: block; padding: 0.75rem 1.5rem; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; transition: all 0.2s; border-left: 3px solid transparent; }
+        .sidebar-link:hover { background: rgba(255,255,255,0.1); color: white; }
+        .sidebar-link.active { background: rgba(255,255,255,0.15); color: white; border-left-color: #f59e0b; font-weight: 600; }
+        .sidebar-footer { padding: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.75rem; opacity: 0.6; position: absolute; bottom: 0; width: 100%; }
+
+        /* Main Content */
+        .main { flex: 1; margin-left: 240px; }
+
+        @media (max-width: 900px) {
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .sidebar-footer { position: relative; }
+            .main { margin-left: 0; }
+            .layout { flex-direction: column; }
+        }
 
         header { background: white; padding: 2rem; border-bottom: 1px solid var(--border); }
         .header-content { max-width: 1400px; margin: 0 auto; }
@@ -69,17 +87,27 @@
     </style>
 </head>
 <body>
-    <nav class="doc-nav">
-        <h3>Apex Pool Enclosures</h3>
-        <div class="doc-nav-grid">
-            <a href="index.html" class="doc-card">Home</a>
-            <a href="specification.html" class="doc-card">Specification</a>
-            <a href="designs.html" class="doc-card active">Designs</a>
-            <a href="bom.html" class="doc-card">BOM</a>
-            <a href="market-research.html" class="doc-card">Research</a>
-        </div>
-    </nav>
-
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>Apex Pool Enclosures</h1>
+                <p>APE Series v1.0</p>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">Documentation</div>
+                <a href="index.html" class="sidebar-link">Home</a>
+                <a href="specification.html" class="sidebar-link">Specification</a>
+                <a href="designs.html" class="sidebar-link active">Technical Drawings</a>
+                <a href="bom.html" class="sidebar-link">Bill of Materials</a>
+                <a href="market-research.html" class="sidebar-link">Market Research</a>
+                <a href="uae-pool-directory.html" class="sidebar-link">UAE Pool Directory</a>
+            </nav>
+            <div class="sidebar-footer">
+                <p>Dubai, UAE</p>
+                <p>+971 50 559 8675</p>
+            </div>
+        </aside>
+        <main class="main">
     <header>
         <div class="header-content">
             <h1>Engineering Designs - APE Series Pool Equipment Enclosures</h1>
@@ -431,6 +459,304 @@
             </table>
         </div>
 
+        <!-- ========== ENGINEERING: HEATER/CHILLER ENCLOSURE PHYSICS ========== -->
+        <div class="design-section">
+            <h2>Engineering Deep Dive: Enclosing Heat-Generating Equipment</h2>
+            <p>The physics of how to enclose a heater or chiller without increasing device temperature or reducing efficiency.</p>
+
+            <div class="danger-box">
+                <strong>Critical Design Principle:</strong> Heat pumps, pool chillers, and heaters generate significant heat that MUST be removed.
+                An improperly designed enclosure will cause the equipment to overheat, reduce efficiency, trigger safety shutdowns, or cause permanent damage.
+            </div>
+
+            <h3>Understanding Heat Pump Thermodynamics</h3>
+            <p>Pool chillers and heat pumps work by moving heat from one place to another using a refrigeration cycle.</p>
+
+            <div class="drawing-container">
+                <div class="drawing-title">Heat Pump Operating Principle</div>
+                <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="800" height="400" fill="#fafafa"/>
+
+                    <!-- Pool water side -->
+                    <rect x="50" y="100" width="200" height="200" fill="#e0f2fe" stroke="#0891b2" stroke-width="3" rx="10"/>
+                    <text x="150" y="140" font-size="14" fill="#0e7490" text-anchor="middle" font-weight="600">POOL WATER</text>
+                    <text x="150" y="160" font-size="11" fill="#64748b" text-anchor="middle">(Heat Exchanger)</text>
+                    <text x="150" y="200" font-size="24" fill="#0891b2" text-anchor="middle">28°C</text>
+                    <text x="150" y="225" font-size="10" fill="#64748b" text-anchor="middle">Target Temperature</text>
+
+                    <!-- Heat pump unit -->
+                    <rect x="300" y="80" width="200" height="240" fill="#fef3c7" stroke="#f59e0b" stroke-width="3" rx="10"/>
+                    <text x="400" y="110" font-size="14" fill="#92400e" text-anchor="middle" font-weight="600">HEAT PUMP / CHILLER</text>
+
+                    <!-- Compressor -->
+                    <rect x="330" y="140" width="60" height="60" fill="#ef4444" stroke="#dc2626" stroke-width="2" rx="5"/>
+                    <text x="360" y="175" font-size="10" fill="white" text-anchor="middle" font-weight="600">COMPRESSOR</text>
+
+                    <!-- Condenser -->
+                    <rect x="410" y="140" width="60" height="60" fill="#f97316" stroke="#ea580c" stroke-width="2" rx="5"/>
+                    <text x="440" y="168" font-size="9" fill="white" text-anchor="middle" font-weight="600">CONDENSER</text>
+                    <text x="440" y="182" font-size="8" fill="white" text-anchor="middle">(HOT)</text>
+
+                    <!-- Fan -->
+                    <rect x="370" y="220" width="60" height="50" fill="#64748b" stroke="#475569" stroke-width="2" rx="5"/>
+                    <text x="400" y="245" font-size="10" fill="white" text-anchor="middle" font-weight="600">FAN</text>
+                    <text x="400" y="260" font-size="8" fill="white" text-anchor="middle">500-1000 CFM</text>
+
+                    <!-- Ambient air side -->
+                    <rect x="550" y="100" width="200" height="200" fill="#fef2f2" stroke="#ef4444" stroke-width="3" rx="10"/>
+                    <text x="650" y="140" font-size="14" fill="#dc2626" text-anchor="middle" font-weight="600">AMBIENT AIR</text>
+                    <text x="650" y="160" font-size="11" fill="#64748b" text-anchor="middle">(Heat Rejection)</text>
+                    <text x="650" y="200" font-size="24" fill="#ef4444" text-anchor="middle">45°C+</text>
+                    <text x="650" y="225" font-size="10" fill="#64748b" text-anchor="middle">Exhaust Air Temp</text>
+
+                    <!-- Arrows -->
+                    <defs>
+                        <marker id="heatArrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#ef4444"/>
+                        </marker>
+                        <marker id="coolArrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#0891b2"/>
+                        </marker>
+                    </defs>
+
+                    <!-- Heat flow from pool to heat pump -->
+                    <path d="M 250 200 L 295 200" stroke="#0891b2" stroke-width="4" marker-end="url(#coolArrow)"/>
+                    <text x="272" y="190" font-size="9" fill="#0891b2" text-anchor="middle">Heat IN</text>
+
+                    <!-- Heat flow from heat pump to air -->
+                    <path d="M 505 200 L 545 200" stroke="#ef4444" stroke-width="4" marker-end="url(#heatArrow)"/>
+                    <text x="525" y="190" font-size="9" fill="#ef4444" text-anchor="middle">Heat OUT</text>
+
+                    <!-- Key equation -->
+                    <rect x="250" y="340" width="300" height="50" fill="#e0f2fe" stroke="#0891b2" stroke-width="2" rx="5"/>
+                    <text x="400" y="362" font-size="12" fill="#0e7490" text-anchor="middle" font-weight="600">Q_rejected = Q_absorbed + W_compressor</text>
+                    <text x="400" y="380" font-size="10" fill="#64748b" text-anchor="middle">Heat out = Heat in + Electrical work</text>
+                </svg>
+            </div>
+
+            <h3>The Critical Numbers</h3>
+            <table class="param-table">
+                <tr><th>Parameter</th><th>Typical Value</th><th>Why It Matters</th></tr>
+                <tr><td>Compressor heat output</td><td>1-3 kW</td><td>All electrical input becomes heat</td></tr>
+                <tr><td>Condenser heat rejection</td><td>5-15 kW</td><td>Heat extracted from pool + compressor heat</td></tr>
+                <tr><td>Airflow requirement</td><td>500-1000 CFM (850-1700 m³/hr)</td><td>Must remove all rejected heat</td></tr>
+                <tr><td>Exhaust air temperature</td><td>10-15°C above ambient</td><td>Hot air must escape freely</td></tr>
+                <tr><td>Inlet air temperature</td><td>Ambient (35-45°C in UAE)</td><td>Cool air must enter freely</td></tr>
+                <tr><td>Minimum clearance</td><td>500-1000mm (manufacturer spec)</td><td>Prevents hot air recirculation</td></tr>
+            </table>
+
+            <h3>The Physics of Enclosure Design</h3>
+
+            <div class="view-grid">
+                <div class="view-box" style="background: #fef2f2;">
+                    <h5 style="color: #dc2626;">Problem: Hot Air Recirculation</h5>
+                    <p style="font-size: 0.85rem; color: #64748b;">
+                        If hot exhaust air (45°C+) recirculates back to the intake, the chiller's efficiency drops dramatically.
+                        <br><br>
+                        <strong>Effect:</strong> Every 1°C increase in inlet air = 2-3% efficiency loss.
+                        <br><br>
+                        10°C recirculation = 20-30% efficiency loss + potential compressor damage.
+                    </p>
+                </div>
+                <div class="view-box" style="background: #dcfce7;">
+                    <h5 style="color: #16a34a;">Solution: Separated Airflow Paths</h5>
+                    <p style="font-size: 0.85rem; color: #64748b;">
+                        Design the enclosure so intake and exhaust air never mix:
+                        <br><br>
+                        - Intake from sides/bottom (cool ambient air)
+                        <br>
+                        - Exhaust from top/opposite side (hot air rises)
+                        <br>
+                        - Minimum 500mm separation between paths
+                    </p>
+                </div>
+            </div>
+
+            <h3>How to Enclose Without Overheating</h3>
+
+            <div class="drawing-container">
+                <div class="drawing-title">Correct Enclosure Airflow Design</div>
+                <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0" y="0" width="800" height="450" fill="#fafafa"/>
+
+                    <!-- Wrong design (left) -->
+                    <rect x="50" y="50" width="300" height="350" fill="#fef2f2" stroke="#ef4444" stroke-width="3" rx="10"/>
+                    <text x="200" y="30" font-size="14" fill="#dc2626" text-anchor="middle" font-weight="700">WRONG: Sealed Enclosure</text>
+
+                    <!-- Chiller unit in wrong design -->
+                    <rect x="100" y="150" width="200" height="150" fill="#64748b" stroke="#475569" stroke-width="2" rx="5"/>
+                    <text x="200" y="230" font-size="12" fill="white" text-anchor="middle">CHILLER</text>
+
+                    <!-- Heat building up -->
+                    <circle cx="200" cy="200" r="80" fill="#ef4444" opacity="0.2"/>
+                    <circle cx="200" cy="200" r="100" fill="#ef4444" opacity="0.1"/>
+                    <circle cx="200" cy="200" r="120" fill="#ef4444" opacity="0.05"/>
+
+                    <!-- Temperature indicator -->
+                    <text x="200" y="120" font-size="18" fill="#dc2626" text-anchor="middle" font-weight="700">60°C+ !!!</text>
+                    <text x="200" y="350" font-size="11" fill="#dc2626" text-anchor="middle">Heat trapped, no escape</text>
+                    <text x="200" y="370" font-size="11" fill="#dc2626" text-anchor="middle">Compressor overheats + shuts down</text>
+
+                    <!-- X mark -->
+                    <line x1="280" y1="80" x2="320" y2="120" stroke="#dc2626" stroke-width="6"/>
+                    <line x1="320" y1="80" x2="280" y2="120" stroke="#dc2626" stroke-width="6"/>
+
+                    <!-- Right design -->
+                    <rect x="450" y="50" width="300" height="350" fill="#dcfce7" stroke="#16a34a" stroke-width="3" rx="10"/>
+                    <text x="600" y="30" font-size="14" fill="#16a34a" text-anchor="middle" font-weight="700">CORRECT: Louvered Enclosure</text>
+
+                    <!-- Chiller unit in right design -->
+                    <rect x="500" y="150" width="200" height="150" fill="#64748b" stroke="#475569" stroke-width="2" rx="5"/>
+                    <text x="600" y="230" font-size="12" fill="white" text-anchor="middle">CHILLER</text>
+
+                    <!-- Intake louvers (sides) -->
+                    <rect x="455" y="150" width="20" height="150" fill="#0891b2"/>
+                    <rect x="725" y="150" width="20" height="150" fill="#0891b2"/>
+
+                    <!-- Exhaust louvers (top) -->
+                    <rect x="500" y="55" width="200" height="20" fill="#f97316"/>
+
+                    <!-- Airflow arrows -->
+                    <defs>
+                        <marker id="flowArrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                            <polygon points="0 0, 8 3, 0 6" fill="#10b981"/>
+                        </marker>
+                        <marker id="hotArrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                            <polygon points="0 0, 8 3, 0 6" fill="#f97316"/>
+                        </marker>
+                    </defs>
+
+                    <!-- Cool air in -->
+                    <path d="M 420 225 L 460 225" stroke="#10b981" stroke-width="3" marker-end="url(#flowArrow)"/>
+                    <path d="M 780 225 L 740 225" stroke="#10b981" stroke-width="3" marker-end="url(#flowArrow)"/>
+                    <text x="400" y="210" font-size="10" fill="#10b981" text-anchor="end">Cool Air</text>
+                    <text x="400" y="225" font-size="10" fill="#10b981" text-anchor="end">35°C</text>
+
+                    <!-- Hot air out -->
+                    <path d="M 600 130 L 600 80" stroke="#f97316" stroke-width="3" marker-end="url(#hotArrow)"/>
+                    <text x="650" y="100" font-size="10" fill="#f97316">Hot Air Out 45°C</text>
+
+                    <!-- Check mark -->
+                    <path d="M 680 80 L 700 100 L 740 60" stroke="#16a34a" stroke-width="6" fill="none"/>
+
+                    <!-- Temperature inside -->
+                    <text x="600" y="350" font-size="11" fill="#16a34a" text-anchor="middle">Internal temp = Ambient + 5°C max</text>
+                    <text x="600" y="370" font-size="11" fill="#16a34a" text-anchor="middle">Full efficiency maintained</text>
+                </svg>
+            </div>
+
+            <h3>Design Rules for Heat-Generating Equipment Enclosures</h3>
+
+            <table class="param-table">
+                <tr><th>Rule</th><th>Specification</th><th>Reasoning</th></tr>
+                <tr>
+                    <td><strong>1. Minimum Open Area</strong></td>
+                    <td>≥50% on inlet and exhaust sides</td>
+                    <td>Ensures airflow is not restricted below equipment needs</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Louver Angle</strong></td>
+                    <td>30-45° downward</td>
+                    <td>Sheds rain while allowing airflow; reduces noise transmission</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Intake/Exhaust Separation</strong></td>
+                    <td>≥500mm vertical or horizontal</td>
+                    <td>Prevents hot exhaust recirculating to intake</td>
+                </tr>
+                <tr>
+                    <td><strong>4. Clearance from Equipment</strong></td>
+                    <td>≥300mm all sides (check manufacturer)</td>
+                    <td>Allows air to flow around unit; service access</td>
+                </tr>
+                <tr>
+                    <td><strong>5. Top Exhaust Path</strong></td>
+                    <td>Open or louvered top, never sealed</td>
+                    <td>Hot air rises naturally; must have exit path</td>
+                </tr>
+                <tr>
+                    <td><strong>6. No Dead Corners</strong></td>
+                    <td>Air must flow through, not trap</td>
+                    <td>Stagnant air pockets cause local overheating</td>
+                </tr>
+            </table>
+
+            <h3>Calculating Required Airflow</h3>
+
+            <div class="info-box">
+                <strong>Engineering Formula:</strong><br><br>
+                <code style="font-size: 1.1rem;">CFM = (Heat Rejection in BTU/hr) ÷ (1.08 × ΔT)</code><br><br>
+                Where ΔT = allowable temperature rise (typically 10-15°F / 5-8°C)<br><br>
+                <strong>Example:</strong> A 10kW chiller rejecting 34,000 BTU/hr with 10°F rise:<br>
+                CFM = 34,000 ÷ (1.08 × 10) = <strong>3,148 CFM required</strong><br><br>
+                This is why chillers have large fans and CANNOT be fully enclosed.
+            </div>
+
+            <h3>Noise Reduction vs Thermal Performance Trade-off</h3>
+
+            <table class="param-table">
+                <tr><th>Enclosure Type</th><th>Open Area</th><th>Noise Reduction</th><th>Thermal Impact</th><th>Suitable For</th></tr>
+                <tr>
+                    <td>Fully Sealed Box</td>
+                    <td>0%</td>
+                    <td>80-90%</td>
+                    <td style="color: #dc2626;"><strong>FATAL</strong> - Equipment will fail</td>
+                    <td>NEVER for heat-generating equipment</td>
+                </tr>
+                <tr>
+                    <td>Small Vents Only</td>
+                    <td>10-20%</td>
+                    <td>60-70%</td>
+                    <td style="color: #f59e0b;">Severe efficiency loss, may overheat</td>
+                    <td>Low-power pumps only (&lt;500W)</td>
+                </tr>
+                <tr>
+                    <td>Louvered (30%)</td>
+                    <td>30%</td>
+                    <td>50-60%</td>
+                    <td style="color: #f59e0b;">Some efficiency loss in hot weather</td>
+                    <td>Small chillers with oversized fans</td>
+                </tr>
+                <tr style="background: #dcfce7;">
+                    <td><strong>Louvered (50%+)</strong></td>
+                    <td><strong>≥50%</strong></td>
+                    <td><strong>40-55%</strong></td>
+                    <td style="color: #16a34a;"><strong>Minimal impact</strong></td>
+                    <td><strong>Pool chillers, heat pumps</strong></td>
+                </tr>
+                <tr>
+                    <td>Screen Only (no roof)</td>
+                    <td>60-70%</td>
+                    <td>20-30%</td>
+                    <td style="color: #16a34a;">Zero impact</td>
+                    <td>Visual screening only</td>
+                </tr>
+            </table>
+
+            <div class="success-box">
+                <strong>APE-CHILL Design Decision:</strong> The APE-CHILL module uses 50%+ open louvered panels on three sides with open exhaust path at top.
+                This achieves 50-60% noise reduction while maintaining full thermal performance. The 45° louver angle also provides weather protection and directs sound waves away from neighbors.
+            </div>
+
+            <h3>Manufacturer Clearance Requirements</h3>
+
+            <p>Always check the specific equipment manufacturer's installation manual. Typical requirements:</p>
+
+            <table class="param-table">
+                <tr><th>Brand</th><th>Side Clearance</th><th>Front (Intake)</th><th>Top (Exhaust)</th><th>Notes</th></tr>
+                <tr><td>Zodiac</td><td>300mm</td><td>1000mm</td><td>1500mm</td><td>Open air above</td></tr>
+                <tr><td>Pentair</td><td>300mm</td><td>600mm</td><td>Open</td><td>Vertical discharge</td></tr>
+                <tr><td>Astral</td><td>500mm</td><td>500mm</td><td>500mm</td><td>Horizontal discharge models</td></tr>
+                <tr><td>Hayward</td><td>450mm</td><td>600mm</td><td>Open</td><td>Check specific model</td></tr>
+                <tr><td>Daikin (commercial)</td><td>3000mm</td><td>1500mm</td><td>Open</td><td>Large chillers</td></tr>
+            </table>
+
+            <div class="danger-box">
+                <strong>Warranty Warning:</strong> Installing an enclosure that restricts airflow or violates manufacturer clearance requirements will typically void the equipment warranty.
+                Always verify with the equipment supplier before installing any enclosure.
+            </div>
+        </div>
+
         <!-- ========== DRAWING 4: ACCESS PANEL DETAIL ========== -->
         <div class="design-section">
             <h2>Drawing 4: Access Panel Detail</h2>
@@ -727,5 +1053,7 @@
         <p style="opacity: 0.8;">APE Series Pool Equipment Enclosures - Apex Enclosures</p>
         <p style="font-size: 0.85rem; opacity: 0.6;">Document Version: 1.0 | Last Updated: January 2026</p>
     </footer>
+        </main>
+    </div>
 </body>
 </html>

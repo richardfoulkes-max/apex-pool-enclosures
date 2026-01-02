@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAE Pool Industry Directory | Apex Pool Enclosures</title>
+    <style>
+        :root {
+            --primary: #0891b2;
+            --primary-dark: #0e7490;
+            --text: #0f172a;
+            --muted: #64748b;
+            --bg: #f0f9ff;
+            --card: #ffffff;
+            --border: #e0f2fe;
+            --warning: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+        /* Layout */
+        .layout { display: flex; min-height: 100vh; }
+
+        /* Sidebar */
+        .sidebar { width: 240px; background: linear-gradient(180deg, var(--primary-dark) 0%, #065f46 100%); color: white; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100; }
+        .sidebar-header { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .sidebar-header h1 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .sidebar-header p { font-size: 0.75rem; opacity: 0.7; }
+        .sidebar-nav-menu { padding: 1rem 0; }
+        .sidebar-section { padding: 0.5rem 1.5rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.5); margin-top: 0.5rem; }
+        .sidebar-link { display: block; padding: 0.75rem 1.5rem; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; transition: all 0.2s; border-left: 3px solid transparent; }
+        .sidebar-link:hover { background: rgba(255,255,255,0.1); color: white; }
+        .sidebar-link.active { background: rgba(255,255,255,0.15); color: white; border-left-color: var(--warning); font-weight: 600; }
+        .sidebar-footer { padding: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.75rem; opacity: 0.6; position: absolute; bottom: 0; width: 100%; }
+
+        /* Main Content */
+        .main { flex: 1; margin-left: 240px; }
+
+        @media (max-width: 900px) {
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .sidebar-footer { position: relative; }
+            .main { margin-left: 0; }
+            .layout { flex-direction: column; }
+        }
+
+        .container { max-width: 1400px; padding: 2rem; }
+
+        /* Header */
+        .header { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 2rem; margin-bottom: 2rem; border-radius: 12px; }
+        .header h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+        .header p { opacity: 0.9; }
+
+        /* Stats */
+        .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+        .stat-card { background: white; padding: 1.25rem; border-radius: 8px; text-align: center; border: 1px solid var(--border); }
+        .stat-card .number { font-size: 1.75rem; font-weight: 700; color: var(--primary); }
+        .stat-card .label { font-size: 0.8rem; color: var(--muted); }
+        @media (max-width: 768px) { .stat-row { grid-template-columns: repeat(2, 1fr); } }
+
+        /* Section Headers */
+        h2 { color: var(--primary); font-size: 1.3rem; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--primary); }
+        h3 { color: var(--text); font-size: 1.1rem; margin: 1.5rem 0 0.75rem; }
+
+        /* Tables */
+        .company-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; background: white; border-radius: 8px; overflow: hidden; margin-bottom: 1.5rem; }
+        .company-table th { background: var(--primary); color: white; padding: 0.75rem; text-align: left; font-weight: 600; }
+        .company-table td { padding: 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+        .company-table tr:hover { background: #f8fafc; }
+        .company-table a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .company-table a:hover { text-decoration: underline; }
+
+        /* Badges */
+        .badge { display: inline-block; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
+        .badge-tier1 { background: #fef3c7; color: #92400e; }
+        .badge-tier2 { background: #e0f2fe; color: #0369a1; }
+        .badge-chiller { background: #dbeafe; color: #1e40af; }
+        .badge-maintenance { background: #d1fae5; color: #065f46; }
+        .badge-equipment { background: #f3e8ff; color: #7c3aed; }
+
+        /* Alert boxes */
+        .alert { padding: 1rem 1.25rem; border-radius: 8px; margin: 1rem 0; display: flex; gap: 0.75rem; align-items: flex-start; }
+        .alert-success { background: #d1fae5; border-left: 4px solid var(--success); }
+        .alert-warning { background: #fef3c7; border-left: 4px solid var(--warning); }
+        .alert-info { background: #e0f2fe; border-left: 4px solid var(--primary); }
+        .alert-danger { background: #fee2e2; border-left: 4px solid var(--danger); }
+
+        /* Cards */
+        .card { background: var(--card); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid var(--border); }
+        .card-header { font-weight: 600; color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem; }
+
+        /* Priority targets */
+        .priority-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        @media (max-width: 900px) { .priority-grid { grid-template-columns: 1fr; } }
+        .priority-card { background: white; border: 2px solid var(--border); border-radius: 8px; padding: 1rem; }
+        .priority-card.high { border-color: var(--danger); }
+        .priority-card.medium { border-color: var(--warning); }
+        .priority-card h4 { color: var(--primary); margin-bottom: 0.5rem; }
+        .priority-card ul { margin: 0; padding-left: 1.25rem; font-size: 0.85rem; color: var(--muted); }
+
+        /* Competitor section */
+        .competitor-box { background: #fef3c7; border: 2px solid var(--warning); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; }
+        .competitor-box h3 { color: #92400e; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>Apex Pool Enclosures</h1>
+                <p>APE Series v1.0</p>
+            </div>
+            <nav class="sidebar-nav-menu">
+                <div class="sidebar-section">Documentation</div>
+                <a href="index.html" class="sidebar-link">Home</a>
+                <a href="specification.html" class="sidebar-link">Specification</a>
+                <a href="designs.html" class="sidebar-link">Technical Drawings</a>
+                <a href="bom.html" class="sidebar-link">Bill of Materials</a>
+                <a href="market-research.html" class="sidebar-link">Market Research</a>
+                <a href="uae-pool-directory.html" class="sidebar-link active">UAE Pool Directory</a>
+            </nav>
+            <div class="sidebar-footer">
+                <p>Dubai, UAE</p>
+                <p>+971 50 559 8675</p>
+            </div>
+        </aside>
+        <main class="main">
+            <div class="container">
+                <div class="header">
+                    <h1>UAE Pool Industry Directory</h1>
+                    <p>Complete list of pool contractors, maintenance companies, equipment suppliers, and potential B2B partners</p>
+                </div>
+
+                <!-- Stats -->
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <div class="number">120+</div>
+                        <div class="label">Pool Companies in UAE</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">0</div>
+                        <div class="label">Acoustic Enclosure Suppliers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">40+</div>
+                        <div class="label">Potential B2B Partners</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">7</div>
+                        <div class="label">Emirates Covered</div>
+                    </div>
+                </div>
+
+                <!-- Key Finding -->
+                <div class="alert alert-success">
+                    <span style="font-size: 1.5rem;">&#10003;</span>
+                    <div>
+                        <strong>Key Finding: Zero UAE competitors for acoustic pool equipment enclosures.</strong><br>
+                        Australian products (The Acoustic Box, Pool Filter Box) don't ship internationally. No local manufacturer offers soundproof enclosures.
+                    </div>
+                </div>
+
+                <!-- EXISTING ENCLOSURE PRODUCTS -->
+                <h2>Existing Enclosure Products in Market</h2>
+
+                <div class="competitor-box">
+                    <h3>Global Competitors (Don't Ship to UAE)</h3>
+                    <table class="company-table">
+                        <tr>
+                            <th>Company</th>
+                            <th>Country</th>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Ships to UAE?</th>
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.theacousticbox.com.au/" target="_blank">The Acoustic Box</a></td>
+                            <td>Australia</td>
+                            <td>Steel enclosures, 100+ sizes, 80% noise reduction</td>
+                            <td>$1,649-4,800 AUD</td>
+                            <td><span class="badge" style="background:#fee2e2;color:#991b1b;">No</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://poolpumpcover.com/" target="_blank">Pool Pump Cover</a></td>
+                            <td>Australia</td>
+                            <td>Galvanized steel, acoustic foam lined</td>
+                            <td>$1,500-2,500 AUD</td>
+                            <td><span class="badge" style="background:#fee2e2;color:#991b1b;">No</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://noisypool.com/" target="_blank">NoisyPool</a></td>
+                            <td>USA</td>
+                            <td>Vinyl covers with MLV, 75-90% noise reduction</td>
+                            <td>$336-649 USD</td>
+                            <td><span class="badge" style="background:#fee2e2;color:#991b1b;">No</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://quietfence.com/" target="_blank">Quiet Fence</a></td>
+                            <td>USA</td>
+                            <td>AC/pool equipment screens, 75% noise reduction</td>
+                            <td>$200-500 USD</td>
+                            <td><span class="badge" style="background:#fef3c7;color:#92400e;">Unknown</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="alert alert-warning">
+                    <span style="font-size: 1.5rem;">!</span>
+                    <div>
+                        <strong>UAE Market Gap:</strong> No local or international supplier offers acoustic pool pump or chiller enclosures in the UAE.
+                        Current solutions are DIY, contractor-built masonry, or landscaping screens (none with soundproofing).
+                    </div>
+                </div>
+
+                <!-- POOL BUILDERS -->
+                <h2>1. Pool Builders & Contractors</h2>
+
+                <h3>Tier 1 - Major Players (Luxury/Full Service)</h3>
+                <table class="company-table">
+                    <tr>
+                        <th>Company</th>
+                        <th>Location</th>
+                        <th>Specialty</th>
+                        <th>Contact</th>
+                        <th>Partner Potential</th>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.livingacre.com/" target="_blank">Living Acre</a></td>
+                        <td>Dubai</td>
+                        <td>Luxury pools + landscaping, market leader</td>
+                        <td>+971 56 830 5088</td>
+                        <td><span class="badge badge-tier1">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://desertgrove.com/" target="_blank">Desert Grove</a></td>
+                        <td>Dubai/Abu Dhabi</td>
+                        <td>Custom luxury, infinity pools, spas</td>
+                        <td>Website</td>
+                        <td><span class="badge badge-tier1">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://green-creation.com/" target="_blank">Green Creation</a></td>
+                        <td>Dubai</td>
+                        <td>20+ years, high-end pools + landscaping</td>
+                        <td>Website</td>
+                        <td><span class="badge badge-tier1">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://elkinlandscape.com/" target="_blank">Elkin Corp</a></td>
+                        <td>Dubai</td>
+                        <td>250+ luxury projects, 500+ designs/year</td>
+                        <td>Website</td>
+                        <td><span class="badge badge-tier1">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.kcjlandscaping.ae/" target="_blank">KCJ Landscaping</a></td>
+                        <td>Dubai</td>
+                        <td>Pool + landscape, 8+ years</td>
+                        <td>Website</td>
+                        <td><span class="badge badge-tier1">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://exteriorspacedubai.com/" target="_blank">Exterior Space</a></td>
+                        <td>Dubai</td>
+                        <td>Boutique luxury, preferred by designers</td>
+                        <td>Website</td>
+                        <td><span class="badge badge-tier1">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.kabcogroup.com/" target="_blank">KABCO Group</a></td>
+                        <td>Dubai</td>
+                        <td>MEP certified, pools + interiors</td>
+                        <td>Website</td>
+                        <td><span class="badge badge-tier2">MEDIUM</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://poolsgardensuae.com/" target="_blank">Four Seasons Pool</a></td>
+                        <td>Dubai</td>
+                        <td>Pool + gardens, full service</td>
+                        <td>Website</td>
+                        <td><span class="badge badge-tier2">MEDIUM</span></td>
+                    </tr>
+                </table>
+
+                <h3>Tier 2 - Established Contractors</h3>
+                <table class="company-table">
+                    <tr>
+                        <th>Company</th>
+                        <th>Location</th>
+                        <th>Notes</th>
+                        <th>Website</th>
+                    </tr>
+                    <tr>
+                        <td><a href="https://pearlbluezonepools.com/" target="_blank">Pearl Blue Zone</a></td>
+                        <td>Business Bay</td>
+                        <td>Infinity, lap, resort pools</td>
+                        <td>pearlbluezonepools.com</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://ilpools.ae/" target="_blank">IL Pools (Infinite Leisure)</a></td>
+                        <td>Dubai</td>
+                        <td>Multi-emirate, Astral distributor</td>
+                        <td>ilpools.ae</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.bettergardens.ae/" target="_blank">Better Gardens</a></td>
+                        <td>Dubai</td>
+                        <td>10+ years experience</td>
+                        <td>bettergardens.ae</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://luzanpool.com/" target="_blank">Luzan Pool</a></td>
+                        <td>Dubai</td>
+                        <td>40 years experience, full service</td>
+                        <td>luzanpool.com</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.redeckpools.com/" target="_blank">Redeck Pools</a></td>
+                        <td>Dubai</td>
+                        <td>Construction + landscaping</td>
+                        <td>redeckpools.com</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.mdolandscape.com/" target="_blank">MDO Landscape</a></td>
+                        <td>Dubai</td>
+                        <td>Luxury focus</td>
+                        <td>mdolandscape.com</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.pooltechdubai.com/" target="_blank">Pool Tech Dubai</a></td>
+                        <td>Dubai</td>
+                        <td>Construction + maintenance</td>
+                        <td>pooltechdubai.com</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://makemypool.ae/" target="_blank">Make My Pool</a></td>
+                        <td>Dubai/Abu Dhabi</td>
+                        <td>Renovation specialist</td>
+                        <td>makemypool.ae</td>
+                    </tr>
+                </table>
+
+                <h3>Northern Emirates</h3>
+                <table class="company-table">
+                    <tr>
+                        <th>Company</th>
+                        <th>Coverage</th>
+                        <th>Notes</th>
+                        <th>Website</th>
+                    </tr>
+                    <tr>
+                        <td><a href="https://aquapools.ae/" target="_blank">RAK Aqua Pools</a></td>
+                        <td>RAK, Dubai, Sharjah, Ajman</td>
+                        <td>10+ years, full service</td>
+                        <td>aquapools.ae</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://alqamargroup.com/" target="_blank">Al Qamar</a></td>
+                        <td>All 7 Emirates</td>
+                        <td>Since 2010, high volume</td>
+                        <td>alqamargroup.com</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://kehlanpools.com/uae/" target="_blank">Kehlan Pools</a></td>
+                        <td>Dubai, UAE (from Oman)</td>
+                        <td>Since 2017</td>
+                        <td>kehlanpools.com</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://aqua-pools.ae/" target="_blank">Aqua Pool Sharjah</a></td>
+                        <td>Sharjah</td>
+                        <td>Leading in Sharjah</td>
+                        <td>aqua-pools.ae</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://hellolandscapingllc.com/" target="_blank">Hello Landscaping</a></td>
+                        <td>Sharjah, Dubai, Ajman</td>
+                        <td>Pool + landscape</td>
+                        <td>hellolandscapingllc.com</td>
+                    </tr>
+                </table>
+
+                <!-- MAINTENANCE COMPANIES -->
+                <h2>2. Pool Maintenance Companies</h2>
+                <p style="color: var(--muted); margin-bottom: 1rem;">Best B2B partners - they visit customers regularly and can upsell enclosures.</p>
+
+                <h3>Dubai</h3>
+                <table class="company-table">
+                    <tr>
+                        <th>Company</th>
+                        <th>Contact</th>
+                        <th>Services</th>
+                        <th>Partner Potential</th>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.bluestreampools.com/" target="_blank">Blue Stream</a></td>
+                        <td>Website</td>
+                        <td>Since 2013, maintenance, repair, installation</td>
+                        <td><span class="badge badge-maintenance">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://luzanpool.com/" target="_blank">Luzan Pool</a></td>
+                        <td>Website</td>
+                        <td>40 years, premium service</td>
+                        <td><span class="badge badge-maintenance">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.dubaipoolcare.com/" target="_blank">Dubai Pool Care</a></td>
+                        <td>052-806-1003</td>
+                        <td>Cleaning, chiller, repair</td>
+                        <td><span class="badge badge-maintenance">MEDIUM</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.totalpoolsdubai.com/" target="_blank">Total Pools Dubai</a></td>
+                        <td>Website</td>
+                        <td>Chiller AMC specialist</td>
+                        <td><span class="badge badge-chiller">CHILLER</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.poolfixuae.com/" target="_blank">Poolfix UAE</a></td>
+                        <td>Website</td>
+                        <td>Underwater repair, no-drain specialist</td>
+                        <td><span class="badge badge-maintenance">MEDIUM</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.uaepoolcleaningservice.com/" target="_blank">UAE Pool Cleaning</a></td>
+                        <td>0567120539</td>
+                        <td>Cleaning service</td>
+                        <td><span class="badge badge-maintenance">LOW</span></td>
+                    </tr>
+                </table>
+
+                <h3>Abu Dhabi</h3>
+                <table class="company-table">
+                    <tr>
+                        <th>Company</th>
+                        <th>Price (AED/month)</th>
+                        <th>Notes</th>
+                    </tr>
+                    <tr>
+                        <td><a href="https://arabianpools.com/" target="_blank">Arabian Pools</a></td>
+                        <td>Varies</td>
+                        <td>Flexible contracts, Abu Dhabi leader</td>
+                    </tr>
+                    <tr>
+                        <td>Mplus</td>
+                        <td>~893</td>
+                        <td>2 visits/week standard</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://aquify.ae/" target="_blank">Aquify</a></td>
+                        <td>Varies</td>
+                        <td>Dubai Municipality approved, 10+ years</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://axonpools.com/" target="_blank">AXON Pools</a></td>
+                        <td>Varies</td>
+                        <td>Design + maintenance</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://nanofmuae.com/" target="_blank">Nano FM</a></td>
+                        <td>Varies</td>
+                        <td>Certified team, emergency service</td>
+                    </tr>
+                </table>
+
+                <!-- CHILLER SPECIALISTS -->
+                <h2>3. Pool Chiller Specialists</h2>
+                <p style="color: var(--muted); margin-bottom: 1rem;">Every UAE pool needs cooling. Chiller = enclosure opportunity (APE-CHILL).</p>
+
+                <table class="company-table">
+                    <tr>
+                        <th>Company</th>
+                        <th>Services</th>
+                        <th>Notes</th>
+                        <th>Partner Potential</th>
+                    </tr>
+                    <tr>
+                        <td><a href="https://globewaterchiller.com/" target="_blank">Globe Water Chiller</a></td>
+                        <td>Manufacturing + supply UAE-wide</td>
+                        <td>ISO certified, Ghosh Group subsidiary</td>
+                        <td><span class="badge badge-chiller">BUNDLE</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.joair.com/" target="_blank">Joair (Emirates Jo Trade)</a></td>
+                        <td>Chiller manufacturer, AMC</td>
+                        <td>Custom capacity, size adjustments</td>
+                        <td><span class="badge badge-chiller">BUNDLE</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://pearlbluezonepools.com/" target="_blank">Pearl Blue Zone</a></td>
+                        <td>Supply + install + emergency</td>
+                        <td>Same-day response</td>
+                        <td><span class="badge badge-chiller">SERVICE</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.totalpoolsdubai.com/" target="_blank">Total Pools Dubai</a></td>
+                        <td>Chiller AMC, multi-brand</td>
+                        <td>Astral, Aqua, ATEC, FabroPool</td>
+                        <td><span class="badge badge-chiller">SERVICE</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://ilpools.ae/" target="_blank">Infinite Leisure</a></td>
+                        <td>Astral heat pump distributor</td>
+                        <td>13kW to 210kW range</td>
+                        <td><span class="badge badge-chiller">BUNDLE</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://spcaqua.com/" target="_blank">SPC Aqua</a></td>
+                        <td>Heat pump specialist</td>
+                        <td>Al Shirawi Group, 5000+ projects</td>
+                        <td><span class="badge badge-chiller">BUNDLE</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.liquidblue.me/" target="_blank">Liquid Blue</a></td>
+                        <td>Water tank + pool chillers</td>
+                        <td>Villas, hotels, schools</td>
+                        <td><span class="badge badge-chiller">SERVICE</span></td>
+                    </tr>
+                </table>
+
+                <!-- EQUIPMENT SUPPLIERS -->
+                <h2>4. Pool Equipment Suppliers</h2>
+
+                <h3>Major Distributors (Pentair, Hayward, Astral)</h3>
+                <table class="company-table">
+                    <tr>
+                        <th>Company</th>
+                        <th>Brands</th>
+                        <th>Location</th>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.aquatechpools.ae/" target="_blank">Aquatech Pools</a></td>
+                        <td><strong>Pentair</strong> (authorized MEA distributor)</td>
+                        <td>Dubai</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.hydrotechuae.com/" target="_blank">Hydrotec UAE</a></td>
+                        <td>Astral, Kripsol, Pentair</td>
+                        <td>Dubai</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://astralux.ae/" target="_blank">Astralux Pools</a></td>
+                        <td><strong>Astral Pool</strong> (since 2016)</td>
+                        <td>Dubai</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://waterstore.ae/" target="_blank">WaterStore</a></td>
+                        <td>30,000+ products, all major brands</td>
+                        <td>UAE-wide delivery</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.polytecpools.com/" target="_blank">Polytec Pools</a></td>
+                        <td>Hayward, Pentair, Sta-Rite</td>
+                        <td>Dubai</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.uaepools.com/" target="_blank">UAE Pools</a></td>
+                        <td>Hayward, Kripsol, Astral</td>
+                        <td>Dubai</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://atlanticpnf.com/" target="_blank">Atlantic PNF</a></td>
+                        <td>Major brands</td>
+                        <td>Al Quoz</td>
+                    </tr>
+                </table>
+
+                <h3>Retail Stores</h3>
+                <table class="company-table">
+                    <tr>
+                        <th>Company</th>
+                        <th>Location</th>
+                        <th>Notes</th>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.makpools.com/" target="_blank">MAK Pools</a></td>
+                        <td>Dubai (showroom)</td>
+                        <td>Retail + wholesale, display opportunity</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.pearlpoolfountain.ae/" target="_blank">Pearl Pool Fountain</a></td>
+                        <td>Dubai</td>
+                        <td>Chemicals, equipment</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://aqua-me.ae/" target="_blank">Aqua Industrial</a></td>
+                        <td>Dubai</td>
+                        <td>Full range</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.aceuae.com/" target="_blank">ACE UAE</a></td>
+                        <td>Multiple</td>
+                        <td>Retail chain</td>
+                    </tr>
+                </table>
+
+                <!-- OTHER SERVICES -->
+                <h2>5. Specialty Services</h2>
+
+                <h3>Pool Covers & Automation</h3>
+                <table class="company-table">
+                    <tr>
+                        <th>Company</th>
+                        <th>Products</th>
+                        <th>Website</th>
+                    </tr>
+                    <tr>
+                        <td><a href="https://pooldeckautomation.com/" target="_blank">Pool Deck Automation</a></td>
+                        <td>Automatic covers, all types</td>
+                        <td>pooldeckautomation.com</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.livingacre.com/" target="_blank">Living Acre</a></td>
+                        <td>Automatic hydraulic covers</td>
+                        <td>livingacre.com</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://desertgrove.com/" target="_blank">Desert Grove</a></td>
+                        <td>Abriblue slatted covers</td>
+                        <td>desertgrove.com</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://ert-engg.com/" target="_blank">ERT Pool Covers</a></td>
+                        <td>Fabric covers, automated</td>
+                        <td>ert-engg.com</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.aquaguard.ae/" target="_blank">AquaGuard</a></td>
+                        <td>Safety covers</td>
+                        <td>aquaguard.ae</td>
+                    </tr>
+                </table>
+
+                <h3>Fiberglass/Prefab Pools</h3>
+                <table class="company-table">
+                    <tr>
+                        <th>Company</th>
+                        <th>Specialty</th>
+                        <th>Notes</th>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.pools.ae/" target="_blank">Pools.ae</a></td>
+                        <td>Fiberglass manufacturer</td>
+                        <td>In-house production</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://boxpool.ae/" target="_blank">BoxPool</a></td>
+                        <td>Fiberglass, &lt;1 week install</td>
+                        <td>Leading manufacturer</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.thepool-lady.com/" target="_blank">The Pool Lady</a></td>
+                        <td>Luxury fiberglass, Italian design</td>
+                        <td>7-day install</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://absolute-pools.com/" target="_blank">Absolute Pools</a></td>
+                        <td>Composite, pre-tiled</td>
+                        <td>Fast installation</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://zahratmasafi.com/" target="_blank">Zahrat Masafi</a></td>
+                        <td>GRP pools</td>
+                        <td>Factory prefab</td>
+                    </tr>
+                </table>
+
+                <h3>Leak Detection Specialists</h3>
+                <table class="company-table">
+                    <tr>
+                        <th>Company</th>
+                        <th>Guarantee</th>
+                        <th>Contact</th>
+                    </tr>
+                    <tr>
+                        <td><a href="https://miracleleakdetection.ae/" target="_blank">Miracle Leak Detection</a></td>
+                        <td>"No Find, No Fee"</td>
+                        <td>Website</td>
+                    </tr>
+                    <tr>
+                        <td><a href="http://www.proleaksme.com/" target="_blank">Pro Leaks LLC</a></td>
+                        <td>Specialist</td>
+                        <td>Dubai</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://leakdtech.com/" target="_blank">LeakDtech</a></td>
+                        <td>Non-invasive</td>
+                        <td>Dubai</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.verteco.com/" target="_blank">VERTECO</a></td>
+                        <td>Commercial + residential</td>
+                        <td>UAE</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://austenitetech.com/" target="_blank">Austenite Technical</a></td>
+                        <td>Electronic detection</td>
+                        <td>+971 56 378 7002</td>
+                    </tr>
+                </table>
+
+                <h3>Smart Home / Pool Automation</h3>
+                <table class="company-table">
+                    <tr>
+                        <th>Company</th>
+                        <th>Technology</th>
+                        <th>Notes</th>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.mysmarthome.ae/" target="_blank">My Smart Home</a></td>
+                        <td>Pool chemical + heating automation</td>
+                        <td>Dubai</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.epillars.com/" target="_blank">ePillars (Control4)</a></td>
+                        <td>Full smart home integration</td>
+                        <td>Dubai</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://avario.ae/" target="_blank">Avario</a></td>
+                        <td>Landscape + pool control</td>
+                        <td>Dubai</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://alayoubi.com/" target="_blank">Alayoubi</a></td>
+                        <td>KNX, Moorgen, Zigbee</td>
+                        <td>Dubai</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://besmarthouse.com/" target="_blank">Be Smart House</a></td>
+                        <td>Control4, KNX, Lutron</td>
+                        <td>UAE-wide</td>
+                    </tr>
+                </table>
+
+                <!-- PRIORITY TARGETS -->
+                <h2>Priority B2B Targets for Pool Enclosures</h2>
+
+                <div class="priority-grid">
+                    <div class="priority-card high">
+                        <h4>Priority 1: Maintenance Companies</h4>
+                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem;">Visit customers regularly, can upsell</p>
+                        <ul>
+                            <li><strong>Al Qamar</strong> - All 7 Emirates</li>
+                            <li><strong>Arabian Pools</strong> - Abu Dhabi leader</li>
+                            <li><strong>Blue Stream</strong> - Established since 2013</li>
+                            <li><strong>Luzan Pool</strong> - 40 years, premium</li>
+                        </ul>
+                    </div>
+                    <div class="priority-card high">
+                        <h4>Priority 2: Pool Builders</h4>
+                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem;">New pool = enclosure upsell opportunity</p>
+                        <ul>
+                            <li><strong>Living Acre</strong> - Market leader</li>
+                            <li><strong>Desert Grove</strong> - Luxury segment</li>
+                            <li><strong>KCJ Landscaping</strong> - High volume</li>
+                            <li><strong>Green Creation</strong> - 20+ years</li>
+                        </ul>
+                    </div>
+                    <div class="priority-card medium">
+                        <h4>Priority 3: Chiller Suppliers</h4>
+                        <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem;">Bundle APE-CHILL with chiller sales</p>
+                        <ul>
+                            <li><strong>Globe Water Chiller</strong> - Manufacturer</li>
+                            <li><strong>Total Pools Dubai</strong> - AMC specialist</li>
+                            <li><strong>Infinite Leisure</strong> - Astral distributor</li>
+                            <li><strong>SPC Aqua</strong> - 5000+ projects</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- DIRECTORIES -->
+                <h2>Industry Directories & Resources</h2>
+                <table class="company-table">
+                    <tr>
+                        <th>Resource</th>
+                        <th>URL</th>
+                        <th>Notes</th>
+                    </tr>
+                    <tr>
+                        <td>Yellow Pages UAE</td>
+                        <td><a href="https://www.yellowpages-uae.com/uae/swimming-pool-contractors" target="_blank">yellowpages-uae.com</a></td>
+                        <td>120+ companies listed</td>
+                    </tr>
+                    <tr>
+                        <td>ATN Info</td>
+                        <td><a href="https://www.atninfo.com/uae/all/swimming-pool-installation-maintenance-1453" target="_blank">atninfo.com</a></td>
+                        <td>Business directory</td>
+                    </tr>
+                    <tr>
+                        <td>Buildeey</td>
+                        <td><a href="https://buildeey.com/ae/swimming-pools" target="_blank">buildeey.com</a></td>
+                        <td>Contractor listings</td>
+                    </tr>
+                    <tr>
+                        <td>MyBayut</td>
+                        <td><a href="https://www.bayut.com/mybayut/" target="_blank">bayut.com/mybayut</a></td>
+                        <td>Cost guides, company lists</td>
+                    </tr>
+                </table>
+
+                <p style="text-align: center; color: var(--muted); margin-top: 2rem; font-size: 0.85rem;">
+                    Directory compiled January 2026 | Apex Pool Enclosures | For B2B outreach
+                </p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

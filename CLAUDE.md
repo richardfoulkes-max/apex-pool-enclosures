@@ -28,11 +28,12 @@ Acoustic enclosures for pool equipment (pumps, filters, chillers). Modular desig
 ### File Structure
 ```
 website/
-├── index.html          ← Main landing page
-├── specification.html  ← Full engineering spec (12 sections)
-├── designs.html        ← 5 SVG technical drawings
-├── bom.html            ← Bill of materials
-├── market-research.html ← Competitor analysis
+├── index.html              ← Main landing page
+├── specification.html      ← Full engineering spec (12 sections, IP55 rain-proof)
+├── designs.html            ← 5 SVG drawings + heater/chiller physics section
+├── bom.html                ← Bill of materials
+├── market-research.html    ← GCC + Global market analysis
+├── uae-pool-directory.html ← 120+ UAE pool companies (B2B targets)
 
 manufacturer-rfq/
 └── APE-Specification-v1.md ← Manufacturer RFQ package
@@ -41,16 +42,52 @@ manufacturer-rfq/
 ## Project Location
 `/Users/richardfoulkes/Library/CloudStorage/OneDrive-Personal/Documents/Projects/apex-pool-enclosures`
 
-## Related Project
-TV Enclosures: `/Users/richardfoulkes/Library/CloudStorage/OneDrive-Personal/Documents/Projects/apex-tv-enclosures`
+## Related Projects
+- TV Enclosures: `/Users/richardfoulkes/Library/CloudStorage/OneDrive-Personal/Documents/Projects/apex-tv-enclosures`
+- EV Enclosures: `/Users/richardfoulkes/Library/CloudStorage/OneDrive-Personal/Documents/Projects/apex-ev-enclosures`
 
 ## Market Opportunity
-- 200K+ private pools in UAE
-- Zero local competitors
-- Australian imports $1,200+ USD
+- **GCC Total:** 500-650K private pools (UAE 200K, Saudi 150-250K, Qatar 40-60K, Kuwait 50-80K)
+- **Global:** 28M+ pools worldwide, zero global acoustic enclosure brand
+- **Southern Europe:** France 3M, Spain 1.3M, Germany 2.2M - no competitors identified
+- Zero GCC competitors, Australian brands don't ship internationally
 - Pool contractors build custom but without acoustic treatment
+- **Year 5 Target:** $5.9M revenue across GCC + Europe + USA
 
 ## Recent Work History
+
+### Session: 2026-01-01 (PM) - Global Market Analysis + Rain-Proof Design
+
+**Major updates to market-research.html:**
+- Added "GCC Market Expansion" section with country-by-country breakdown
+- Saudi Arabia analysis: Vision 2030, +47% growth, megaprojects (NEOM, Red Sea)
+- Added "Global Market Opportunity" section with worldwide pool statistics
+- Southern Europe focus: France (3M), Spain (1.3M) as untapped markets
+- Revenue projections: GCC $1.4M + Europe $2.5M + USA $2M = $5.9M Year 5
+- Phased expansion strategy: UAE → Saudi → Spain/France → Scale
+
+**Specification updates (IP55 rain-proof):**
+- Upgraded IP54 → IP55 (rain-proof, hose cleanable)
+- Added louvered intake vents (30° downward angle, double-layer with drip edges)
+- Added louvered exhaust (45° angle, 75mm overlap)
+- New section: "Why Louvers, Not Open Gaps" comparison table
+- Updated rain & humidity management with IP55 protection features
+
+**New pages created:**
+- `uae-pool-directory.html` - 120+ UAE pool companies organized by category
+- Priority B2B targets, existing global products, industry directories
+
+**Engineering additions (designs.html):**
+- "Engineering Deep Dive: Enclosing Heat-Generating Equipment" section
+- Heat pump thermodynamics SVG diagram
+- Critical numbers table (CFM requirements, temperatures)
+- Correct vs Wrong enclosure design comparison
+- Manufacturer clearance requirements (Zodiac, Pentair, Astral, etc.)
+
+**Navigation updates:**
+- Added UAE Pool Directory link to all 6 website pages
+
+---
 
 ### Session: 2026-01-01 - APE Series v1.0 Complete
 

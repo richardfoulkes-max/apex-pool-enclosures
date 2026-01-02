@@ -22,13 +22,31 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-        /* Navigation */
-        .nav { background: var(--primary-dark); padding: 0.75rem 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .nav a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.8rem; padding: 0.25rem 0.5rem; border-radius: 4px; transition: all 0.2s; }
-        .nav a:hover { background: rgba(255,255,255,0.1); color: white; }
-        .nav a.active { background: rgba(255,255,255,0.2); color: white; font-weight: 600; }
+        /* Layout */
+        .layout { display: flex; min-height: 100vh; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        /* Sidebar */
+        .sidebar { width: 240px; background: linear-gradient(180deg, var(--primary-dark) 0%, #065f46 100%); color: white; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100; }
+        .sidebar-header { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .sidebar-header h1 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .sidebar-header p { font-size: 0.75rem; opacity: 0.7; }
+        .sidebar-nav { padding: 1rem 0; }
+        .sidebar-section { padding: 0.5rem 1.5rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.5); margin-top: 0.5rem; }
+        .sidebar-link { display: block; padding: 0.75rem 1.5rem; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; transition: all 0.2s; border-left: 3px solid transparent; }
+        .sidebar-link:hover { background: rgba(255,255,255,0.1); color: white; }
+        .sidebar-link.active { background: rgba(255,255,255,0.15); color: white; border-left-color: var(--accent); font-weight: 600; }
+        .sidebar-footer { padding: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.75rem; opacity: 0.6; position: absolute; bottom: 0; width: 100%; }
+
+        /* Main Content */
+        .main { flex: 1; margin-left: 240px; }
+        .container { max-width: 1100px; padding: 2rem; }
+
+        @media (max-width: 900px) {
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .sidebar-footer { position: relative; }
+            .main { margin-left: 0; }
+            .layout { flex-direction: column; }
+        }
 
         /* Header */
         .header { text-align: center; margin-bottom: 3rem; }
@@ -124,15 +142,28 @@
     </style>
 </head>
 <body>
-    <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="specification.html" class="active">Specification</a>
-        <a href="designs.html">Designs</a>
-        <a href="bom.html">BOM</a>
-        <a href="market-research.html">Research</a>
-    </nav>
-
-    <div class="container">
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>Apex Pool Enclosures</h1>
+                <p>APE Series v1.0</p>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">Documentation</div>
+                <a href="index.html" class="sidebar-link">Home</a>
+                <a href="specification.html" class="sidebar-link active">Specification</a>
+                <a href="designs.html" class="sidebar-link">Technical Drawings</a>
+                <a href="bom.html" class="sidebar-link">Bill of Materials</a>
+                <a href="market-research.html" class="sidebar-link">Market Research</a>
+                <a href="uae-pool-directory.html" class="sidebar-link">UAE Pool Directory</a>
+            </nav>
+            <div class="sidebar-footer">
+                <p>Dubai, UAE</p>
+                <p>+971 50 559 8675</p>
+            </div>
+        </aside>
+        <main class="main">
+            <div class="container">
         <header class="header">
             <h1>APE Series - Pool Equipment Enclosure</h1>
             <p class="subtitle">Modular Acoustic Enclosure System for Pool Pumps, Filters & Chillers</p>
@@ -186,7 +217,7 @@
                 <tr><td>Product Line</td><td>APE Series (Apex Pool Equipment)</td></tr>
                 <tr><td>System Type</td><td>Modular interlocking panels</td></tr>
                 <tr><td>Acoustic Performance</td><td>70-80% noise reduction (certified)</td></tr>
-                <tr><td>Weather Rating</td><td>IP54 (dust protected, splash resistant)</td></tr>
+                <tr><td>Weather Rating</td><td>IP55 (rain-proof, hose cleanable)</td></tr>
                 <tr><td>Temperature Rating</td><td>-10°C to +60°C ambient</td></tr>
                 <tr><td>Material - Frame</td><td>5052-H32 Aluminum (2.0mm)</td></tr>
                 <tr><td>Material - Fasteners</td><td>316 Stainless Steel (salt pool safe)</td></tr>
@@ -348,33 +379,53 @@
                 <tr><td>Attachment</td><td>Industrial adhesive (pressure-sensitive)</td></tr>
             </table>
 
-            <h3>3.2 Acoustic Baffle Design</h3>
-            <p>Ventilation openings use acoustic baffles to maintain airflow while blocking sound transmission.</p>
+            <h3>3.2 Rain-Proof Acoustic Baffle Design</h3>
+            <p>All ventilation openings use downward-angled louvers that block rain while maintaining airflow and acoustic performance. Unlike open-gap designs (which leak in rain), our louvered system is fully rain-proof.</p>
+
+            <div class="alert alert-success">
+                <span style="font-size: 1.5rem;">🌧️</span>
+                <div>
+                    <strong>Rain-Proof Guarantee</strong><br>
+                    Louvered vents angled at 30-45° shed water externally. No rain enters the enclosure - even in UAE thunderstorms or when cleaning with a garden hose.
+                </div>
+            </div>
 
             <div class="grid-2">
                 <div class="card">
-                    <h4>Intake Baffle (Bottom)</h4>
+                    <h4>Intake Louvers (Bottom/Sides)</h4>
                     <ul>
-                        <li>Labyrinth design (2 offset layers)</li>
-                        <li>50mm deep, 25mm gap between layers</li>
+                        <li><strong>Louvered design (30° downward angle)</strong></li>
+                        <li>Double-layer with 25mm stagger</li>
+                        <li>Drip edges on each louver blade</li>
                         <li>Foam-lined internal surfaces</li>
                         <li>Effective open area: 40%</li>
                         <li>Sound reduction: 15-20 dB</li>
+                        <li><strong>Rain ingress: Zero</strong></li>
                     </ul>
                 </div>
                 <div class="card">
-                    <h4>Exhaust Baffle (Top)</h4>
+                    <h4>Exhaust Louvers (Top)</h4>
                     <ul>
-                        <li>Louvered design (45° angle)</li>
-                        <li>75mm deep louvers</li>
+                        <li><strong>Louvered design (45° downward angle)</strong></li>
+                        <li>75mm deep louver blades</li>
                         <li>Foam strips on louver backs</li>
-                        <li>Rain protection integrated</li>
+                        <li>Overlapping design blocks vertical rain</li>
                         <li>Sound reduction: 10-15 dB</li>
+                        <li><strong>Rain ingress: Zero</strong></li>
                     </ul>
                 </div>
             </div>
 
-            <h3>3.3 Sound Transmission Paths</h3>
+            <h3>3.3 Why Louvers, Not Open Gaps</h3>
+            <table>
+                <tr><th>Design</th><th>Acoustic</th><th>Rain Protection</th><th>Our Choice</th></tr>
+                <tr style="background: #fee2e2;"><td>Open gaps (25mm slots)</td><td>Poor</td><td>Leaks in rain</td><td>No</td></tr>
+                <tr style="background: #fee2e2;"><td>Mesh screens</td><td>Poor</td><td>Leaks in rain</td><td>No</td></tr>
+                <tr style="background: #dcfce7;"><td><strong>Angled louvers (30-45°)</strong></td><td><strong>Good</strong></td><td><strong>Rain-proof</strong></td><td><strong>Yes</strong></td></tr>
+                <tr style="background: #dcfce7;"><td>Double-layer labyrinth louvers</td><td>Excellent</td><td>Rain-proof</td><td>Premium option</td></tr>
+            </table>
+
+            <h3>3.4 Sound Transmission Paths</h3>
             <table>
                 <tr><th>Path</th><th>Without Enclosure</th><th>With Enclosure</th><th>Reduction</th></tr>
                 <tr><td>Direct (through air)</td><td>65-80 dB</td><td>45-55 dB</td><td>20-25 dB</td></tr>
@@ -383,7 +434,7 @@
                 <tr><td><strong>Overall</strong></td><td><strong>65-80 dB</strong></td><td><strong>45-55 dB</strong></td><td><strong>70-80% reduction</strong></td></tr>
             </table>
 
-            <h3>3.4 Certification Requirements</h3>
+            <h3>3.5 Certification Requirements</h3>
             <ul>
                 <li>Independent acoustic engineer certification required</li>
                 <li>Test methodology: ISO 11546-1 (Sound insulation of enclosures)</li>
@@ -444,12 +495,32 @@ Atmosphere</div>
                 </div>
             </div>
 
-            <h3>4.3 Humidity Management</h3>
+            <h3>4.3 Rain & Humidity Management</h3>
+
+            <div class="alert alert-info">
+                <span style="font-size: 1.5rem;">💧</span>
+                <div>
+                    <strong>IP55 Rain-Proof Design</strong><br>
+                    Enclosure withstands rain from any direction and can be cleaned with a garden hose. No water enters the equipment chamber.
+                </div>
+            </div>
+
+            <table class="spec-table">
+                <tr><th>Protection Feature</th><th>Specification</th></tr>
+                <tr><td>Intake louvers</td><td>30° downward angle, double-layer with drip edges</td></tr>
+                <tr><td>Exhaust louvers</td><td>45° downward angle, 75mm overlap</td></tr>
+                <tr><td>Panel joints</td><td>Tongue-and-groove with EPDM weather seal</td></tr>
+                <tr><td>Access door</td><td>Continuous EPDM gasket, compression latches</td></tr>
+                <tr><td>Floor drainage</td><td>4× 10mm drain holes with mesh (condensation only)</td></tr>
+                <tr><td>Foam material</td><td>Closed-cell polyethylene (&lt;2% water absorption)</td></tr>
+            </table>
+
+            <h4>Drainage System</h4>
             <ul>
-                <li><strong>Drainage:</strong> 10mm drain holes at lowest point (4 per module)</li>
-                <li><strong>Material:</strong> Closed-cell foam does not absorb moisture</li>
-                <li><strong>Condensation:</strong> Minimal due to ventilation and motor heat</li>
-                <li><strong>Rain ingress:</strong> Louver design prevents direct water entry</li>
+                <li><strong>Primary protection:</strong> Louvers prevent rain entry entirely</li>
+                <li><strong>Secondary drainage:</strong> Floor drains handle condensation and any incidental moisture</li>
+                <li><strong>Drain location:</strong> 4× drain holes at lowest point (corners)</li>
+                <li><strong>Insect mesh:</strong> 316 SS mesh over drains (prevents nesting)</li>
             </ul>
         </section>
 
@@ -760,7 +831,7 @@ Atmosphere</div>
             <table>
                 <tr><th>Test</th><th>Standard</th><th>Acceptance Criteria</th></tr>
                 <tr><td>Acoustic performance</td><td>ISO 11546-1</td><td>≥70% noise reduction</td></tr>
-                <tr><td>Weather resistance</td><td>IP54 (IEC 60529)</td><td>Dust protected, splash resistant</td></tr>
+                <tr><td>Weather resistance</td><td>IP55 (IEC 60529)</td><td>Rain-proof, hose cleanable</td></tr>
                 <tr><td>Salt spray corrosion</td><td>ASTM B117</td><td>1500 hours, no red rust</td></tr>
                 <tr><td>UV exposure</td><td>ASTM G154</td><td>1000 hours, no chalking/cracking</td></tr>
                 <tr><td>Structural load</td><td>-</td><td>100kg top load, no deformation</td></tr>
@@ -812,12 +883,12 @@ Atmosphere</div>
             </table>
         </section>
 
-        <footer class="footer">
-            <p><strong>APE Series Pool Equipment Enclosure</strong> - Specification v1.0</p>
-            <p>Apex Enclosures | January 2026 | For Manufacturing RFQ</p>
-            <p style="margin-top: 1rem;"><a href="pool-designs.html">View Technical Drawings</a> | <a href="pool-bom.html">View Bill of Materials</a></p>
-        </footer>
+            <footer class="footer">
+                <p><strong>APE Series Pool Equipment Enclosure</strong> - Specification v1.0</p>
+                <p>Apex Enclosures | January 2026 | For Manufacturing RFQ</p>
+            </footer>
+            </div>
+        </main>
     </div>
-    <script src="nav.js"></script>
 </body>
 </html>

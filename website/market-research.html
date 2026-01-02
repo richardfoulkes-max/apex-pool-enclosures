@@ -19,7 +19,33 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+
+        /* Layout */
+        .layout { display: flex; min-height: 100vh; }
+
+        /* Sidebar */
+        .sidebar { width: 240px; background: linear-gradient(180deg, var(--primary-dark) 0%, #065f46 100%); color: white; position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; z-index: 100; }
+        .sidebar-header { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .sidebar-header h1 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .sidebar-header p { font-size: 0.75rem; opacity: 0.7; }
+        .sidebar-nav-menu { padding: 1rem 0; }
+        .sidebar-section { padding: 0.5rem 1.5rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.5); margin-top: 0.5rem; }
+        .sidebar-link { display: block; padding: 0.75rem 1.5rem; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; transition: all 0.2s; border-left: 3px solid transparent; }
+        .sidebar-link:hover { background: rgba(255,255,255,0.1); color: white; }
+        .sidebar-link.active { background: rgba(255,255,255,0.15); color: white; border-left-color: var(--warning); font-weight: 600; }
+        .sidebar-footer { padding: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.75rem; opacity: 0.6; position: absolute; bottom: 0; width: 100%; }
+
+        /* Main Content */
+        .main { flex: 1; margin-left: 240px; }
+
+        @media (max-width: 900px) {
+            .sidebar { width: 100%; height: auto; position: relative; }
+            .sidebar-footer { position: relative; }
+            .main { margin-left: 0; }
+            .layout { flex-direction: column; }
+        }
+
+        .container { max-width: 1300px; padding: 2rem; }
 
         /* Header */
         .header { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 2rem; margin-bottom: 2rem; border-radius: 12px; }
@@ -88,21 +114,39 @@
         .sizing-diagram { background: #f8fafc; border: 2px dashed var(--border); border-radius: 8px; padding: 1.5rem; text-align: center; }
         .module-box { display: inline-block; background: var(--primary); color: white; padding: 1rem 1.5rem; margin: 0.5rem; border-radius: 4px; font-weight: 600; }
         .module-box.add { background: #e2e8f0; color: var(--muted); border: 2px dashed var(--muted); }
+
+        /* Doc Navigation - matches TV enclosures format */
+        .doc-nav { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); padding: 1rem 2rem; }
+        .doc-nav h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7); margin-bottom: 0.75rem; }
+        .doc-nav-grid { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+        .doc-card { background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; color: white; border: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; font-weight: 500; transition: all 0.2s; }
+        .doc-card:hover { background: rgba(255,255,255,0.2); }
+        .doc-card.active { background: white; color: var(--primary); }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav style="background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%); padding: 0.75rem 2rem;">
-        <div style="max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 0.5rem;">
-            <a href="index.html" style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; color: white; border: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; font-weight: 500;">Home</a>
-            <a href="specification.html" style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; color: white; border: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; font-weight: 500;">Specification</a>
-            <a href="designs.html" style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; color: white; border: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; font-weight: 500;">Designs</a>
-            <a href="bom.html" style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; color: white; border: 1px solid rgba(255,255,255,0.2); font-size: 0.85rem; font-weight: 500;">BOM</a>
-            <a href="market-research.html" style="background: white; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; color: #0891b2; font-size: 0.85rem; font-weight: 600;">Research</a>
-        </div>
-    </nav>
-
-    <div class="container">
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>Apex Pool Enclosures</h1>
+                <p>APE Series v1.0</p>
+            </div>
+            <nav class="sidebar-nav-menu">
+                <div class="sidebar-section">Documentation</div>
+                <a href="index.html" class="sidebar-link">Home</a>
+                <a href="specification.html" class="sidebar-link">Specification</a>
+                <a href="designs.html" class="sidebar-link">Technical Drawings</a>
+                <a href="bom.html" class="sidebar-link">Bill of Materials</a>
+                <a href="market-research.html" class="sidebar-link active">Market Research</a>
+                <a href="uae-pool-directory.html" class="sidebar-link">UAE Pool Directory</a>
+            </nav>
+            <div class="sidebar-footer">
+                <p>Dubai, UAE</p>
+                <p>+971 50 559 8675</p>
+            </div>
+        </aside>
+        <main class="main">
+            <div class="container">
         <div class="header">
             <h1>Pool Equipment Enclosures - Market Research</h1>
             <p>Comprehensive analysis: competitors, sizing challenges, equipment types, and UAE opportunity</p>
@@ -112,20 +156,20 @@
         <!-- Key Stats -->
         <div class="stat-row">
             <div class="stat-card">
-                <div class="number">200K+</div>
-                <div class="label">Private Pools in UAE</div>
+                <div class="number">500K+</div>
+                <div class="label">Private Pools in GCC</div>
             </div>
             <div class="stat-card">
-                <div class="number">$0</div>
-                <div class="label">UAE Competitors</div>
+                <div class="number">0</div>
+                <div class="label">GCC Competitors</div>
             </div>
             <div class="stat-card">
-                <div class="number">$1,200+</div>
-                <div class="label">Import Cost (AUS)</div>
+                <div class="number">AED 2.5M</div>
+                <div class="label">Year 3 Target Revenue</div>
             </div>
             <div class="stat-card">
-                <div class="number">80%</div>
-                <div class="label">Noise Reduction Target</div>
+                <div class="number">700</div>
+                <div class="label">Units/Year @ 0.5%</div>
             </div>
         </div>
 
@@ -398,6 +442,545 @@
             </div>
         </div>
 
+        <!-- GCC Market Expansion -->
+        <h2>GCC Market Expansion: The Full Opportunity</h2>
+
+        <div class="alert alert-success">
+            <span style="font-size: 1.5rem;">🌍</span>
+            <div>
+                <strong>UAE alone is a test market. The real opportunity is GCC-wide.</strong><br>
+                500,000+ private pools across 6 countries. Zero acoustic enclosure competitors in any of them.
+            </div>
+        </div>
+
+        <!-- GCC Stats Row -->
+        <div class="stat-row">
+            <div class="stat-card">
+                <div class="number">500K+</div>
+                <div class="label">Private Pools in GCC</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">35-55K</div>
+                <div class="label">New Pools/Year</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">140K</div>
+                <div class="label">Luxury Segment</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">0</div>
+                <div class="label">GCC Competitors</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Market Size by Country</div>
+            <table>
+                <tr>
+                    <th>Country</th>
+                    <th>Population</th>
+                    <th>Est. Private Pools</th>
+                    <th>New Pools/Year</th>
+                    <th>Luxury Segment</th>
+                    <th>Priority</th>
+                </tr>
+                <tr style="background: #d1fae5;">
+                    <td><strong>UAE</strong></td>
+                    <td>10M</td>
+                    <td>200,000</td>
+                    <td>8-12K</td>
+                    <td>40,000</td>
+                    <td><span class="badge badge-success">TEST MARKET</span></td>
+                </tr>
+                <tr style="background: #fef3c7;">
+                    <td><strong>Saudi Arabia</strong></td>
+                    <td>35M</td>
+                    <td>150,000-250,000</td>
+                    <td>15-25K</td>
+                    <td>50,000+</td>
+                    <td><span class="badge badge-warning">PRIORITY #1</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Qatar</strong></td>
+                    <td>3M</td>
+                    <td>40,000-60,000</td>
+                    <td>3-5K</td>
+                    <td>15,000</td>
+                    <td><span class="badge badge-info">Phase 3</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Kuwait</strong></td>
+                    <td>4.5M</td>
+                    <td>50,000-80,000</td>
+                    <td>4-6K</td>
+                    <td>20,000</td>
+                    <td><span class="badge badge-info">Phase 3</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Bahrain</strong></td>
+                    <td>1.5M</td>
+                    <td>15,000-25,000</td>
+                    <td>1-2K</td>
+                    <td>5,000</td>
+                    <td><span class="badge badge-info">Phase 3</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Oman</strong></td>
+                    <td>5M</td>
+                    <td>30,000-50,000</td>
+                    <td>2-4K</td>
+                    <td>10,000</td>
+                    <td><span class="badge badge-info">Phase 3</span></td>
+                </tr>
+                <tr style="background: var(--bg); font-weight: 600;">
+                    <td><strong>TOTAL GCC</strong></td>
+                    <td>59M</td>
+                    <td>500,000-650,000</td>
+                    <td>35-55K</td>
+                    <td>140,000</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Saudi Arabia Section -->
+        <div class="card" style="border-left: 4px solid #f59e0b;">
+            <div class="card-header" style="color: #92400e;">Saudi Arabia: The Real Prize</div>
+            <p style="color: var(--muted); margin-bottom: 1rem;">Saudi is undergoing the <strong>biggest construction boom in history</strong>. Vision 2030 megaprojects are creating massive pool infrastructure:</p>
+
+            <div class="grid-2">
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Megaprojects with Pools</h4>
+                    <ul>
+                        <li><strong>Red Sea Project:</strong> 50 hotels, 1,000+ residential properties with pools</li>
+                        <li><strong>NEOM Norlana:</strong> 711 properties including beach villas</li>
+                        <li><strong>Six Senses:</strong> 40 pool villas</li>
+                        <li><strong>Nujuma Ritz-Carlton:</strong> 63 villas + 18 residences</li>
+                        <li><strong>Diriyah Gate:</strong> Luxury villas with pools</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Market Growth</h4>
+                    <ul>
+                        <li><strong>+47% growth</strong> in real estate transactions (2024)</li>
+                        <li>Luxury residential: <strong>$15.1B → $25.7B by 2033</strong></li>
+                        <li>Total residential: <strong>$71.8B → $130.8B by 2033</strong></li>
+                        <li><strong>3× UAE population</strong> = 3× market size</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="alert alert-warning" style="margin-top: 1rem;">
+                <span>⏰</span>
+                <div><strong>Time-sensitive opportunity:</strong> The Vision 2030 construction boom won't last forever. Enter Saudi while megaprojects are still being built.</div>
+            </div>
+        </div>
+
+        <!-- Revenue Projections -->
+        <div class="card">
+            <div class="card-header">Revenue Projections: UAE vs GCC</div>
+            <table>
+                <tr>
+                    <th>Scenario</th>
+                    <th>UAE Only</th>
+                    <th>+ Saudi</th>
+                    <th>+ Full GCC</th>
+                </tr>
+                <tr>
+                    <td><strong>Year 1 Units</strong></td>
+                    <td>80-200</td>
+                    <td>200-500</td>
+                    <td>300-700</td>
+                </tr>
+                <tr>
+                    <td><strong>Year 3 Units</strong></td>
+                    <td>150-300</td>
+                    <td>400-800</td>
+                    <td>600-1,200</td>
+                </tr>
+                <tr style="background: #d1fae5;">
+                    <td><strong>Year 3 Revenue (AED)</strong></td>
+                    <td>450K-900K</td>
+                    <td>1.2M-2.4M</td>
+                    <td><strong>1.8M-3.6M</strong></td>
+                </tr>
+            </table>
+
+            <div class="alert alert-info" style="margin-top: 1rem;">
+                <span>📊</span>
+                <div><strong>The math:</strong> At 0.5% penetration of 140,000 luxury pools = 700 units/year = <strong>AED 2.45M revenue</strong> @ AED 3,500 average.</div>
+            </div>
+        </div>
+
+        <!-- Retrofit vs New Construction -->
+        <div class="card">
+            <div class="card-header">Retrofit = Real Money</div>
+            <p style="color: var(--muted); margin-bottom: 1rem;">New construction is limited by building rate. Retrofit market is 10× larger:</p>
+
+            <table>
+                <tr>
+                    <th>Channel</th>
+                    <th>Addressable Market</th>
+                    <th>Conversion Rate</th>
+                    <th>Year 1 Units</th>
+                    <th>Notes</th>
+                </tr>
+                <tr>
+                    <td><strong>New Construction</strong></td>
+                    <td>35-55K new pools/year</td>
+                    <td>1-3%</td>
+                    <td>50-150</td>
+                    <td>Easier sale, limited volume</td>
+                </tr>
+                <tr style="background: #fef3c7;">
+                    <td><strong>Retrofit</strong></td>
+                    <td>500K+ existing pools</td>
+                    <td>0.1-0.5%</td>
+                    <td>100-500</td>
+                    <td>Harder sale, massive TAM</td>
+                </tr>
+            </table>
+
+            <h4 style="color: var(--primary); margin-top: 1.5rem; margin-bottom: 0.5rem;">Retrofit Trigger Events (When People Buy)</h4>
+            <div class="grid-4">
+                <div class="equip-card">
+                    <div class="icon">🔊</div>
+                    <h4>Noise Complaint</h4>
+                    <p>Neighbor/HOA complaint = urgent need</p>
+                </div>
+                <div class="equip-card">
+                    <div class="icon">👶</div>
+                    <h4>Life Change</h4>
+                    <p>New baby, WFH = pump noise now annoying</p>
+                </div>
+                <div class="equip-card">
+                    <div class="icon">🔧</div>
+                    <h4>Equipment Upgrade</h4>
+                    <p>"While we're at it" upsell</p>
+                </div>
+                <div class="equip-card">
+                    <div class="icon">🧹</div>
+                    <h4>Maintenance Visit</h4>
+                    <p>Contractor referral opportunity</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Expansion Strategy -->
+        <div class="card" style="background: linear-gradient(135deg, #e0f2fe, #bae6fd); border: none;">
+            <div class="card-header" style="color: #0369a1;">GCC Expansion Strategy</div>
+            <table>
+                <tr>
+                    <th>Phase</th>
+                    <th>Timeline</th>
+                    <th>Markets</th>
+                    <th>Focus</th>
+                </tr>
+                <tr>
+                    <td><strong>Phase 1</strong></td>
+                    <td>Now</td>
+                    <td>UAE</td>
+                    <td>Test product-market fit, refine pricing, build contractor relationships</td>
+                </tr>
+                <tr style="background: #fef3c7;">
+                    <td><strong>Phase 2</strong></td>
+                    <td>Month 6-12</td>
+                    <td>Saudi Arabia</td>
+                    <td>Partner with Saudi pool contractors, target megaproject developers, Riyadh + Jeddah</td>
+                </tr>
+                <tr>
+                    <td><strong>Phase 3</strong></td>
+                    <td>Year 2</td>
+                    <td>Qatar, Kuwait, Bahrain, Oman</td>
+                    <td>Distributor model, The Pearl (Qatar), West Bay Lagoon</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Sources -->
+        <div class="card">
+            <div class="card-header">GCC Market Research Sources</div>
+            <ul>
+                <li><a href="https://www.imarcgroup.com/saudi-arabia-residential-real-estate-market" target="_blank">IMARC Group - Saudi Residential Market</a></li>
+                <li><a href="https://www.imarcgroup.com/saudi-arabia-luxury-residential-real-estate-market" target="_blank">IMARC Group - Saudi Luxury Residential</a></li>
+                <li><a href="https://www.arabianbusiness.com/industries/real-estate/gcc-real-estate-transactions-hit-383bn-apartment-yields-in-saudi-uae-kuwait-qatar-bahrain-and-oman-revealed" target="_blank">Arabian Business - GCC $383B Transactions</a></li>
+                <li><a href="https://www.big5constructsaudi.com/saudi-arabia-megaprojects-24-massive-developments-in-the-making/" target="_blank">Big 5 - Saudi Megaprojects Overview</a></li>
+                <li><a href="https://www.redseaglobal.com/en/" target="_blank">Red Sea Global - Official Site</a></li>
+                <li><a href="https://www.mordorintelligence.com/industry-reports/global-swimmingpool-market" target="_blank">Mordor Intelligence - Swimming Pool Market</a></li>
+            </ul>
+        </div>
+
+        <!-- GLOBAL MARKET OPPORTUNITY -->
+        <h2>Global Market Opportunity: Why Stop at GCC?</h2>
+
+        <div class="alert alert-success">
+            <span style="font-size: 1.5rem;">🌍</span>
+            <div>
+                <strong>28+ million pools worldwide. Zero global acoustic enclosure brand.</strong><br>
+                The Acoustic Box (Australia) only ships domestically. NoisyPool (USA) only ships to USA. The global market is wide open.
+            </div>
+        </div>
+
+        <!-- Global Stats -->
+        <div class="stat-row">
+            <div class="stat-card">
+                <div class="number">28M+</div>
+                <div class="label">Pools Worldwide</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">$3.25B</div>
+                <div class="label">Global Pool Market</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">79%</div>
+                <div class="label">Residential Pools</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">7.12%</div>
+                <div class="label">MENA Growth Rate</div>
+            </div>
+        </div>
+
+        <!-- Global Pool Count by Region -->
+        <div class="card">
+            <div class="card-header">Global Pool Count by Country (2024)</div>
+            <table>
+                <tr>
+                    <th>Country</th>
+                    <th>Private Pools</th>
+                    <th>Key Markets</th>
+                    <th>Existing Competitors</th>
+                    <th>Opportunity</th>
+                </tr>
+                <tr style="background: #fee2e2;">
+                    <td><strong>USA</strong></td>
+                    <td>10.4 million</td>
+                    <td>Florida (1.6M), California (1.3M), Texas (1M+)</td>
+                    <td>NoisyPool, local fabricators</td>
+                    <td><span class="badge badge-warning">Competitive</span></td>
+                </tr>
+                <tr style="background: #fef3c7;">
+                    <td><strong>France</strong></td>
+                    <td>3.0 million</td>
+                    <td>Provence, Côte d'Azur, Bordeaux</td>
+                    <td>Few local options</td>
+                    <td><span class="badge badge-success">High Potential</span></td>
+                </tr>
+                <tr style="background: #fef3c7;">
+                    <td><strong>Spain</strong></td>
+                    <td>1.3 million</td>
+                    <td>Costa del Sol, Barcelona, Madrid</td>
+                    <td>None identified</td>
+                    <td><span class="badge badge-success">High Potential</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Germany</strong></td>
+                    <td>2.2 million</td>
+                    <td>Bavaria, Baden-Württemberg</td>
+                    <td>Unknown</td>
+                    <td><span class="badge badge-info">Research Needed</span></td>
+                </tr>
+                <tr style="background: #fee2e2;">
+                    <td><strong>Australia</strong></td>
+                    <td>1.3 million</td>
+                    <td>NSW, Queensland, Victoria</td>
+                    <td>The Acoustic Box, Pool Filter Box</td>
+                    <td><span class="badge badge-danger">Saturated</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Italy</strong></td>
+                    <td>~300,000</td>
+                    <td>Tuscany, Lake Como, Sicily</td>
+                    <td>None identified</td>
+                    <td><span class="badge badge-info">Medium</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Greece</strong></td>
+                    <td>~200,000</td>
+                    <td>Islands, Athens suburbs</td>
+                    <td>None identified</td>
+                    <td><span class="badge badge-info">Medium</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Portugal</strong></td>
+                    <td>~150,000</td>
+                    <td>Algarve, Lisbon coast</td>
+                    <td>None identified</td>
+                    <td><span class="badge badge-info">Medium</span></td>
+                </tr>
+                <tr style="background: #d1fae5;">
+                    <td><strong>GCC Total</strong></td>
+                    <td>500-650K</td>
+                    <td>UAE, Saudi, Qatar, Kuwait</td>
+                    <td><strong>ZERO</strong></td>
+                    <td><span class="badge badge-success">Blue Ocean</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Southern Europe Focus -->
+        <div class="card" style="border-left: 4px solid var(--primary);">
+            <div class="card-header" style="color: var(--primary-dark);">Southern Europe: The Untapped Market</div>
+            <p style="color: var(--muted); margin-bottom: 1rem;">France + Spain + Italy + Portugal + Greece = <strong>5+ million pools</strong> with no dominant acoustic enclosure brand.</p>
+
+            <div class="grid-2">
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Why Southern Europe?</h4>
+                    <ul>
+                        <li><strong>Climate:</strong> Similar to GCC - hot summers, outdoor living culture</li>
+                        <li><strong>Wealth:</strong> High disposable income in coastal/villa regions</li>
+                        <li><strong>Density:</strong> Villa communities with noise concerns</li>
+                        <li><strong>No competitors:</strong> Australian brands don't ship to EU</li>
+                        <li><strong>EU single market:</strong> One certification covers 27 countries</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Market Entry Strategy</h4>
+                    <ul>
+                        <li><strong>Spain first:</strong> 1.3M pools, English widely spoken, easy business setup</li>
+                        <li><strong>Distribution:</strong> Partner with pool equipment distributors (Fluidra, etc.)</li>
+                        <li><strong>Manufacture:</strong> Same China supplier, ship to EU warehouse</li>
+                        <li><strong>Pricing:</strong> €1,200-1,800 (competitive with import costs)</li>
+                        <li><strong>CE marking:</strong> Required for EU sales (straightforward for enclosures)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="alert alert-warning" style="margin-top: 1rem;">
+                <span>💡</span>
+                <div><strong>Fluidra connection:</strong> Fluidra (Spanish company) is the world's largest pool equipment manufacturer. They have distribution across Europe. A partnership could unlock the entire EU market.</div>
+            </div>
+        </div>
+
+        <!-- Global Revenue Potential -->
+        <div class="card">
+            <div class="card-header">Global Revenue Potential (Year 5)</div>
+            <table>
+                <tr>
+                    <th>Region</th>
+                    <th>Addressable Pools</th>
+                    <th>Penetration</th>
+                    <th>Units/Year</th>
+                    <th>Revenue (USD)</th>
+                </tr>
+                <tr>
+                    <td><strong>GCC</strong></td>
+                    <td>140,000 luxury</td>
+                    <td>1%</td>
+                    <td>1,400</td>
+                    <td>$1.4M</td>
+                </tr>
+                <tr>
+                    <td><strong>Southern Europe</strong></td>
+                    <td>500,000 luxury</td>
+                    <td>0.5%</td>
+                    <td>2,500</td>
+                    <td>$2.5M</td>
+                </tr>
+                <tr>
+                    <td><strong>USA (niche)</strong></td>
+                    <td>1,000,000 luxury</td>
+                    <td>0.2%</td>
+                    <td>2,000</td>
+                    <td>$2.0M</td>
+                </tr>
+                <tr style="background: #d1fae5; font-weight: 600;">
+                    <td><strong>TOTAL</strong></td>
+                    <td>1.64M</td>
+                    <td>~0.4%</td>
+                    <td><strong>5,900</strong></td>
+                    <td><strong>$5.9M</strong></td>
+                </tr>
+            </table>
+
+            <div class="alert alert-info" style="margin-top: 1rem;">
+                <span>📊</span>
+                <div><strong>Context:</strong> The Acoustic Box (Australia only, 1.3M pools) likely does $1-2M/year. With 3 regions totaling 10× their addressable market, $5-6M is achievable at similar penetration rates.</div>
+            </div>
+        </div>
+
+        <!-- Phased Global Expansion -->
+        <div class="card" style="background: linear-gradient(135deg, #fef3c7, #fde68a); border: none;">
+            <div class="card-header" style="color: #92400e;">Phased Global Expansion Strategy</div>
+            <table>
+                <tr>
+                    <th>Phase</th>
+                    <th>Timeline</th>
+                    <th>Markets</th>
+                    <th>Investment</th>
+                    <th>Target Revenue</th>
+                </tr>
+                <tr>
+                    <td><strong>1. Proof of Concept</strong></td>
+                    <td>Year 1</td>
+                    <td>UAE</td>
+                    <td>$20-30K</td>
+                    <td>$50-100K</td>
+                </tr>
+                <tr>
+                    <td><strong>2. GCC Expansion</strong></td>
+                    <td>Year 1-2</td>
+                    <td>+ Saudi, Qatar, Kuwait</td>
+                    <td>$30-50K</td>
+                    <td>$200-400K</td>
+                </tr>
+                <tr style="background: rgba(255,255,255,0.5);">
+                    <td><strong>3. Southern Europe</strong></td>
+                    <td>Year 2-3</td>
+                    <td>Spain, Portugal, France</td>
+                    <td>$50-100K</td>
+                    <td>$500K-1M</td>
+                </tr>
+                <tr style="background: rgba(255,255,255,0.5);">
+                    <td><strong>4. Scale</strong></td>
+                    <td>Year 3-5</td>
+                    <td>+ Italy, Greece, USA (select states)</td>
+                    <td>$100-200K</td>
+                    <td>$2-5M</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Why This Could Work -->
+        <div class="grid-2">
+            <div class="card" style="border-left: 4px solid var(--success);">
+                <div class="card-header" style="color: #065f46;">Why Global Expansion Works</div>
+                <ul>
+                    <li><strong>Same product:</strong> Pool pumps are the same worldwide (Pentair, Hayward, Zodiac)</li>
+                    <li><strong>Same manufacturer:</strong> One China supplier ships globally</li>
+                    <li><strong>Same problem:</strong> Pool pump noise is universal</li>
+                    <li><strong>No tariffs:</strong> Aluminum enclosures have low/no import duties</li>
+                    <li><strong>Digital marketing:</strong> Google/Meta ads work everywhere</li>
+                    <li><strong>Dropship model:</strong> No need for local inventory initially</li>
+                </ul>
+            </div>
+
+            <div class="card" style="border-left: 4px solid var(--danger);">
+                <div class="card-header" style="color: #991b1b;">Risks & Challenges</div>
+                <ul>
+                    <li><strong>Logistics:</strong> Shipping costs vary significantly by region</li>
+                    <li><strong>Certification:</strong> EU requires CE marking, USA may need local compliance</li>
+                    <li><strong>Support:</strong> Different time zones, languages, warranty handling</li>
+                    <li><strong>Competition:</strong> Local players may emerge as market develops</li>
+                    <li><strong>Capital:</strong> Multi-region expansion requires significant investment</li>
+                    <li><strong>Focus:</strong> Spreading too thin too fast = failure everywhere</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Global Sources -->
+        <div class="card">
+            <div class="card-header">Global Market Research Sources</div>
+            <ul>
+                <li><a href="https://renosys.com/swimming-pool-statistics-industry-insights-2024/" target="_blank">RenoSys - Swimming Pool Statistics 2025</a></li>
+                <li><a href="https://www.mordorintelligence.com/industry-reports/global-swimmingpool-market" target="_blank">Mordor Intelligence - Global Pool Market</a></li>
+                <li><a href="https://www.gminsights.com/industry-analysis/europe-swimming-pools-spas-market" target="_blank">GM Insights - Europe Pool & Spa Market</a></li>
+                <li><a href="https://www.expertmarketresearch.com/reports/australia-swimming-pool-market" target="_blank">Expert Market Research - Australia Pool Market</a></li>
+                <li><a href="https://www.rubyhome.com/blog/swimming-pool-stats/" target="_blank">RubyHome - USA Pool Statistics</a></li>
+                <li><a href="https://www.businesscoot.com/en/study/the-swimming-pool-market-france" target="_blank">Businesscoot - French Pool Market</a></li>
+            </ul>
+        </div>
+
         <!-- UAE-Specific Opportunity: Chillers -->
         <h2>UAE-Specific: Pool Chillers</h2>
 
@@ -598,6 +1181,8 @@
         <p style="text-align: center; color: var(--muted); margin-top: 2rem; font-size: 0.85rem;">
             Research compiled January 2026 | Apex Enclosures | Internal Use Only
         </p>
+            </div>
+        </main>
     </div>
 </body>
 </html>
